@@ -149,7 +149,15 @@
     .meter-top { display: flex; justify-content: space-between; gap: 15px; font-size: 12px; color: var(--muted); }
     .meter-top strong { color: var(--ink); font-family: "IBM Plex Mono", monospace; }
     .meter-track { height: 6px; margin-top: 11px; overflow: hidden; background: var(--paper-2); }
-    .meter-fill { width: 18%; height: 100%; background: var(--accent); transition: width .3s ease; }
+    .meter-fill { width: 0%; height: 100%; background: var(--accent); transition: width .3s ease; }
+    .meter-name { display: flex; gap: 8px; margin-top: 10px; }
+    .meter-name input { flex: 1; min-width: 0; font: inherit; font-size: 12px; padding: 7px 9px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); }
+    .meter-name input::placeholder { color: var(--muted); }
+    .meter-name button { font: inherit; font-size: 12px; font-weight: 600; padding: 7px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper-2); color: var(--ink); cursor: pointer; }
+    .meter-name button:hover { border-color: var(--accent); }
+    .meter-welcome { display: none; font-size: 12px; color: var(--muted); margin: 10px 0 0; }
+    .meter-welcome strong { color: var(--ink); }
+    #switchLearner { font: inherit; font-size: 12px; color: var(--accent); background: none; border: none; padding: 0; margin-left: 6px; cursor: pointer; text-decoration: underline; }
     .button-row { display: flex; gap: 10px; flex-wrap: wrap; }
     .primary, .secondary, .text-btn {
       border: 0;
@@ -513,9 +521,14 @@
           <h1 id="overview-title">Learn the desk, not just the definition.</h1>
           <p>Build fluency across markets, protocols, products, and AI—then practice the decisions, handoffs, reconciliations, and exceptions that make up the workday.</p>
         </div>
-        <div class="session-meter" aria-label="Session progress">
-          <div class="meter-top"><span>This session</span><strong id="progressText">18%</strong></div>
+        <div class="session-meter" aria-label="Learning progress">
+          <div class="meter-top"><span id="progressLabel">Your progress</span><strong id="progressText">0%</strong></div>
           <div class="meter-track"><div class="meter-fill" id="progressFill"></div></div>
+          <div class="meter-name" id="nameRow">
+            <input id="learnerName" type="text" maxlength="40" placeholder="Enter your name to save progress" autocomplete="name" aria-label="Your name" />
+            <button id="saveName" type="button">Save</button>
+          </div>
+          <p class="meter-welcome" id="welcomeBack"></p>
         </div>
       </header>
 
@@ -840,7 +853,64 @@
 </div>
 <script>
 (() => {
-  const state = { visitedSections: new Set([1]), quizAnswers: {} };
+  const PROGRESS_KEY = 'fincareers-progress-v1';
+  const LAST_LEARNER_KEY = 'fincareers-learner-v1';
+  const TOTAL_UNITS = 7; /* 6 desk-lab sections + quiz */
+  const state = { learner: '', visitedSections: new Set(), quizAnswers: {} };
+
+  function loadProgressStore() {
+    try { return JSON.parse(localStorage.getItem(PROGRESS_KEY) || '{}'); }
+    catch (e) { return {}; }
+  }
+  function saveProgressStore(store) {
+    try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(store)); } catch (e) {}
+  }
+  function persistProgress() {
+    if (!state.learner) return;
+    const store = loadProgressStore();
+    store[state.learner] = { visited: [...state.visitedSections], updatedAt: Date.now() };
+    saveProgressStore(store);
+    try { localStorage.setItem(LAST_LEARNER_KEY, state.learner); } catch (e) {}
+  }
+  function setLearner(name) {
+    name = (name || '').trim().slice(0, 40);
+    state.learner = name;
+    state.visitedSections = new Set();
+    state.quizAnswers = {};
+    if (name) {
+      const rec = loadProgressStore()[name];
+      if (rec && Array.isArray(rec.visited)) state.visitedSections = new Set(rec.visited.filter(n => Number.isInteger(n) && n >= 1 && n <= TOTAL_UNITS));
+      try { localStorage.setItem(LAST_LEARNER_KEY, name); } catch (e) {}
+    }
+    renderLearnerUI();
+    updateProgress();
+  }
+  function renderLearnerUI() {
+    const label = document.getElementById('progressLabel');
+    const row = document.getElementById('nameRow');
+    const welcome = document.getElementById('welcomeBack');
+    const input = document.getElementById('learnerName');
+    if (state.learner) {
+      label.textContent = state.learner + '\u2019s progress';
+      row.style.display = 'none';
+      welcome.style.display = 'block';
+      welcome.innerHTML = 'Tracking as <strong></strong><button type="button" id="switchLearner">Not you?</button>';
+      welcome.querySelector('strong').textContent = state.learner;
+      welcome.querySelector('#switchLearner').addEventListener('click', () => {
+        state.learner = '';
+        state.visitedSections = new Set();
+        state.quizAnswers = {};
+        try { localStorage.removeItem(LAST_LEARNER_KEY); } catch (e) {}
+        renderLearnerUI();
+        updateProgress();
+      });
+    } else {
+      label.textContent = 'Your progress';
+      row.style.display = 'flex';
+      welcome.style.display = 'none';
+      if (input && document.activeElement !== input) input.value = '';
+    }
+  }
   const money0 = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
   const money2 = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const num0 = new Intl.NumberFormat('en-US');
@@ -872,9 +942,10 @@
   }));
 
   function updateProgress() {
-    const pct = Math.round(18 + (state.visitedSections.size - 1) * (72 / 6));
+    const pct = Math.round(state.visitedSections.size / TOTAL_UNITS * 100);
     document.getElementById('progressText').textContent = pct + '%';
     document.getElementById('progressFill').style.width = pct + '%';
+    persistProgress();
   }
   function showSection(n) {
     document.querySelectorAll('.lesson-panel').forEach(p => p.classList.toggle('active', Number(p.dataset.panel) === n));
@@ -998,6 +1069,19 @@
     terms.forEach(term => { const hit = term.textContent.toLowerCase().includes(q); term.hidden = !hit; if (hit) shown++; });
     document.getElementById('emptySearch').classList.toggle('show', shown === 0);
   });
+  /* Personalized progress: name-keyed, persisted in localStorage */
+  (function initProgress() {
+    const input = document.getElementById('learnerName');
+    const save = document.getElementById('saveName');
+    if (!input || !save) return;
+    const commit = () => { if (input.value.trim()) setLearner(input.value); };
+    save.addEventListener('click', commit);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') commit(); });
+    let last = '';
+    try { last = localStorage.getItem(LAST_LEARNER_KEY) || ''; } catch (e) {}
+    if (last) { input.value = last; setLearner(last); }
+    else { renderLearnerUI(); updateProgress(); }
+  })();
 })();
 </script>
 </body>
