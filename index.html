@@ -1,0 +1,966 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Finance Careers Learning Platform</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f2f5f4;
+      --paper: #ffffff;
+      --paper-2: #e8eeeb;
+      --ink: #12211d;
+      --muted: #576760;
+      --line: #cbd6d1;
+      --line-strong: #9caaa4;
+      --nav: #12211d;
+      --nav-ink: #f1f6f3;
+      --nav-muted: #aab9b2;
+      --accent: #007a5a;
+      --accent-2: #c2761a;
+      --accent-soft: #d9f1e8;
+      --amber-soft: #f5e8d2;
+      --danger: #b23b36;
+      --shadow: 0 12px 30px rgba(21,42,35,.08);
+      --radius: 12px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1715;
+        --paper: #18221f;
+        --paper-2: #202e29;
+        --ink: #eef6f2;
+        --muted: #a7b8b1;
+        --line: #33443d;
+        --line-strong: #586b63;
+        --nav: #0a110f;
+        --nav-ink: #f2f8f5;
+        --nav-muted: #9cafA7;
+        --accent: #52d2a6;
+        --accent-2: #e4a24d;
+        --accent-soft: #17382e;
+        --amber-soft: #3b2d1d;
+        --danger: #ef7670;
+        --shadow: 0 14px 35px rgba(0,0,0,.24);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      line-height: 1.5;
+    }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; }
+    .app-shell { min-height: 100vh; }
+    .rail {
+      position: fixed;
+      inset: 0 auto 0 0;
+      width: 232px;
+      padding: 28px 18px 24px;
+      background: var(--nav);
+      color: var(--nav-ink);
+      display: flex;
+      flex-direction: column;
+      z-index: 10;
+    }
+    .rail-label {
+      margin: 0 12px 20px;
+      color: var(--nav-muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .nav-list { display: grid; gap: 5px; }
+    .nav-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--nav-muted);
+      display: grid;
+      grid-template-columns: 25px 1fr;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 12px;
+      text-align: left;
+      cursor: pointer;
+    }
+    .nav-btn:hover, .nav-btn.active { background: rgba(255,255,255,.09); color: var(--nav-ink); }
+    .nav-icon { width: 20px; height: 20px; display: grid; place-items: center; }
+    .nav-icon svg { width: 19px; height: 19px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+    .rail-meta { margin-top: auto; padding: 16px 12px 0; border-top: 1px solid rgba(255,255,255,.14); }
+    .rail-meta strong { display: block; font-size: 13px; font-weight: 600; }
+    .rail-meta span { display: block; margin-top: 4px; color: var(--nav-muted); font-size: 12px; }
+    .main { margin-left: 232px; min-width: 0; }
+    .view { display: none; padding: 42px clamp(24px, 5vw, 72px) 80px; max-width: 1320px; margin: 0 auto; }
+    .view.active { display: block; }
+    .page-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: end; margin-bottom: 34px; }
+    .page-head h1 { margin: 0; max-width: 780px; font-size: clamp(36px, 5vw, 66px); line-height: .98; letter-spacing: -.045em; }
+    .page-head p { margin: 18px 0 0; max-width: 690px; color: var(--muted); font-size: 17px; }
+    .eyebrow { margin: 0 0 12px; color: var(--accent); font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+    .session-meter { min-width: 210px; padding: 16px; border: 1px solid var(--line); background: var(--paper); box-shadow: var(--shadow); }
+    .meter-top { display: flex; justify-content: space-between; gap: 15px; font-size: 12px; color: var(--muted); }
+    .meter-top strong { color: var(--ink); font-family: "IBM Plex Mono", monospace; }
+    .meter-track { height: 6px; margin-top: 11px; overflow: hidden; background: var(--paper-2); }
+    .meter-fill { width: 18%; height: 100%; background: var(--accent); transition: width .3s ease; }
+    .button-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .primary, .secondary, .text-btn {
+      border: 0;
+      border-radius: 7px;
+      padding: 11px 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .primary { background: var(--accent); color: #fff; }
+    @media (prefers-color-scheme: dark) { .primary { color: #081b15; } }
+    .secondary { background: var(--paper); border: 1px solid var(--line-strong); }
+    .text-btn { padding-inline: 0; color: var(--accent); background: transparent; }
+    .primary:hover, .secondary:hover { filter: brightness(.96); }
+    .status-strip {
+      display: grid;
+      grid-template-columns: 1.35fr repeat(3, minmax(120px, .55fr));
+      background: var(--nav);
+      color: var(--nav-ink);
+      box-shadow: var(--shadow);
+      margin-bottom: 34px;
+    }
+    .status-main, .status-cell { padding: 22px; }
+    .status-cell { border-left: 1px solid rgba(255,255,255,.15); }
+    .status-main strong { font-size: 18px; }
+    .status-main span, .status-cell span { display: block; color: var(--nav-muted); font-size: 12px; margin-top: 4px; }
+    .status-cell strong { font: 600 24px/1 "IBM Plex Mono", monospace; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin: 42px 0 18px; }
+    .section-head h2 { margin: 0; font-size: clamp(24px, 3vw, 34px); letter-spacing: -.025em; }
+    .section-head p { margin: 6px 0 0; color: var(--muted); max-width: 650px; }
+    .track-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .track-tab { border: 1px solid var(--line); background: transparent; padding: 8px 12px; border-radius: 999px; color: var(--muted); cursor: pointer; font-size: 13px; }
+    .track-tab.active { border-color: var(--ink); background: var(--ink); color: var(--bg); }
+    .track-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; align-items: start; }
+    .track-card { min-height: 270px; padding: 20px; background: var(--paper); border-top: 4px solid var(--accent); box-shadow: var(--shadow); }
+    .track-card[data-track="defi"] { border-color: var(--accent-2); }
+    .track-card[data-track="fintech"] { border-color: #2378a0; }
+    .track-card[data-track="ai"] { border-color: #9a5f43; }
+    .track-num { color: var(--muted); font: 500 11px "IBM Plex Mono", monospace; }
+    .track-card h3 { margin: 18px 0 7px; font-size: 20px; }
+    .track-card > p { margin: 0 0 20px; color: var(--muted); font-size: 14px; }
+    .module-list { display: grid; gap: 0; border-top: 1px solid var(--line); }
+    .module-row { padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13px; display: flex; gap: 8px; align-items: baseline; }
+    .module-row span { color: var(--muted); font: 11px "IBM Plex Mono", monospace; }
+    .deep-dive { display: grid; grid-template-columns: 1.05fr .95fr; min-height: 390px; margin-top: 18px; background: var(--paper); box-shadow: var(--shadow); }
+    .deep-copy { padding: clamp(26px, 4vw, 48px); }
+    .deep-copy h2 { margin: 8px 0 14px; font-size: clamp(30px, 4vw, 48px); line-height: 1.03; letter-spacing: -.035em; }
+    .deep-copy p { color: var(--muted); max-width: 620px; }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 26px; }
+    .skill-chips span { padding: 6px 9px; background: var(--paper-2); font: 500 11px "IBM Plex Mono", monospace; }
+    .deep-visual { padding: 28px; background: var(--accent-soft); display: grid; place-items: center; }
+    .flow-map { width: min(100%, 470px); display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .flow-node { background: var(--paper); border: 1px solid var(--line); padding: 18px; position: relative; }
+    .flow-node b { display: block; font-size: 14px; }
+    .flow-node span { display: block; margin-top: 5px; color: var(--muted); font-size: 12px; }
+    .flow-node em { position: absolute; right: 11px; top: 10px; color: var(--accent); font: normal 11px "IBM Plex Mono", monospace; }
+    .career-lanes { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); background: var(--paper); }
+    .lane { padding: 20px; border-right: 1px solid var(--line); }
+    .lane:last-child { border: 0; }
+    .lane span { color: var(--accent); font: 600 11px "IBM Plex Mono", monospace; }
+    .lane h3 { margin: 15px 0 7px; font-size: 17px; }
+    .lane p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    /* Track guides */
+    .guide-switcher { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 0 0 24px; }
+    .guide-tab { border: 1px solid var(--line); background: var(--paper); padding: 14px 16px; text-align: left; cursor: pointer; }
+    .guide-tab span { display: block; color: var(--muted); font: 10px "IBM Plex Mono", monospace; }
+    .guide-tab b { display: block; margin-top: 4px; }
+    .guide-tab.active { border-color: var(--accent); background: var(--accent-soft); }
+    .guide-panel { display: none; }
+    .guide-panel.active { display: block; }
+    .guide-hero { display: grid; grid-template-columns: 1.2fr .8fr; background: var(--nav); color: var(--nav-ink); margin-bottom: 16px; }
+    .guide-hero-copy { padding: clamp(28px, 5vw, 54px); }
+    .guide-hero-copy .eyebrow { color: #77dfba; }
+    .guide-hero h2 { margin: 0; font-size: clamp(34px, 5vw, 58px); line-height: 1; letter-spacing: -.04em; }
+    .guide-hero p { color: var(--nav-muted); max-width: 700px; }
+    .guide-facts { display: grid; align-content: center; border-left: 1px solid rgba(255,255,255,.15); }
+    .guide-fact { padding: 18px 24px; border-bottom: 1px solid rgba(255,255,255,.15); }
+    .guide-fact:last-child { border: 0; }
+    .guide-fact span { display: block; color: var(--nav-muted); font: 10px "IBM Plex Mono", monospace; }
+    .guide-fact b { display: block; margin-top: 5px; font-size: 14px; }
+    .guide-section { padding: clamp(22px, 4vw, 38px); background: var(--paper); border: 1px solid var(--line); margin-bottom: 16px; }
+    .guide-section > h3 { margin: 0; font-size: clamp(23px, 3vw, 31px); letter-spacing: -.025em; }
+    .guide-section > p { color: var(--muted); max-width: 850px; }
+    .role-snapshot-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; }
+    .role-snapshot { padding: 17px; background: var(--paper-2); }
+    .role-snapshot span { color: var(--accent); font: 600 10px "IBM Plex Mono", monospace; }
+    .role-snapshot h4 { margin: 9px 0 5px; font-size: 15px; }
+    .role-snapshot p { margin: 0; color: var(--muted); font-size: 12px; }
+    .bau-grid { display: grid; grid-template-columns: 108px 1fr 1fr 1fr; margin-top: 20px; border-top: 1px solid var(--line); }
+    .bau-cell { padding: 14px 12px; border-bottom: 1px solid var(--line); }
+    .bau-time { color: var(--accent); font: 600 12px "IBM Plex Mono", monospace; }
+    .bau-cell b { display: block; font-size: 13px; }
+    .bau-cell span { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; }
+    .bau-head { color: var(--muted); font: 500 10px "IBM Plex Mono", monospace; text-transform: uppercase; }
+    .curriculum-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 24px; margin-top: 20px; }
+    .curriculum-item { display: grid; grid-template-columns: 38px 1fr; gap: 12px; padding: 15px 0; border-top: 1px solid var(--line); }
+    .curriculum-num { color: var(--accent); font: 600 11px "IBM Plex Mono", monospace; }
+    .curriculum-item h4 { margin: 0; font-size: 14px; }
+    .curriculum-item p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+    .decision-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; }
+    .decision-card { padding: 16px; border-top: 3px solid var(--accent); background: var(--paper-2); }
+    .decision-card b { display: block; font-size: 13px; }
+    .decision-card p { margin: 6px 0 0; color: var(--muted); font-size: 12px; }
+    .candidate-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 20px; }
+    .candidate-card { padding: 19px; background: var(--nav); color: var(--nav-ink); }
+    .candidate-card span { color: #77dfba; font: 600 10px "IBM Plex Mono", monospace; }
+    .candidate-card h4 { margin: 9px 0 7px; }
+    .candidate-card p, .candidate-card li { color: var(--nav-muted); font-size: 12px; }
+    .candidate-card ul { margin: 9px 0 0; padding-left: 17px; }
+    .candidate-card li + li { margin-top: 6px; }
+    .drill-list { display: grid; gap: 8px; margin-top: 18px; }
+    .drill { display: grid; grid-template-columns: 38px 1fr auto; gap: 12px; align-items: start; padding: 14px; background: var(--paper-2); }
+    .drill > span { color: var(--accent); font: 600 11px "IBM Plex Mono", monospace; }
+    .drill b { display: block; font-size: 13px; }
+    .drill p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+    .drill em { color: var(--muted); font: normal 10px "IBM Plex Mono", monospace; white-space: nowrap; }
+    .track-card .text-btn { margin-top: 14px; font-size: 13px; }
+
+    /* Lab */
+    .lab-layout { display: grid; grid-template-columns: 260px minmax(0,1fr); gap: 24px; align-items: start; }
+    .lesson-nav { position: sticky; top: 22px; background: var(--paper); border: 1px solid var(--line); }
+    .lesson-nav-head { padding: 18px; border-bottom: 1px solid var(--line); }
+    .lesson-nav-head span { color: var(--muted); font: 11px "IBM Plex Mono", monospace; }
+    .lesson-nav-head strong { display: block; margin-top: 4px; }
+    .lesson-step { width: 100%; border: 0; border-bottom: 1px solid var(--line); background: transparent; padding: 13px 16px; display: grid; grid-template-columns: 24px 1fr; gap: 9px; text-align: left; cursor: pointer; color: var(--muted); }
+    .lesson-step:last-child { border: 0; }
+    .lesson-step.active { background: var(--accent-soft); color: var(--ink); }
+    .step-index { font: 500 11px "IBM Plex Mono", monospace; }
+    .lesson-panel { display: none; }
+    .lesson-panel.active { display: block; }
+    .lesson-hero { padding: clamp(26px, 4vw, 46px); background: var(--nav); color: var(--nav-ink); margin-bottom: 20px; }
+    .lesson-hero .eyebrow { color: #77dfba; }
+    .lesson-hero h1 { margin: 0; font-size: clamp(34px, 5vw, 58px); line-height: 1; letter-spacing: -.04em; }
+    .lesson-hero p { margin: 16px 0 0; color: var(--nav-muted); max-width: 720px; }
+    .lesson-hero-meta { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 24px; font: 11px "IBM Plex Mono", monospace; color: var(--nav-muted); }
+    .content-card { padding: clamp(22px, 3.5vw, 36px); background: var(--paper); border: 1px solid var(--line); margin-bottom: 16px; }
+    .content-card h2 { margin: 0 0 12px; font-size: clamp(23px, 3vw, 31px); letter-spacing: -.025em; }
+    .content-card h3 { margin: 25px 0 8px; }
+    .content-card p { color: var(--muted); }
+    .concept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 22px; }
+    .concept { padding: 17px; background: var(--paper-2); }
+    .concept b { display: block; }
+    .concept p { margin: 6px 0 0; font-size: 13px; }
+    .callout { margin-top: 20px; padding: 18px 20px; background: var(--amber-soft); border-left: 4px solid var(--accent-2); }
+    .callout b { display: block; }
+    .callout p { margin: 6px 0 0; color: var(--ink); }
+    .workflow { display: grid; grid-template-columns: repeat(6, 1fr); margin: 24px 0 8px; }
+    .work-step { position: relative; padding: 0 12px 0 0; }
+    .work-step::after { content: ""; position: absolute; top: 14px; left: 32px; right: 3px; height: 1px; background: var(--line-strong); }
+    .work-step:last-child::after { display: none; }
+    .work-dot { width: 29px; height: 29px; border: 2px solid var(--accent); border-radius: 50%; background: var(--paper); display: grid; place-items: center; position: relative; z-index: 1; color: var(--accent); font: 600 10px "IBM Plex Mono", monospace; }
+    .work-step b { display: block; margin-top: 12px; font-size: 13px; }
+    .work-step span { display: block; color: var(--muted); margin-top: 4px; font-size: 11px; }
+    .day-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--line); margin: 20px 0 0; overflow: visible; }
+    .day-tab { border: 0; border-bottom: 3px solid transparent; background: transparent; padding: 11px 15px; color: var(--muted); cursor: pointer; }
+    .day-tab.active { border-color: var(--accent); color: var(--ink); }
+    .day-detail { display: none; padding: 22px 0 0; }
+    .day-detail.active { display: grid; grid-template-columns: 112px 1fr; gap: 24px; }
+    .day-time { font: 600 18px "IBM Plex Mono", monospace; color: var(--accent); }
+    .day-detail h3 { margin: 0 0 5px; }
+    .day-detail p { margin: 0; }
+    .desk-note { margin-top: 14px; padding: 14px; background: var(--paper-2); font-size: 13px; }
+    .sim-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 20px; align-items: start; }
+    .control-stack { display: grid; gap: 20px; }
+    .control label { display: flex; justify-content: space-between; gap: 16px; font-size: 13px; }
+    .control output { font: 600 12px "IBM Plex Mono", monospace; color: var(--accent); }
+    input[type="range"] { width: 100%; accent-color: var(--accent); margin-top: 8px; }
+    .result-board { background: var(--nav); color: var(--nav-ink); padding: 24px; }
+    .result-board > span { color: var(--nav-muted); font: 11px "IBM Plex Mono", monospace; }
+    .big-result { margin: 8px 0 20px; font: 600 clamp(32px, 5vw, 52px)/1 "IBM Plex Mono", monospace; }
+    .result-grid { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid rgba(255,255,255,.16); }
+    .result-grid div { padding: 14px 12px 0 0; }
+    .result-grid span { display: block; color: var(--nav-muted); font-size: 11px; }
+    .result-grid strong { display: block; margin-top: 3px; font: 500 15px "IBM Plex Mono", monospace; }
+    .formula { margin-top: 18px; color: var(--nav-muted); font: 11px/1.65 "IBM Plex Mono", monospace; }
+    .chart-wrap { width: 100%; min-height: 300px; margin-top: 24px; }
+    .chart-wrap svg { width: 100%; height: auto; overflow: visible; }
+    .chart-axis { stroke: var(--line-strong); stroke-width: 1; }
+    .chart-grid { stroke: var(--line); stroke-width: 1; }
+    .chart-text { fill: var(--muted); font: 11px "IBM Plex Mono", monospace; }
+    .chart-bar { fill: var(--accent); }
+    .chart-label { fill: var(--ink); font: 600 11px "IBM Plex Mono", monospace; }
+    .chart-note { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
+    .exception-list { display: grid; gap: 8px; margin-top: 18px; }
+    .exception-row { display: grid; grid-template-columns: 100px 1fr 100px; gap: 16px; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--line); }
+    .exception-row:last-child { border: 0; }
+    .exception-row code { color: var(--accent); font-family: "IBM Plex Mono", monospace; }
+    .exception-row span { color: var(--muted); font-size: 13px; }
+    .exception-row b { text-align: right; font-size: 12px; }
+    .scenario { padding: 22px; background: var(--paper-2); margin-top: 18px; }
+    .scenario-options { display: grid; gap: 9px; margin-top: 16px; }
+    .scenario-btn { border: 1px solid var(--line-strong); background: var(--paper); padding: 13px 15px; text-align: left; cursor: pointer; }
+    .scenario-btn:hover { border-color: var(--accent); }
+    .scenario-btn.correct { border-color: var(--accent); background: var(--accent-soft); }
+    .scenario-btn.incorrect { border-color: var(--danger); }
+    .scenario-feedback { display: none; margin-top: 14px; padding: 13px 15px; background: var(--paper); font-size: 13px; }
+    .scenario-feedback.show { display: block; }
+    .recon-table { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 13px; }
+    .recon-table th, .recon-table td { padding: 12px 10px; border-bottom: 1px solid var(--line); text-align: right; }
+    .recon-table th:first-child, .recon-table td:first-child { text-align: left; }
+    .recon-table th { color: var(--muted); font: 500 10px "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .05em; }
+    .recon-table .break { color: var(--danger); font-weight: 600; }
+    .quiz-q { padding: 20px 0; border-bottom: 1px solid var(--line); }
+    .quiz-q:last-child { border: 0; }
+    .quiz-q h3 { margin: 0 0 12px; }
+    .quiz-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .quiz-btn { border: 1px solid var(--line); background: transparent; padding: 11px 12px; text-align: left; cursor: pointer; }
+    .quiz-btn.correct { background: var(--accent-soft); border-color: var(--accent); }
+    .quiz-btn.incorrect { border-color: var(--danger); }
+    .quiz-score { display: none; margin-top: 20px; padding: 18px; background: var(--nav); color: var(--nav-ink); }
+    .quiz-score.show { display: block; }
+
+    /* Roles */
+    .role-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: start; }
+    .role-card { background: var(--paper); border: 1px solid var(--line); padding: 22px; }
+    .role-card h3 { margin: 10px 0 6px; font-size: 20px; }
+    .role-card p { color: var(--muted); font-size: 13px; }
+    .role-tag { color: var(--accent); font: 600 11px "IBM Plex Mono", monospace; }
+    .role-card dl { margin: 18px 0 0; }
+    .role-card dt { margin-top: 12px; color: var(--muted); font-size: 11px; }
+    .role-card dd { margin: 3px 0 0; font-size: 13px; }
+    .role-match { margin-top: 28px; padding: clamp(24px, 4vw, 40px); background: var(--nav); color: var(--nav-ink); }
+    .role-match h2 { margin: 0; font-size: 30px; }
+    .role-match p { color: var(--nav-muted); }
+    .match-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .match-btn { border: 1px solid rgba(255,255,255,.25); background: transparent; color: var(--nav-ink); padding: 9px 12px; cursor: pointer; }
+    .match-btn.active { background: var(--nav-ink); color: var(--nav); }
+    .match-result { min-height: 45px; margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.16); }
+
+    /* Glossary */
+    .search-box { position: relative; max-width: 700px; }
+    .search-box input { width: 100%; border: 1px solid var(--line-strong); background: var(--paper); color: var(--ink); padding: 15px 18px 15px 44px; border-radius: 0; }
+    .search-box svg { position: absolute; left: 15px; top: 16px; width: 18px; height: 18px; stroke: var(--muted); fill: none; }
+    .glossary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 28px; margin-top: 28px; }
+    .term { padding: 18px 0; border-top: 1px solid var(--line); }
+    .term h3 { margin: 0; font: 600 15px "IBM Plex Mono", monospace; }
+    .term p { margin: 7px 0 0; color: var(--muted); font-size: 14px; }
+    .term[hidden] { display: none; }
+    .empty-search { display: none; padding: 28px 0; color: var(--muted); }
+    .empty-search.show { display: block; }
+    .mobile-nav { display: none; }
+
+    @media (max-width: 1040px) {
+      .track-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .career-lanes { grid-template-columns: repeat(2, 1fr); }
+      .lane:nth-child(2) { border-right: 0; }
+      .lane:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .role-grid { grid-template-columns: repeat(2, 1fr); }
+      .role-snapshot-grid, .decision-grid { grid-template-columns: repeat(2, 1fr); }
+      .bau-grid { grid-template-columns: 90px 1fr 1fr; }
+      .bau-head:last-child, .bau-cell:nth-child(4n) { display: none; }
+      .workflow { grid-template-columns: repeat(3, 1fr); gap: 22px 0; }
+      .work-step:nth-child(3)::after { display: none; }
+    }
+    @media (max-width: 760px) {
+      .rail { display: none; }
+      .main { margin-left: 0; padding-bottom: 72px; }
+      .view { padding: 28px 18px 54px; }
+      .page-head { grid-template-columns: 1fr; align-items: start; }
+      .page-head h1 { font-size: clamp(38px, 12vw, 58px); }
+      .session-meter { width: 100%; }
+      .status-strip { grid-template-columns: repeat(3, 1fr); }
+      .status-main { grid-column: 1 / -1; }
+      .status-cell { border-left: 0; border-top: 1px solid rgba(255,255,255,.15); padding: 17px 15px; }
+      .status-cell + .status-cell { border-left: 1px solid rgba(255,255,255,.15); }
+      .track-grid, .deep-dive, .role-grid, .glossary-grid, .sim-grid, .guide-hero, .candidate-grid { grid-template-columns: 1fr; }
+      .guide-switcher { grid-template-columns: repeat(2, 1fr); }
+      .guide-facts { border-left: 0; border-top: 1px solid rgba(255,255,255,.15); }
+      .curriculum-list, .role-snapshot-grid, .decision-grid { grid-template-columns: 1fr; }
+      .bau-grid { grid-template-columns: 78px 1fr; }
+      .bau-head:nth-child(n+3), .bau-cell:nth-child(4n-1), .bau-cell:nth-child(4n) { display: none; }
+      .drill { grid-template-columns: 30px 1fr; }
+      .drill em { grid-column: 2; }
+      .track-card { min-height: 0; }
+      .deep-visual { min-height: 330px; }
+      .career-lanes { grid-template-columns: 1fr; }
+      .lane { border-right: 0; border-bottom: 1px solid var(--line); }
+      .lane:nth-child(2) { border-right: 0; }
+      .lane:nth-child(-n+3) { border-bottom: 1px solid var(--line); }
+      .lab-layout { grid-template-columns: 1fr; }
+      .lesson-nav { position: static; display: flex; overflow: visible; flex-wrap: wrap; border: 0; background: transparent; gap: 7px; }
+      .lesson-nav-head { width: 100%; border: 0; padding: 0 0 6px; }
+      .lesson-step { width: auto; border: 1px solid var(--line); border-radius: 999px; padding: 8px 11px; grid-template-columns: auto 1fr; font-size: 12px; }
+      .lesson-step:last-child { border: 1px solid var(--line); }
+      .concept-grid { grid-template-columns: 1fr; }
+      .workflow { grid-template-columns: 1fr 1fr; }
+      .work-step:nth-child(3)::after { display: block; }
+      .work-step:nth-child(even)::after { display: none; }
+      .day-tabs { flex-wrap: wrap; }
+      .day-detail.active { grid-template-columns: 1fr; gap: 6px; }
+      .exception-row { grid-template-columns: 74px 1fr; }
+      .exception-row b { grid-column: 2; text-align: left; }
+      .quiz-options { grid-template-columns: 1fr; }
+      .recon-table, .recon-table tbody, .recon-table tr, .recon-table td { display: block; width: 100%; }
+      .recon-table thead { display: none; }
+      .recon-table tr { padding: 12px 0; border-bottom: 1px solid var(--line); }
+      .recon-table td { display: flex; justify-content: space-between; gap: 16px; border: 0; padding: 4px 0; text-align: right; }
+      .recon-table td::before { content: attr(data-label); color: var(--muted); font: 500 10px "IBM Plex Mono", monospace; text-transform: uppercase; }
+      .mobile-nav {
+        position: fixed;
+        z-index: 20;
+        left: 0; right: 0; bottom: 0;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        padding: 7px max(8px, env(safe-area-inset-right)) calc(7px + env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left));
+        background: var(--nav);
+        border-top: 1px solid rgba(255,255,255,.14);
+      }
+      .mobile-btn { border: 0; background: transparent; color: var(--nav-muted); padding: 5px 2px; font-size: 10px; cursor: pointer; }
+      .mobile-btn.active { color: var(--nav-ink); }
+      .mobile-btn svg { display: block; margin: 0 auto 3px; width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+    }
+    @media (max-width: 460px) {
+      .status-cell strong { font-size: 20px; }
+      .status-cell { padding-inline: 10px; }
+      .flow-map { grid-template-columns: 1fr; }
+      .workflow { grid-template-columns: 1fr; }
+      .work-step::after { display: none !important; }
+      .result-grid { grid-template-columns: 1fr; }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  </style>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="rail" aria-label="Primary navigation">
+    <p class="rail-label">Explore</p>
+    <nav class="nav-list">
+      <button class="nav-btn active" data-view="overview">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 5h6v6H4zM14 5h6v6h-6zM4 15h6v4H4zM14 15h6v4h-6z"/></svg></span><span>Learning paths</span>
+      </button>
+      <button class="nav-btn" data-view="curriculum">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 5h7v14H4zM13 5h7v6h-7zM13 13h7v6h-7z"/></svg></span><span>Track guides</span>
+      </button>
+      <button class="nav-btn" data-view="lab">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 19V8l7-4 7 4v11M3 19h18M8 11h8M8 15h8"/></svg></span><span>Desk lab</span>
+      </button>
+      <button class="nav-btn" data-view="roles">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.6-4 2.4-6 5.5-6s4.9 2 5.5 6M15 7h6M18 4v6M16 14h5M16 18h5"/></svg></span><span>Career map</span>
+      </button>
+      <button class="nav-btn" data-view="glossary">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11M9 8h6"/></svg></span><span>Desk dictionary</span>
+      </button>
+    </nav>
+    <div class="rail-meta">
+      <strong>Securities lending</strong>
+      <span>Current desk lab · 7 sections</span>
+    </div>
+  </aside>
+
+  <main class="main">
+    <section class="view active" id="overview" aria-labelledby="overview-title">
+      <header class="page-head">
+        <div>
+          <p class="eyebrow">Career learning, from first principles to BAU</p>
+          <h1 id="overview-title">Learn the desk, not just the definition.</h1>
+          <p>Build fluency across markets, protocols, products, and AI—then practice the decisions, handoffs, reconciliations, and exceptions that make up the workday.</p>
+        </div>
+        <div class="session-meter" aria-label="Session progress">
+          <div class="meter-top"><span>This session</span><strong id="progressText">18%</strong></div>
+          <div class="meter-track"><div class="meter-fill" id="progressFill"></div></div>
+        </div>
+      </header>
+
+      <div class="status-strip">
+        <div class="status-main"><strong>Your next desk lab is ready</strong><span>Securities lending · lifecycle, economics, BAU and exceptions</span></div>
+        <div class="status-cell"><strong>4</strong><span>career tracks</span></div>
+        <div class="status-cell"><strong>32</strong><span>core modules</span></div>
+        <div class="status-cell"><strong>14</strong><span>role profiles</span></div>
+      </div>
+
+      <div class="section-head">
+        <div><h2>Choose your operating system</h2><p>Each track starts with the market structure, then moves into the role-specific work.</p></div>
+        <div class="track-tabs" aria-label="Filter learning tracks">
+          <button class="track-tab active" data-track-filter="all">All</button>
+          <button class="track-tab" data-track-filter="traditional">Traditional</button>
+          <button class="track-tab" data-track-filter="defi">DeFi</button>
+          <button class="track-tab" data-track-filter="fintech">Fintech</button>
+          <button class="track-tab" data-track-filter="ai">AI</button>
+        </div>
+      </div>
+
+      <div class="track-grid" id="trackGrid">
+        <article class="track-card" data-track="traditional">
+          <span class="track-num">TRACK 01</span><h3>Traditional finance</h3><p>Market plumbing, instruments, controls, and institutional workflows.</p>
+          <div class="module-list">
+            <div class="module-row"><span>01</span> Market structure</div><div class="module-row"><span>02</span> Securities lending</div><div class="module-row"><span>03</span> Trade lifecycle</div><div class="module-row"><span>04</span> Collateral operations</div><div class="module-row"><span>05</span> Asset servicing</div><div class="module-row"><span>06</span> Reconciliations</div><div class="module-row"><span>07</span> Risk & controls</div><div class="module-row"><span>08</span> Client reporting</div>
+          </div><button class="text-btn" data-open-track="traditional">Open full track guide →</button>
+        </article>
+        <article class="track-card" data-track="defi">
+          <span class="track-num">TRACK 02</span><h3>DeFi</h3><p>Protocols, on-chain settlement, liquidity, and smart-contract risk.</p>
+          <div class="module-list">
+            <div class="module-row"><span>01</span> Wallets & custody</div><div class="module-row"><span>02</span> Blockchain settlement</div><div class="module-row"><span>03</span> DEX mechanics</div><div class="module-row"><span>04</span> Lending protocols</div><div class="module-row"><span>05</span> Stablecoins</div><div class="module-row"><span>06</span> Token economics</div><div class="module-row"><span>07</span> Oracles & governance</div><div class="module-row"><span>08</span> Protocol risk</div>
+          </div><button class="text-btn" data-open-track="defi">Open full track guide →</button>
+        </article>
+        <article class="track-card" data-track="fintech">
+          <span class="track-num">TRACK 03</span><h3>Fintech</h3><p>Payments, data rails, product controls, and regulated delivery.</p>
+          <div class="module-list">
+            <div class="module-row"><span>01</span> Payment orchestration</div><div class="module-row"><span>02</span> Banking APIs</div><div class="module-row"><span>03</span> Ledger design</div><div class="module-row"><span>04</span> KYC & onboarding</div><div class="module-row"><span>05</span> Fraud operations</div><div class="module-row"><span>06</span> Disputes & returns</div><div class="module-row"><span>07</span> Product delivery</div><div class="module-row"><span>08</span> Metrics & controls</div>
+          </div><button class="text-btn" data-open-track="fintech">Open full track guide →</button>
+        </article>
+        <article class="track-card" data-track="ai">
+          <span class="track-num">TRACK 04</span><h3>AI in finance</h3><p>Models, workflow automation, governance, and human-in-the-loop design.</p>
+          <div class="module-list">
+            <div class="module-row"><span>01</span> Model fundamentals</div><div class="module-row"><span>02</span> Data & evaluation</div><div class="module-row"><span>03</span> Operations copilots</div><div class="module-row"><span>04</span> Document intelligence</div><div class="module-row"><span>05</span> Model risk</div><div class="module-row"><span>06</span> Human oversight</div><div class="module-row"><span>07</span> AI product strategy</div><div class="module-row"><span>08</span> Adoption & monitoring</div>
+          </div><button class="text-btn" data-open-track="ai">Open full track guide →</button>
+        </article>
+      </div>
+
+      <div class="section-head"><div><h2>Featured deep dive</h2><p>A realistic foundation for understanding one of the market's less visible businesses.</p></div></div>
+      <article class="deep-dive">
+        <div class="deep-copy">
+          <p class="eyebrow">Traditional finance · operations</p>
+          <h2>Securities lending, from locate to return</h2>
+          <p>Follow a loan across borrower demand, inventory, pricing, collateral, settlement, billing, recalls, and daily controls. Practice identifying breaks before they become exposure.</p>
+          <div class="skill-chips"><span>LOAN ECONOMICS</span><span>COLLATERAL</span><span>RECONCILIATION</span><span>EXCEPTIONS</span></div>
+          <div class="button-row"><button class="primary" data-open-lab>Open desk lab</button><button class="secondary" data-open-section="4">Try fee calculator</button></div>
+        </div>
+        <div class="deep-visual" aria-label="Securities lending operating flow">
+          <div class="flow-map">
+            <div class="flow-node"><em>01</em><b>Beneficial owner</b><span>Makes securities available</span></div>
+            <div class="flow-node"><em>02</em><b>Lending agent</b><span>Prices, allocates, monitors</span></div>
+            <div class="flow-node"><em>03</em><b>Borrower</b><span>Receives securities</span></div>
+            <div class="flow-node"><em>04</em><b>Collateral</b><span>Moves against exposure</span></div>
+          </div>
+        </div>
+      </article>
+
+      <div class="section-head"><div><h2>Where the work leads</h2><p>One operating foundation can open several different career directions.</p></div><button class="text-btn" data-view-jump="roles">Explore all roles →</button></div>
+      <div class="career-lanes">
+        <div class="lane"><span>CONTROL</span><h3>Operations analyst</h3><p>Own the daily book, settlement, breaks, and escalation rhythm.</p></div>
+        <div class="lane"><span>MARKET</span><h3>Trading assistant</h3><p>Support inventory, pricing, borrow demand, and lifecycle events.</p></div>
+        <div class="lane"><span>PRODUCT</span><h3>Product manager</h3><p>Turn desk pain points into scalable workflows and controls.</p></div>
+        <div class="lane"><span>TECHNOLOGY</span><h3>Automation lead</h3><p>Design data checks and exception-based human review.</p></div>
+      </div>
+    </section>
+
+    <section class="view" id="curriculum" aria-labelledby="curriculum-title">
+      <header class="page-head">
+        <div><p class="eyebrow">Four field guides · 32 modules</p><h1 id="curriculum-title">Understand the role before you chase the title.</h1><p>Each guide connects domain knowledge to the work: who owns what, how a day unfolds, where judgment matters, what good output looks like, and how to prove readiness in an interview.</p></div>
+      </header>
+      <div class="guide-switcher" role="tablist" aria-label="Career track guides">
+        <button class="guide-tab active" data-guide="traditional"><span>TRACK 01</span><b>Traditional finance</b></button>
+        <button class="guide-tab" data-guide="defi"><span>TRACK 02</span><b>DeFi</b></button>
+        <button class="guide-tab" data-guide="fintech"><span>TRACK 03</span><b>Fintech</b></button>
+        <button class="guide-tab" data-guide="ai"><span>TRACK 04</span><b>AI in finance</b></button>
+      </div>
+
+      <article class="guide-panel active" data-guide-panel="traditional">
+        <div class="guide-hero"><div class="guide-hero-copy"><p class="eyebrow">Track 01 · institutional operating model</p><h2>Traditional finance</h2><p>Learn how trades become positions, cash and assets move, records stay aligned, and regulated institutions prove control. This path is especially useful for operations, product, business-analysis, and risk pivots.</p></div><div class="guide-facts"><div class="guide-fact"><span>CORE QUESTION</span><b>Can the firm prove what it owns, owes, moved, and controlled?</b></div><div class="guide-fact"><span>COMMON ENTRY POINTS</span><b>Operations · client service · controls · business analysis</b></div><div class="guide-fact"><span>TRANSFERABLE EDGE</span><b>Exception management, stakeholder coordination, audit-ready evidence</b></div></div></div>
+        <section class="guide-section"><h3>Roles and the work they own</h3><p>Titles differ by firm. Compare the operating objective and outputs, not the label alone.</p><div class="role-snapshot-grid"><div class="role-snapshot"><span>CONTROL</span><h4>Trade operations analyst</h4><p>Confirms, settles, reconciles, and resolves lifecycle breaks before cutoffs.</p></div><div class="role-snapshot"><span>EXPOSURE</span><h4>Collateral analyst</h4><p>Values exposure, agrees calls, checks eligibility, and escalates disputes.</p></div><div class="role-snapshot"><span>CLIENT</span><h4>Asset-servicing specialist</h4><p>Processes income, elections, tax, and client reporting around held assets.</p></div><div class="role-snapshot"><span>CHANGE</span><h4>Operations product manager</h4><p>Turns manual controls and desk pain points into governed platform changes.</p></div></div></section>
+        <section class="guide-section"><h3>A representative day</h3><p>The rhythm follows market deadlines. Seniority changes the scope, but the control loop is similar.</p><div class="bau-grid"><div class="bau-cell bau-head">Window</div><div class="bau-cell bau-head">Focus</div><div class="bau-cell bau-head">Typical output</div><div class="bau-cell bau-head">Judgment</div><div class="bau-cell bau-time">OPEN</div><div class="bau-cell"><b>Overnight position</b><span>Review fails, recalls, cash, collateral, notices, and aged breaks.</span></div><div class="bau-cell"><b>Prioritized queue</b><span>Exposure, cutoff, owner, and next action.</span></div><div class="bau-cell"><b>Separate timing from risk</b><span>Not every difference is a true error.</span></div><div class="bau-cell bau-time">AM</div><div class="bau-cell"><b>Settlement and funding</b><span>Match instructions, chase status, resolve inventory or cash blockers.</span></div><div class="bau-cell"><b>Credible settlement path</b><span>Evidence that obligations can complete.</span></div><div class="bau-cell"><b>Escalate before options expire</b><span>Know market and custodian deadlines.</span></div><div class="bau-cell bau-time">MIDDAY</div><div class="bau-cell"><b>Live-book maintenance</b><span>Process trades, returns, rate changes, income, and margin.</span></div><div class="bau-cell"><b>Aligned records</b><span>Upstream events reach downstream books.</span></div><div class="bau-cell"><b>Find shared causes</b><span>Clusters often reveal one bad feed or setup.</span></div><div class="bau-cell bau-time">CLOSE</div><div class="bau-cell"><b>Control and handoff</b><span>Complete reconciliations and document open risk.</span></div><div class="bau-cell"><b>Evidence and ownership</b><span>Reviewer-ready signoff and named actions.</span></div><div class="bau-cell"><b>Accept or reduce residual risk</b><span>Explain what remains and why.</span></div></div></section>
+        <section class="guide-section"><h3>Eight-module curriculum</h3><div class="curriculum-list"><div class="curriculum-item"><span class="curriculum-num">01</span><div><h4>Market structure</h4><p>Participants, venues, custodians, clearing, settlement, and the difference between execution and finality.</p></div></div><div class="curriculum-item"><span class="curriculum-num">02</span><div><h4>Securities lending</h4><p>Inventory, borrow demand, pricing, collateral, recalls, returns, and fee economics.</p></div></div><div class="curriculum-item"><span class="curriculum-num">03</span><div><h4>Trade lifecycle</h4><p>Capture, enrichment, confirmation, matching, settlement, maintenance, and close.</p></div></div><div class="curriculum-item"><span class="curriculum-num">04</span><div><h4>Collateral operations</h4><p>Exposure, marks, haircuts, eligibility, substitutions, margin calls, and disputes.</p></div></div><div class="curriculum-item"><span class="curriculum-num">05</span><div><h4>Asset servicing</h4><p>Dividends, interest, corporate actions, manufactured payments, and elections.</p></div></div><div class="curriculum-item"><span class="curriculum-num">06</span><div><h4>Reconciliations</h4><p>Completeness, matching keys, aging, root cause, tolerances, and evidence.</p></div></div><div class="curriculum-item"><span class="curriculum-num">07</span><div><h4>Risk and controls</h4><p>Preventive versus detective controls, escalation, maker-checker, and residual risk.</p></div></div><div class="curriculum-item"><span class="curriculum-num">08</span><div><h4>Client and management reporting</h4><p>Translate positions, revenue, service, and incidents into decision-useful reporting.</p></div></div></div></section>
+        <section class="guide-section"><h3>Where experience shows up</h3><div class="decision-grid"><div class="decision-card"><b>Prioritization</b><p>Work exposure and deadline before inbox order or item count.</p></div><div class="decision-card"><b>Root cause</b><p>Trace the first incorrect event instead of repeatedly treating the symptom.</p></div><div class="decision-card"><b>Escalation</b><p>State impact, deadline, evidence, owner, requested action, and consequence.</p></div><div class="decision-card"><b>Control design</b><p>Define population, frequency, threshold, reviewer, evidence, and failure path.</p></div></div><div class="drill-list"><div class="drill"><span>01</span><div><b>Failed settlement</b><p>A same-day delivery is unmatched. Identify the record to compare, the deadline, and the party able to act.</p></div><em>10-MIN DRILL</em></div><div class="drill"><span>02</span><div><b>Recurring reconciliation break</b><p>Separate the temporary repair from the upstream change that prevents recurrence.</p></div><em>15-MIN DRILL</em></div><div class="drill"><span>03</span><div><b>Client incident update</b><p>Write a five-line update covering impact, containment, cause, next action, and timing.</p></div><em>10-MIN DRILL</em></div></div></section>
+        <section class="guide-section"><h3>Candidate-to-contributor playbook</h3><div class="candidate-grid"><div class="candidate-card"><span>INTERVIEW</span><h4>Be ready to explain</h4><ul><li>A lifecycle from instruction to final record</li><li>How you triage competing deadlines</li><li>A control you improved and how you measured it</li></ul></div><div class="candidate-card"><span>PORTFOLIO PROOF</span><h4>Build one artifact</h4><p>Create a process map with systems, owners, inputs, outputs, controls, exceptions, and one proposed improvement. Use invented labels, never employer-confidential data.</p></div><div class="candidate-card"><span>FIRST 30 DAYS</span><h4>Learn the real operating model</h4><ul><li>Map stakeholders and cutoffs</li><li>Shadow one exception end-to-end</li><li>Read procedures against actual practice</li><li>Own a small queue with review</li></ul></div></div></section>
+      </article>
+
+      <article class="guide-panel" data-guide-panel="defi">
+        <div class="guide-hero"><div class="guide-hero-copy"><p class="eyebrow">Track 02 · programmable financial systems</p><h2>DeFi</h2><p>Learn to read protocol state, trace transactions, understand economic incentives, and operate safely around immutable execution, volatile collateral, governance, and smart-contract dependencies.</p></div><div class="guide-facts"><div class="guide-fact"><span>CORE QUESTION</span><b>What state changed on-chain, why, and what risk did that create?</b></div><div class="guide-fact"><span>COMMON ENTRY POINTS</span><b>Protocol operations · risk · analytics · ecosystem support</b></div><div class="guide-fact"><span>TRANSFERABLE EDGE</span><b>Financial controls plus transaction-level technical curiosity</b></div></div></div>
+        <section class="guide-section"><h3>Roles and the work they own</h3><div class="role-snapshot-grid"><div class="role-snapshot"><span>OPERATE</span><h4>Protocol operations analyst</h4><p>Monitors activity, treasury workflows, parameter changes, and incident queues.</p></div><div class="role-snapshot"><span>RISK</span><h4>Protocol risk analyst</h4><p>Studies collateral, liquidity, oracle, concentration, and liquidation behavior.</p></div><div class="role-snapshot"><span>DATA</span><h4>On-chain analyst</h4><p>Turns transactions and contract events into usable behavioral and risk signals.</p></div><div class="role-snapshot"><span>PRODUCT</span><h4>DeFi product manager</h4><p>Designs user flows and safeguards across wallets, contracts, and off-chain services.</p></div></div></section>
+        <section class="guide-section"><h3>A representative day</h3><div class="bau-grid"><div class="bau-cell bau-head">Window</div><div class="bau-cell bau-head">Focus</div><div class="bau-cell bau-head">Typical output</div><div class="bau-cell bau-head">Judgment</div><div class="bau-cell bau-time">START</div><div class="bau-cell"><b>State and incident scan</b><span>Review contract events, utilization, liquidations, oracle status, and governance.</span></div><div class="bau-cell"><b>Risk snapshot</b><span>What moved outside expected conditions.</span></div><div class="bau-cell"><b>Distinguish volatility from malfunction</b><span>Market stress is not automatically a protocol defect.</span></div><div class="bau-cell bau-time">MONITOR</div><div class="bau-cell"><b>Transaction tracing</b><span>Follow hashes, logs, wallet flows, and contract calls.</span></div><div class="bau-cell"><b>Reconstructed sequence</b><span>Evidence of who called what and how state changed.</span></div><div class="bau-cell"><b>Read execution before narrative</b><span>On-chain evidence can contradict first reports.</span></div><div class="bau-cell bau-time">BUILD</div><div class="bau-cell"><b>Parameters and releases</b><span>Review proposed changes, simulations, dependencies, and rollback limits.</span></div><div class="bau-cell"><b>Decision package</b><span>Expected effect, risks, monitoring, and approval trail.</span></div><div class="bau-cell"><b>Model second-order effects</b><span>One parameter can alter liquidity and user behavior.</span></div><div class="bau-cell bau-time">HANDOFF</div><div class="bau-cell"><b>Community and team update</b><span>Document incidents, proposals, unresolved risk, and next watchpoints.</span></div><div class="bau-cell"><b>Shared operating picture</b><span>Technical facts translated into user and treasury impact.</span></div><div class="bau-cell"><b>Separate fact, inference, and proposal</b><span>Make uncertainty explicit.</span></div></div></section>
+        <section class="guide-section"><h3>Eight-module curriculum</h3><div class="curriculum-list"><div class="curriculum-item"><span class="curriculum-num">01</span><div><h4>Wallets and custody</h4><p>Keys, signatures, addresses, multisig, hardware custody, approvals, and recovery risk.</p></div></div><div class="curriculum-item"><span class="curriculum-num">02</span><div><h4>Blockchain settlement</h4><p>Transactions, gas, blocks, confirmations, finality, reorgs, explorers, and event logs.</p></div></div><div class="curriculum-item"><span class="curriculum-num">03</span><div><h4>DEX mechanics</h4><p>Automated market makers, pools, price impact, slippage, routing, and impermanent loss.</p></div></div><div class="curriculum-item"><span class="curriculum-num">04</span><div><h4>Lending protocols</h4><p>Supply, borrow, utilization, rates, collateral factors, health, and liquidation.</p></div></div><div class="curriculum-item"><span class="curriculum-num">05</span><div><h4>Stablecoins</h4><p>Backing models, redemption, peg mechanics, liquidity, reserves, and failure modes.</p></div></div><div class="curriculum-item"><span class="curriculum-num">06</span><div><h4>Token economics</h4><p>Supply, emissions, incentives, fee capture, governance rights, and reflexivity.</p></div></div><div class="curriculum-item"><span class="curriculum-num">07</span><div><h4>Oracles and governance</h4><p>Data sources, update logic, manipulation risk, proposals, voting, and execution delays.</p></div></div><div class="curriculum-item"><span class="curriculum-num">08</span><div><h4>Protocol risk</h4><p>Smart-contract, liquidity, bridge, governance, custody, operational, and regulatory risk.</p></div></div></div></section>
+        <section class="guide-section"><h3>Where experience shows up</h3><div class="decision-grid"><div class="decision-card"><b>Traceability</b><p>Use transaction hashes and events to reconstruct facts before assigning cause.</p></div><div class="decision-card"><b>Scenario thinking</b><p>Ask how users, liquidators, liquidity providers, and governance may react.</p></div><div class="decision-card"><b>Operational security</b><p>Treat wallet permissions, signing context, and transaction simulation as controls.</p></div><div class="decision-card"><b>Incident clarity</b><p>Separate exploited code, market loss, user error, and third-party dependency failure.</p></div></div><div class="drill-list"><div class="drill"><span>01</span><div><b>Liquidation spike</b><p>Outline what you would check across prices, oracle freshness, collateral health, and liquidity.</p></div><em>15-MIN DRILL</em></div><div class="drill"><span>02</span><div><b>Suspicious treasury transfer</b><p>Build a verification sequence that does not rely on a social message alone.</p></div><em>10-MIN DRILL</em></div><div class="drill"><span>03</span><div><b>Parameter proposal</b><p>Write benefits, downside scenarios, monitoring signals, and a safe execution plan.</p></div><em>20-MIN DRILL</em></div></div></section>
+        <section class="guide-section"><h3>Candidate-to-contributor playbook</h3><div class="candidate-grid"><div class="candidate-card"><span>INTERVIEW</span><h4>Be ready to explain</h4><ul><li>One transaction from wallet signature to state change</li><li>How a lending liquidation works</li><li>Why oracle and liquidity risk interact</li></ul></div><div class="candidate-card"><span>PORTFOLIO PROOF</span><h4>Build one artifact</h4><p>Choose a public transaction and produce an annotated trace: calls, events, assets, state change, fees, risks, and what you would monitor next.</p></div><div class="candidate-card"><span>FIRST 30 DAYS</span><h4>Learn the protocol safely</h4><ul><li>Read docs beside verified contract behavior</li><li>Map privileged roles and dependencies</li><li>Shadow an incident review</li><li>Practice on test networks where appropriate</li></ul></div></div></section>
+      </article>
+
+      <article class="guide-panel" data-guide-panel="fintech">
+        <div class="guide-hero"><div class="guide-hero-copy"><p class="eyebrow">Track 03 · financial products at software speed</p><h2>Fintech</h2><p>Learn how customer actions become ledger entries and external money movement, with identity, fraud, partner, compliance, and reliability controls around every handoff.</p></div><div class="guide-facts"><div class="guide-fact"><span>CORE QUESTION</span><b>Did the customer action produce the correct financial and ledger outcome?</b></div><div class="guide-fact"><span>COMMON ENTRY POINTS</span><b>Payments operations · product operations · implementation · business analysis</b></div><div class="guide-fact"><span>TRANSFERABLE EDGE</span><b>Process mapping, client empathy, control thinking, and data fluency</b></div></div></div>
+        <section class="guide-section"><h3>Roles and the work they own</h3><div class="role-snapshot-grid"><div class="role-snapshot"><span>FLOW</span><h4>Payments operations</h4><p>Owns exceptions across authorization, clearing, settlement, returns, and disputes.</p></div><div class="role-snapshot"><span>PRODUCT</span><h4>Product operations</h4><p>Connects support signals, incidents, launch readiness, and operating procedures.</p></div><div class="role-snapshot"><span>DELIVERY</span><h4>Implementation manager</h4><p>Moves clients from requirements through integration, testing, launch, and stabilization.</p></div><div class="role-snapshot"><span>CONTROL</span><h4>Fraud strategy analyst</h4><p>Tunes detection and review while balancing loss, friction, and false positives.</p></div></div></section>
+        <section class="guide-section"><h3>A representative day</h3><div class="bau-grid"><div class="bau-cell bau-head">Window</div><div class="bau-cell bau-head">Focus</div><div class="bau-cell bau-head">Typical output</div><div class="bau-cell bau-head">Judgment</div><div class="bau-cell bau-time">START</div><div class="bau-cell"><b>Service and money scan</b><span>Review incidents, payment failures, ledger breaks, queues, and partner status.</span></div><div class="bau-cell"><b>Operating priorities</b><span>Customer impact, money at risk, volume, and SLA.</span></div><div class="bau-cell"><b>Do not confuse volume with severity</b><span>A small count can hold large exposure.</span></div><div class="bau-cell bau-time">TRIAGE</div><div class="bau-cell"><b>Trace failed journeys</b><span>Connect API request, decision, processor message, ledger entry, and customer state.</span></div><div class="bau-cell"><b>Failure classification</b><span>Partner, product, data, policy, or user action.</span></div><div class="bau-cell"><b>Find the system of record</b><span>UI status may lag financial truth.</span></div><div class="bau-cell bau-time">DELIVER</div><div class="bau-cell"><b>Launch and change work</b><span>Refine requirements, test edge cases, coordinate controls, and monitor rollout.</span></div><div class="bau-cell"><b>Launch evidence</b><span>Acceptance results, runbook, owners, and rollback criteria.</span></div><div class="bau-cell"><b>Design for unhappy paths</b><span>Timeouts, retries, duplicates, partial failure, and reversals.</span></div><div class="bau-cell bau-time">CLOSE</div><div class="bau-cell"><b>Reconcile and learn</b><span>Balance movement to ledger, age exceptions, and turn incidents into backlog.</span></div><div class="bau-cell"><b>Closed loop</b><span>Resolved money, customer communication, and prevention item.</span></div><div class="bau-cell"><b>Choose durable fixes</b><span>Not every manual workaround deserves automation.</span></div></div></section>
+        <section class="guide-section"><h3>Eight-module curriculum</h3><div class="curriculum-list"><div class="curriculum-item"><span class="curriculum-num">01</span><div><h4>Payment orchestration</h4><p>Authorization, capture, clearing, settlement, reversals, retries, and routing.</p></div></div><div class="curriculum-item"><span class="curriculum-num">02</span><div><h4>Banking APIs</h4><p>Requests, responses, webhooks, idempotency, timeouts, authentication, and partners.</p></div></div><div class="curriculum-item"><span class="curriculum-num">03</span><div><h4>Ledger design</h4><p>Accounts, entries, balances, pending versus posted, double entry, and reconciliation.</p></div></div><div class="curriculum-item"><span class="curriculum-num">04</span><div><h4>KYC and onboarding</h4><p>Identity evidence, verification, sanctions screening, risk tiers, and manual review.</p></div></div><div class="curriculum-item"><span class="curriculum-num">05</span><div><h4>Fraud operations</h4><p>Signals, rules, models, queues, false positives, account action, and loss feedback.</p></div></div><div class="curriculum-item"><span class="curriculum-num">06</span><div><h4>Disputes and returns</h4><p>Reason codes, evidence, deadlines, provisional outcomes, customer communication.</p></div></div><div class="curriculum-item"><span class="curriculum-num">07</span><div><h4>Product delivery</h4><p>Discovery, requirements, acceptance criteria, release readiness, runbooks, and adoption.</p></div></div><div class="curriculum-item"><span class="curriculum-num">08</span><div><h4>Metrics and controls</h4><p>Approval rate, failure rate, loss, false positives, latency, SLA, and control evidence.</p></div></div></div></section>
+        <section class="guide-section"><h3>Where experience shows up</h3><div class="decision-grid"><div class="decision-card"><b>End-to-end tracing</b><p>Follow one customer event through APIs, decisions, partners, ledger, and UI.</p></div><div class="decision-card"><b>Money-state thinking</b><p>Know whether funds are available, pending, settled, reversed, or disputed.</p></div><div class="decision-card"><b>Trade-off language</b><p>Frame speed, conversion, fraud, compliance, cost, and support load together.</p></div><div class="decision-card"><b>Release discipline</b><p>Define edge cases, monitoring, ownership, and rollback before launch.</p></div></div><div class="drill-list"><div class="drill"><span>01</span><div><b>Duplicate charge report</b><p>Map the evidence needed to distinguish duplicate presentation, retry, or UI display issue.</p></div><em>15-MIN DRILL</em></div><div class="drill"><span>02</span><div><b>Approval-rate drop</b><p>Segment by issuer, processor response, geography, channel, and release timing before proposing a fix.</p></div><em>20-MIN DRILL</em></div><div class="drill"><span>03</span><div><b>Partner outage</b><p>Draft detection, containment, customer state, reconciliation, and recovery steps.</p></div><em>15-MIN DRILL</em></div></div></section>
+        <section class="guide-section"><h3>Candidate-to-contributor playbook</h3><div class="candidate-grid"><div class="candidate-card"><span>INTERVIEW</span><h4>Be ready to explain</h4><ul><li>A payment lifecycle and its failure points</li><li>How an API timeout can create duplicate risk</li><li>A product trade-off with measurable guardrails</li></ul></div><div class="candidate-card"><span>PORTFOLIO PROOF</span><h4>Build one artifact</h4><p>Map a card payment or bank transfer with states, systems, partner messages, ledger entries, customer messages, controls, and three edge cases.</p></div><div class="candidate-card"><span>FIRST 30 DAYS</span><h4>Learn the product in production</h4><ul><li>Trace one customer journey end-to-end</li><li>Read the top incident and support categories</li><li>Shadow reconciliation and manual review</li><li>Own one small operating improvement</li></ul></div></div></section>
+      </article>
+
+      <article class="guide-panel" data-guide-panel="ai">
+        <div class="guide-hero"><div class="guide-hero-copy"><p class="eyebrow">Track 04 · governed human-plus-model work</p><h2>AI in finance</h2><p>Learn how to select useful workflows, design evaluations, manage data and model risk, place human judgment, monitor production behavior, and earn adoption without overstating automation.</p></div><div class="guide-facts"><div class="guide-fact"><span>CORE QUESTION</span><b>Is the model-assisted decision useful, controlled, explainable, and monitored?</b></div><div class="guide-fact"><span>COMMON ENTRY POINTS</span><b>AI product · model operations · intelligent automation · governance</b></div><div class="guide-fact"><span>TRANSFERABLE EDGE</span><b>Deep workflow knowledge paired with structured experimentation</b></div></div></div>
+        <section class="guide-section"><h3>Roles and the work they own</h3><div class="role-snapshot-grid"><div class="role-snapshot"><span>PRODUCT</span><h4>AI product manager</h4><p>Selects use cases, defines evaluation, aligns controls, and drives adoption.</p></div><div class="role-snapshot"><span>OPERATE</span><h4>Model operations analyst</h4><p>Monitors quality, drift, latency, incidents, versions, and review queues.</p></div><div class="role-snapshot"><span>BUILD</span><h4>Intelligent-automation lead</h4><p>Combines rules, models, workflow tools, and human review into reliable processes.</p></div><div class="role-snapshot"><span>GOVERN</span><h4>AI governance analyst</h4><p>Maintains inventory, assessments, approvals, controls, evidence, and issue remediation.</p></div></div></section>
+        <section class="guide-section"><h3>A representative day</h3><div class="bau-grid"><div class="bau-cell bau-head">Window</div><div class="bau-cell bau-head">Focus</div><div class="bau-cell bau-head">Typical output</div><div class="bau-cell bau-head">Judgment</div><div class="bau-cell bau-time">START</div><div class="bau-cell"><b>Production health</b><span>Review quality, latency, cost, failures, overrides, and user feedback.</span></div><div class="bau-cell"><b>Health assessment</b><span>Expected variance versus action-worthy change.</span></div><div class="bau-cell"><b>Metrics need context</b><span>Aggregate accuracy can hide high-risk failure classes.</span></div><div class="bau-cell bau-time">DISCOVER</div><div class="bau-cell"><b>Workflow observation</b><span>Shadow users, inspect exceptions, and identify decision points and evidence.</span></div><div class="bau-cell"><b>Use-case brief</b><span>Problem, baseline, user, data, risk, and success measure.</span></div><div class="bau-cell"><b>Automate the right unit</b><span>A narrow assist may outperform end-to-end replacement.</span></div><div class="bau-cell bau-time">EVALUATE</div><div class="bau-cell"><b>Test behavior</b><span>Run representative, edge, adversarial, and high-impact cases.</span></div><div class="bau-cell"><b>Evaluation report</b><span>Quality by class, failure examples, thresholds, and reviewer needs.</span></div><div class="bau-cell"><b>Define acceptable failure</b><span>Different tasks need different precision and abstention.</span></div><div class="bau-cell bau-time">DELIVER</div><div class="bau-cell"><b>Release and adoption</b><span>Align governance, UX, training, monitoring, support, and fallback.</span></div><div class="bau-cell"><b>Controlled rollout</b><span>Named owners, guardrails, feedback, and rollback criteria.</span></div><div class="bau-cell"><b>Trust is operational</b><span>Users need to know when to rely, review, or override.</span></div></div></section>
+        <section class="guide-section"><h3>Eight-module curriculum</h3><div class="curriculum-list"><div class="curriculum-item"><span class="curriculum-num">01</span><div><h4>Model fundamentals</h4><p>Training versus inference, classification, ranking, generation, confidence, and limitations.</p></div></div><div class="curriculum-item"><span class="curriculum-num">02</span><div><h4>Data and evaluation</h4><p>Representative sets, labels, baselines, error classes, precision, recall, and human review.</p></div></div><div class="curriculum-item"><span class="curriculum-num">03</span><div><h4>Operations copilots</h4><p>Summarization, retrieval, drafting, triage, recommendation, action boundaries, and feedback.</p></div></div><div class="curriculum-item"><span class="curriculum-num">04</span><div><h4>Document intelligence</h4><p>Extraction, classification, confidence, source grounding, exceptions, and record linkage.</p></div></div><div class="curriculum-item"><span class="curriculum-num">05</span><div><h4>Model risk</h4><p>Validation, change control, bias, robustness, explainability, inventory, and issues.</p></div></div><div class="curriculum-item"><span class="curriculum-num">06</span><div><h4>Human oversight</h4><p>Approval points, abstention, overrides, escalation, sampling, and accountability.</p></div></div><div class="curriculum-item"><span class="curriculum-num">07</span><div><h4>AI product strategy</h4><p>Use-case value, feasibility, risk, data readiness, build-buy, cost, and sequencing.</p></div></div><div class="curriculum-item"><span class="curriculum-num">08</span><div><h4>Adoption and monitoring</h4><p>Workflow fit, training, quality, drift, latency, cost, incidents, and value realization.</p></div></div></div></section>
+        <section class="guide-section"><h3>Where experience shows up</h3><div class="decision-grid"><div class="decision-card"><b>Problem selection</b><p>Start with measurable friction and a clear decision, not a model looking for work.</p></div><div class="decision-card"><b>Evaluation design</b><p>Test the real task and costly failure modes, not just a generic benchmark.</p></div><div class="decision-card"><b>Human boundaries</b><p>Define when the system acts, recommends, abstains, or requires approval.</p></div><div class="decision-card"><b>Production learning</b><p>Connect monitoring and user overrides to model, prompt, data, or workflow change.</p></div></div><div class="drill-list"><div class="drill"><span>01</span><div><b>Exception-triage copilot</b><p>Define input, output, reviewer decision, evidence links, failure classes, and launch metrics.</p></div><em>20-MIN DRILL</em></div><div class="drill"><span>02</span><div><b>Quality drop</b><p>Separate data shift, model change, prompt change, upstream defect, and user-behavior change.</p></div><em>15-MIN DRILL</em></div><div class="drill"><span>03</span><div><b>Automation proposal</b><p>Compare assistive, approval-based, and autonomous designs against impact and risk.</p></div><em>20-MIN DRILL</em></div></div></section>
+        <section class="guide-section"><h3>Candidate-to-contributor playbook</h3><div class="candidate-grid"><div class="candidate-card"><span>INTERVIEW</span><h4>Be ready to explain</h4><ul><li>How you would evaluate a finance copilot</li><li>Where human review belongs and why</li><li>How workflow success differs from model accuracy</li></ul></div><div class="candidate-card"><span>PORTFOLIO PROOF</span><h4>Build one artifact</h4><p>Write an AI use-case brief with baseline workflow, user, data, risk classification, evaluation set, thresholds, review design, rollout, monitoring, and fallback.</p></div><div class="candidate-card"><span>FIRST 30 DAYS</span><h4>Learn before automating</h4><ul><li>Shadow expert and novice users</li><li>Inventory data and existing controls</li><li>Review real errors and overrides</li><li>Ship a narrow measured assist first</li></ul></div></div></section>
+      </article>
+    </section>
+
+    <section class="view" id="lab" aria-labelledby="lab-title">
+      <div class="lab-layout">
+        <aside class="lesson-nav" aria-label="Lesson sections">
+          <div class="lesson-nav-head"><span>DESK LAB 01</span><strong>Securities lending</strong></div>
+          <button class="lesson-step active" data-section="1"><span class="step-index">01</span><span>Business model</span></button>
+          <button class="lesson-step" data-section="2"><span class="step-index">02</span><span>Loan lifecycle</span></button>
+          <button class="lesson-step" data-section="3"><span class="step-index">03</span><span>A day on the desk</span></button>
+          <button class="lesson-step" data-section="4"><span class="step-index">04</span><span>Economics lab</span></button>
+          <button class="lesson-step" data-section="5"><span class="step-index">05</span><span>Exceptions</span></button>
+          <button class="lesson-step" data-section="6"><span class="step-index">06</span><span>Reconciliation</span></button>
+          <button class="lesson-step" data-section="7"><span class="step-index">07</span><span>Knowledge check</span></button>
+        </aside>
+
+        <div class="lesson-content">
+          <article class="lesson-panel active" data-panel="1">
+            <div class="lesson-hero"><p class="eyebrow">Section 01 · the business model</p><h1 id="lab-title">Why securities get borrowed</h1><p>Securities lending is a temporary transfer of securities from a lender to a borrower, paired with collateral and a contractual obligation to return equivalent securities.</p><div class="lesson-hero-meta"><span>LEVEL · FOUNDATIONAL</span><span>READ · 8 MIN</span><span>MODE · DESK CONTEXT</span></div></div>
+            <div class="content-card">
+              <h2>The value exchange</h2>
+              <p>A lender monetizes otherwise idle inventory. A borrower gains temporary access to securities—for example, to support settlement, market-making, or a trading strategy. The lending agent may sit between them, handling allocation, pricing, settlement, collateral, income, and controls.</p>
+              <div class="concept-grid">
+                <div class="concept"><b>Lender</b><p>Provides the security while retaining the economic exposure defined by the agreement.</p></div>
+                <div class="concept"><b>Borrower</b><p>Posts collateral, pays the agreed economics, and returns equivalent securities.</p></div>
+                <div class="concept"><b>Agent</b><p>Runs the operational and control layer on the lender's behalf.</p></div>
+              </div>
+              <div class="callout"><b>Desk lens</b><p>The trade is not “done” when it is booked. It remains a living position: values change, collateral moves, rates can change, income events occur, and either side may initiate a return or recall.</p></div>
+            </div>
+            <div class="content-card"><h2>What an operator is really controlling</h2><div class="exception-list"><div class="exception-row"><code>POSITION</code><span>Do both sides agree on security, quantity, rate, and dates?</span><b>BOOK & RECORD</b></div><div class="exception-row"><code>EXPOSURE</code><span>Does collateral sufficiently cover current loan value under the agreement?</span><b>DAILY CONTROL</b></div><div class="exception-row"><code>MOVEMENT</code><span>Did securities and collateral settle where and when expected?</span><b>SETTLEMENT</b></div><div class="exception-row"><code>INCOME</code><span>Were fees, rebates, and manufactured payments calculated and paid correctly?</span><b>BILLING</b></div></div></div>
+            <button class="primary next-section" data-next="2">Continue to lifecycle →</button>
+          </article>
+
+          <article class="lesson-panel" data-panel="2">
+            <div class="lesson-hero"><p class="eyebrow">Section 02 · loan lifecycle</p><h1>Follow the position</h1><p>The lifecycle is a chain of connected handoffs. A clean book depends on each event being reflected consistently across the trading, operations, custody, and collateral records.</p></div>
+            <div class="content-card">
+              <h2>From demand to close</h2>
+              <div class="workflow" aria-label="Securities lending lifecycle">
+                <div class="work-step"><span class="work-dot">01</span><b>Locate</b><span>Borrow demand meets lendable inventory.</span></div>
+                <div class="work-step"><span class="work-dot">02</span><b>Agree</b><span>Quantity, rate, term, collateral and settlement.</span></div>
+                <div class="work-step"><span class="work-dot">03</span><b>Book</b><span>Trade enters the official records.</span></div>
+                <div class="work-step"><span class="work-dot">04</span><b>Settle</b><span>Security and collateral movements complete.</span></div>
+                <div class="work-step"><span class="work-dot">05</span><b>Maintain</b><span>Marks, margins, rates, income and exceptions.</span></div>
+                <div class="work-step"><span class="work-dot">06</span><b>Return</b><span>Equivalent securities return; collateral releases.</span></div>
+              </div>
+              <div class="callout"><b>Handoff risk</b><p>If a rate update appears in the trading record but not the billing record, the position can settle cleanly and still produce the wrong invoice. Controls must follow the whole lifecycle, not one system.</p></div>
+            </div>
+            <div class="content-card"><h2>What “equivalent securities” means</h2><p>The borrower typically returns securities of the same issuer, issue, class, and quantity—not necessarily the exact same certificates or units. Legal terms and market convention determine the precise obligation.</p><p><strong>Operational consequence:</strong> teams reconcile economic attributes and quantities, not a story about where a particular share traveled.</p></div>
+            <button class="primary next-section" data-next="3">Continue to the workday →</button>
+          </article>
+
+          <article class="lesson-panel" data-panel="3">
+            <div class="lesson-hero"><p class="eyebrow">Section 03 · business as usual</p><h1>A day on the desk</h1><p>Choose a window to see the operating objective, the decisions being made, and the signal an experienced analyst watches.</p></div>
+            <div class="content-card">
+              <h2>Intraday operating rhythm</h2>
+              <div class="day-tabs" role="tablist"><button class="day-tab active" data-day="open">Open</button><button class="day-tab" data-day="morning">Morning</button><button class="day-tab" data-day="midday">Midday</button><button class="day-tab" data-day="close">Close</button></div>
+              <div class="day-detail active" data-day-panel="open"><div class="day-time">OPEN</div><div><h3>Start with overnight truth</h3><p>Review settlement status, collateral calls, recalls, returns, corporate-action notices, rate changes, and unmatched positions across internal and counterparty records.</p><div class="desk-note"><b>Experienced signal:</b> prioritize by exposure and deadline, not by the age of the email. A same-day settlement risk can matter more than an older low-value static-data break.</div></div></div>
+              <div class="day-detail" data-day-panel="morning"><div class="day-time">AM</div><div><h3>Resolve the movement queue</h3><p>Work failed or pending settlements, validate instructions, chase counterparties or custodians, and make sure recalled securities are on a credible path back.</p><div class="desk-note"><b>Experienced signal:</b> distinguish a true fail from a timing mismatch. The same symptom can have a different owner and escalation path.</div></div></div>
+              <div class="day-detail" data-day-panel="midday"><div class="day-time">MID</div><div><h3>Maintain the live book</h3><p>Process new loans, returns, rate changes, reallocations, marks, and margin movements. Reconcile changes before downstream billing and reporting consume them.</p><div class="desk-note"><b>Experienced signal:</b> a cluster of breaks with one counterparty or security often points to a shared upstream cause.</div></div></div>
+              <div class="day-detail" data-day-panel="close"><div class="day-time">CLOSE</div><div><h3>Prove control and hand over risk</h3><p>Complete reconciliations, document aged exceptions, confirm escalations, and leave the next team a clear record of what remains open, why, and who owns the next action.</p><div class="desk-note"><b>Experienced signal:</b> “awaiting response” is not a control status. Good handoffs include exposure, deadline, last action, next action, and escalation owner.</div></div></div>
+            </div>
+            <div class="content-card"><h2>The five-question morning scan</h2><div class="concept-grid"><div class="concept"><b>What changed?</b><p>New trades, returns, recalls, rate changes, marks, and income events.</p></div><div class="concept"><b>What failed?</b><p>Movements or records that did not reach the expected state.</p></div><div class="concept"><b>What is exposed?</b><p>Positions where timing or value creates meaningful risk.</p></div><div class="concept"><b>What is due?</b><p>Market cutoffs, recalls, margin, billing and client reporting.</p></div><div class="concept"><b>Who owns it?</b><p>The named party with the next executable action.</p></div></div></div>
+            <button class="primary next-section" data-next="4">Open the economics lab →</button>
+          </article>
+
+          <article class="lesson-panel" data-panel="4">
+            <div class="lesson-hero"><p class="eyebrow">Section 04 · economics lab</p><h1>Price the loan</h1><p>Change the assumptions to see how market value, fee, collateralization, and time flow into simple loan economics.</p></div>
+            <div class="content-card">
+              <h2>Interactive loan scenario</h2>
+              <p>This is an illustrative practice calculation, not market data or a statement of any firm's billing convention. Real agreements can use different bases, rebates, currencies, haircuts, and fee treatments.</p>
+              <div class="sim-grid">
+                <div class="control-stack">
+                  <div class="control"><label for="quantity">Quantity <output id="quantityOut">100,000</output></label><input id="quantity" aria-label="Quantity" type="range" min="10000" max="500000" step="10000" value="100000"></div>
+                  <div class="control"><label for="price">Security price <output id="priceOut">$42.00</output></label><input id="price" aria-label="Security price" type="range" min="5" max="150" step="1" value="42"></div>
+                  <div class="control"><label for="fee">Annual fee <output id="feeOut">125 bps</output></label><input id="fee" aria-label="Annual fee" type="range" min="10" max="500" step="5" value="125"></div>
+                  <div class="control"><label for="collateral">Collateralization <output id="collateralOut">102%</output></label><input id="collateral" aria-label="Collateralization" type="range" min="100" max="110" step="1" value="102"></div>
+                  <div class="control"><label for="days">Loan days <output id="daysOut">30</output></label><input id="days" aria-label="Loan days" type="range" min="1" max="90" step="1" value="30"></div>
+                </div>
+                <div class="result-board">
+                  <span>ILLUSTRATIVE FEE REVENUE</span><div class="big-result" id="feeRevenue">$4,375.00</div>
+                  <div class="result-grid"><div><span>Loan market value</span><strong id="marketValue">$4,200,000</strong></div><div><span>Collateral requirement</span><strong id="collateralValue">$4,284,000</strong></div><div><span>Daily fee accrual</span><strong id="dailyRevenue">$145.83</strong></div><div><span>Annualized fee rate</span><strong id="annualRate">1.25%</strong></div></div>
+                  <div class="formula">fee = market value × (bps ÷ 10,000) × (days ÷ 360)<br>collateral = market value × collateralization</div>
+                </div>
+              </div>
+            </div>
+            <div class="content-card">
+              <h2>Practice book: daily fee contribution</h2>
+              <p>Four hypothetical open loans, calculated on a 360-day basis. Bar length starts at zero and represents daily fee revenue in US dollars.</p>
+              <div class="chart-wrap" id="revenueChart" aria-label="Bar chart of illustrative daily fee revenue by loan"></div>
+              <p class="chart-note" id="chartSummary"></p>
+            </div>
+            <button class="primary next-section" data-next="5">Continue to exceptions →</button>
+          </article>
+
+          <article class="lesson-panel" data-panel="5">
+            <div class="lesson-hero"><p class="eyebrow">Section 05 · exception management</p><h1>Work the break, not the symptom</h1><p>Experienced operators classify an exception, quantify the risk, identify the true owner, and drive an action before the relevant deadline.</p></div>
+            <div class="content-card">
+              <h2>A practical triage order</h2>
+              <div class="exception-list"><div class="exception-row"><code>1 · EXPOSURE</code><span>How much risk exists if no action is taken?</span><b>QUANTIFY</b></div><div class="exception-row"><code>2 · CUTOFF</code><span>When does the next operational option disappear?</span><b>TIME-BOX</b></div><div class="exception-row"><code>3 · CAUSE</code><span>Is the break trade, settlement, static data, valuation, or timing?</span><b>CLASSIFY</b></div><div class="exception-row"><code>4 · OWNER</code><span>Which team or counterparty can take the next action?</span><b>ASSIGN</b></div><div class="exception-row"><code>5 · EVIDENCE</code><span>What record proves the diagnosis and action?</span><b>DOCUMENT</b></div></div>
+              <div class="scenario"><b>Desk drill</b><p>A recalled position is due back today. Your internal book shows the return instructed; the custodian shows no matching receipt; the borrower says it sent the securities. What is the best first move?</p><div class="scenario-options"><button class="scenario-btn" data-answer="wrong">Wait for the custodian's end-of-day file</button><button class="scenario-btn" data-answer="right">Compare settlement references and instruction details across all three records</button><button class="scenario-btn" data-answer="wrong">Cancel and rebook the entire loan immediately</button></div><div class="scenario-feedback" id="scenarioFeedback"></div></div>
+            </div>
+            <div class="content-card"><h2>Escalation that helps</h2><p>A useful escalation gives the receiver a decision-ready package: position, value or exposure, contractual or market deadline, current state, verified cause, actions already taken, the next requested action, and the consequence of waiting.</p><div class="callout"><b>Avoid the inbox trap</b><p>Forwarding a long email chain transfers reading, not ownership. Summarize the issue in the first lines and attach the evidence underneath.</p></div></div>
+            <button class="primary next-section" data-next="6">Continue to reconciliation →</button>
+          </article>
+
+          <article class="lesson-panel" data-panel="6">
+            <div class="lesson-hero"><p class="eyebrow">Section 06 · books and records</p><h1>Reconcile the position</h1><p>A reconciliation is not just a difference report. It is a control process that explains the difference, determines whether it is valid, and assigns resolution.</p></div>
+            <div class="content-card">
+              <h2>Sample position comparison</h2>
+              <p>The rows below are a hypothetical training set. Identify the true break and the timing difference.</p>
+              <table class="recon-table"><thead><tr><th>Security</th><th>Internal qty</th><th>Counterparty qty</th><th>Difference</th><th>Likely status</th></tr></thead><tbody><tr><td data-label="Security">Security A</td><td data-label="Internal qty">250,000</td><td data-label="Counterparty qty">250,000</td><td data-label="Difference">0</td><td data-label="Likely status">Matched</td></tr><tr><td data-label="Security">Security B</td><td data-label="Internal qty">80,000</td><td data-label="Counterparty qty">50,000</td><td data-label="Difference" class="break">30,000</td><td data-label="Likely status">Investigate partial return</td></tr><tr><td data-label="Security">Security C</td><td data-label="Internal qty">0</td><td data-label="Counterparty qty">125,000</td><td data-label="Difference" class="break">−125,000</td><td data-label="Likely status">Check booking cutoff</td></tr></tbody></table>
+              <div class="callout"><b>Interpret before you repair</b><p>Security B may be a genuine quantity break. Security C might be a timing difference if a return was booked internally after the counterparty produced its snapshot. Validate effective times before changing records.</p></div>
+            </div>
+            <div class="content-card"><h2>Control evidence</h2><div class="concept-grid"><div class="concept"><b>Completeness</b><p>All in-scope positions are included.</p></div><div class="concept"><b>Accuracy</b><p>Fields and calculations match source records.</p></div><div class="concept"><b>Timeliness</b><p>Review and escalation happen before risk-relevant deadlines.</p></div><div class="concept"><b>Ownership</b><p>Every unresolved item has a named next action.</p></div><div class="concept"><b>Evidence</b><p>The reviewer can retrace what was checked and why.</p></div></div></div>
+            <button class="primary next-section" data-next="7">Take the knowledge check →</button>
+          </article>
+
+          <article class="lesson-panel" data-panel="7">
+            <div class="lesson-hero"><p class="eyebrow">Section 07 · knowledge check</p><h1>Can you run the morning?</h1><p>Answer three desk-level questions. Feedback appears immediately; your score only lasts for this session.</p></div>
+            <div class="content-card">
+              <div class="quiz-q" data-q="1" data-correct="b"><h3>1. Why is an open loan a “living position”?</h3><div class="quiz-options"><button class="quiz-btn" data-choice="a">The security can only be priced once</button><button class="quiz-btn" data-choice="b">Value, collateral, rates, income, and lifecycle events can change</button><button class="quiz-btn" data-choice="c">Every loan must be closed at end of day</button><button class="quiz-btn" data-choice="d">The original security units must be tracked individually</button></div></div>
+              <div class="quiz-q" data-q="2" data-correct="c"><h3>2. Which is the most useful first principle for exception prioritization?</h3><div class="quiz-options"><button class="quiz-btn" data-choice="a">Oldest email first</button><button class="quiz-btn" data-choice="b">Largest number of messages first</button><button class="quiz-btn" data-choice="c">Exposure and deadline first</button><button class="quiz-btn" data-choice="d">Alphabetical by counterparty</button></div></div>
+              <div class="quiz-q" data-q="3" data-correct="a"><h3>3. An internal and counterparty quantity differ. What comes before changing the book?</h3><div class="quiz-options"><button class="quiz-btn" data-choice="a">Validate snapshots, effective times, and the underlying event</button><button class="quiz-btn" data-choice="b">Force the internal quantity to match</button><button class="quiz-btn" data-choice="c">Delete the position and rebook tomorrow</button><button class="quiz-btn" data-choice="d">Treat every difference as a settlement fail</button></div></div>
+              <div class="quiz-score" id="quizScore"></div>
+            </div>
+            <button class="secondary" data-view-jump="overview">Return to learning paths</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="roles" aria-labelledby="roles-title">
+      <header class="page-head"><div><p class="eyebrow">Career map</p><h1 id="roles-title">See the work behind the job title.</h1><p>Compare the daily objective, core outputs, and proof points employers can evaluate. Titles vary by firm; the operating responsibilities are the more durable signal.</p></div></header>
+      <div class="role-grid">
+        <article class="role-card"><span class="role-tag">TRADITIONAL FINANCE</span><h3>Securities lending operations</h3><p>Keeps the live loan book accurate, settled, collateralized, and controlled.</p><dl><dt>DAILY OUTPUT</dt><dd>Reconciled positions, resolved settlements, documented exceptions</dd><dt>CORE FLUENCY</dt><dd>Lifecycle events, settlement, collateral, recalls, billing</dd><dt>PROOF OF SKILL</dt><dd>Explain how you triaged a break under a market deadline</dd></dl></article>
+        <article class="role-card"><span class="role-tag">TRADITIONAL FINANCE</span><h3>Collateral analyst</h3><p>Monitors exposure and drives margin movements under documented terms.</p><dl><dt>DAILY OUTPUT</dt><dd>Validated marks, agreed calls, resolved disputes</dd><dt>CORE FLUENCY</dt><dd>Valuation, eligibility, haircuts, settlement, legal terms</dd><dt>PROOF OF SKILL</dt><dd>Walk through a disputed call from data to resolution</dd></dl></article>
+        <article class="role-card"><span class="role-tag">FINTECH</span><h3>Payments operations</h3><p>Keeps payment flows moving while controlling failure, fraud, and reconciliation risk.</p><dl><dt>DAILY OUTPUT</dt><dd>Resolved exceptions, balanced ledgers, monitored service levels</dd><dt>CORE FLUENCY</dt><dd>Authorization, clearing, settlement, returns, disputes</dd><dt>PROOF OF SKILL</dt><dd>Map a failed payment across system and partner handoffs</dd></dl></article>
+        <article class="role-card"><span class="role-tag">DEFI</span><h3>Protocol operations</h3><p>Monitors on-chain activity, governance, liquidity, and operational risk.</p><dl><dt>DAILY OUTPUT</dt><dd>Incident reviews, parameter checks, treasury and protocol reporting</dd><dt>CORE FLUENCY</dt><dd>Wallets, transactions, smart contracts, oracles, governance</dd><dt>PROOF OF SKILL</dt><dd>Trace a transaction and explain the protocol state change</dd></dl></article>
+        <article class="role-card"><span class="role-tag">AI IN FINANCE</span><h3>AI product manager</h3><p>Turns a financial workflow into a governed, measurable human-plus-model product.</p><dl><dt>DAILY OUTPUT</dt><dd>Prioritized use cases, evaluation criteria, control decisions</dd><dt>CORE FLUENCY</dt><dd>Workflow design, model behavior, data, risk, adoption</dd><dt>PROOF OF SKILL</dt><dd>Define where automation stops and human judgment begins</dd></dl></article>
+        <article class="role-card"><span class="role-tag">CROSS-FUNCTIONAL</span><h3>Business analyst</h3><p>Translates desk behavior, data, and control needs into implementable change.</p><dl><dt>DAILY OUTPUT</dt><dd>Process maps, requirements, test cases, impact analysis</dd><dt>CORE FLUENCY</dt><dd>Current state, target state, exceptions, evidence, stakeholders</dd><dt>PROOF OF SKILL</dt><dd>Turn one BAU pain point into a testable requirement</dd></dl></article>
+        <article class="role-card"><span class="role-tag">TRADITIONAL FINANCE</span><h3>Trading support analyst</h3><p>Connects inventory, pricing, bookings, and lifecycle events around a live desk.</p><dl><dt>DAILY OUTPUT</dt><dd>Accurate bookings, inventory visibility, resolved trade queries</dd><dt>CORE FLUENCY</dt><dd>Market conventions, positions, pricing, cutoffs, escalation</dd><dt>PROOF OF SKILL</dt><dd>Explain how you would support a time-sensitive position issue</dd></dl></article>
+        <article class="role-card"><span class="role-tag">TRADITIONAL FINANCE</span><h3>Operational risk analyst</h3><p>Evaluates processes, controls, incidents, issues, and residual exposure.</p><dl><dt>DAILY OUTPUT</dt><dd>Risk assessments, control tests, issue tracking, challenge</dd><dt>CORE FLUENCY</dt><dd>Risk taxonomy, evidence, root cause, remediation, governance</dd><dt>PROOF OF SKILL</dt><dd>Distinguish a control failure from an isolated processing error</dd></dl></article>
+        <article class="role-card"><span class="role-tag">TRADITIONAL FINANCE</span><h3>Treasury operations</h3><p>Coordinates liquidity, cash positioning, funding, and settlement readiness.</p><dl><dt>DAILY OUTPUT</dt><dd>Cash forecasts, funding actions, resolved balance breaks</dd><dt>CORE FLUENCY</dt><dd>Cash ladders, settlement, liquidity buffers, intraday timing</dd><dt>PROOF OF SKILL</dt><dd>Walk through how you would investigate an unexpected cash position</dd></dl></article>
+        <article class="role-card"><span class="role-tag">DEFI</span><h3>Protocol risk analyst</h3><p>Studies collateral, liquidity, oracles, governance, and liquidation behavior.</p><dl><dt>DAILY OUTPUT</dt><dd>Risk monitoring, scenario analysis, parameter recommendations</dd><dt>CORE FLUENCY</dt><dd>On-chain data, collateral health, smart-contract dependencies</dd><dt>PROOF OF SKILL</dt><dd>Explain how oracle movement can become liquidation risk</dd></dl></article>
+        <article class="role-card"><span class="role-tag">DEFI</span><h3>On-chain data analyst</h3><p>Turns public contract activity into product, treasury, and risk insight.</p><dl><dt>DAILY OUTPUT</dt><dd>Wallet and transaction analysis, dashboards, event explanations</dd><dt>CORE FLUENCY</dt><dd>Explorers, contract events, addresses, token flows, SQL</dd><dt>PROOF OF SKILL</dt><dd>Present an annotated transaction trace and its business meaning</dd></dl></article>
+        <article class="role-card"><span class="role-tag">FINTECH</span><h3>Product operations manager</h3><p>Connects launches, incidents, support signals, controls, and operating readiness.</p><dl><dt>DAILY OUTPUT</dt><dd>Runbooks, launch checklists, issue themes, operating changes</dd><dt>CORE FLUENCY</dt><dd>Customer journeys, metrics, partners, failure states, enablement</dd><dt>PROOF OF SKILL</dt><dd>Turn recurring support pain into a measurable product change</dd></dl></article>
+        <article class="role-card"><span class="role-tag">FINTECH</span><h3>Fraud strategy analyst</h3><p>Balances loss prevention with approval, customer friction, and review capacity.</p><dl><dt>DAILY OUTPUT</dt><dd>Rule analysis, queue tuning, loss and false-positive reporting</dd><dt>CORE FLUENCY</dt><dd>Signals, decisioning, chargebacks, segmentation, experiments</dd><dt>PROOF OF SKILL</dt><dd>Explain how you would investigate an approval-rate change safely</dd></dl></article>
+        <article class="role-card"><span class="role-tag">AI IN FINANCE</span><h3>Model operations analyst</h3><p>Runs the production control loop around model quality, reliability, and change.</p><dl><dt>DAILY OUTPUT</dt><dd>Monitoring reviews, incident triage, version evidence, issue tracking</dd><dt>CORE FLUENCY</dt><dd>Evaluation, drift, latency, overrides, thresholds, change control</dd><dt>PROOF OF SKILL</dt><dd>Diagnose a quality drop without assuming the model is the only cause</dd></dl></article>
+      </div>
+      <div class="role-match"><h2>What kind of problem do you want to own?</h2><p>Choose one. This is a directional prompt, not a personality test.</p><div class="match-buttons"><button class="match-btn" data-match="control">Prevent breaks and prove control</button><button class="match-btn" data-match="market">Respond to markets and inventory</button><button class="match-btn" data-match="product">Redesign how work gets done</button><button class="match-btn" data-match="tech">Automate decisions responsibly</button></div><div class="match-result" id="matchResult">Select a problem to see the roles that emphasize it.</div></div>
+    </section>
+
+    <section class="view" id="glossary" aria-labelledby="glossary-title">
+      <header class="page-head"><div><p class="eyebrow">Desk dictionary</p><h1 id="glossary-title">Translate the language of the work.</h1><p>Plain-language definitions framed around what the term changes operationally.</p></div></header>
+      <div class="search-box"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 5 5"/></svg><input id="termSearch" type="search" placeholder="Search terms, e.g. recall, oracle, ledger" aria-label="Search desk dictionary"></div>
+      <div class="glossary-grid" id="glossaryGrid">
+        <article class="term"><h3>Beneficial owner</h3><p>The investor that owns the economic interest in assets made available for lending, often through an agent.</p></article>
+        <article class="term"><h3>Borrow fee</h3><p>The economic charge associated with borrowing a security. On a desk, the agreed rate must flow correctly into accrual and billing records.</p></article>
+        <article class="term"><h3>Collateral</h3><p>Assets delivered to secure an exposure. Operations monitors value, eligibility, movement, and release against contractual terms.</p></article>
+        <article class="term"><h3>Fail</h3><p>A movement that did not settle as expected. The useful question is why: instruction, inventory, timing, matching, or another cause.</p></article>
+        <article class="term"><h3>Haircut</h3><p>A valuation adjustment used in determining how much collateral is required relative to an exposure.</p></article>
+        <article class="term"><h3>Locate</h3><p>A check or indication that a security may be available to borrow. The exact process and obligation depend on context and market rules.</p></article>
+        <article class="term"><h3>Manufactured payment</h3><p>A payment intended to pass through an economic entitlement when the borrowed security has an income event during the loan.</p></article>
+        <article class="term"><h3>Recall</h3><p>A lender-initiated request for borrowed securities to be returned. It creates a deadline-sensitive workflow.</p></article>
+        <article class="term"><h3>Reconciliation</h3><p>A control comparing two records, explaining differences, and driving unresolved items to a documented outcome.</p></article>
+        <article class="term"><h3>Smart contract</h3><p>Code deployed to a blockchain that changes protocol state when defined conditions and transactions are processed.</p></article>
+        <article class="term"><h3>Oracle</h3><p>A mechanism that supplies external or derived data—often prices—to a smart contract. Bad or stale inputs can change protocol outcomes.</p></article>
+        <article class="term"><h3>Liquidity pool</h3><p>Assets committed to a smart contract to facilitate protocol activity such as swapping or lending, subject to that protocol's rules and risks.</p></article>
+        <article class="term"><h3>Ledger</h3><p>The authoritative record of balances and movements. In fintech, reconciliation often proves that product events and ledger entries agree.</p></article>
+        <article class="term"><h3>Clearing</h3><p>The process of validating and preparing obligations for settlement, including calculation and matching steps.</p></article>
+        <article class="term"><h3>Human in the loop</h3><p>A workflow in which a person reviews, decides, or intervenes at defined points rather than delegating the entire outcome to a model.</p></article>
+        <article class="term"><h3>Model drift</h3><p>A change in model behavior or performance as data or conditions differ from those used during development and validation.</p></article>
+        <article class="term"><h3>Authorization</h3><p>A payment-stage decision about whether a transaction may proceed. Approval does not necessarily mean final settlement.</p></article>
+        <article class="term"><h3>Webhook</h3><p>A system-to-system notification sent when an event occurs. Operations must account for delays, duplicates, and delivery failure.</p></article>
+        <article class="term"><h3>Idempotency</h3><p>A design property that lets the same request be retried without creating an unintended duplicate financial outcome.</p></article>
+        <article class="term"><h3>Double-entry ledger</h3><p>A recording model in which every financial event produces balanced debit and credit entries across accounts.</p></article>
+        <article class="term"><h3>Health factor</h3><p>A protocol-specific indicator of collateral safety. Crossing a defined threshold may make a borrowing position liquidatable.</p></article>
+        <article class="term"><h3>Liquidation</h3><p>A process that reduces or closes an undercollateralized position according to protocol rules, often with an incentive for the executor.</p></article>
+        <article class="term"><h3>Slippage</h3><p>The difference between an expected trade price and the executed result, often influenced by size, liquidity, and market movement.</p></article>
+        <article class="term"><h3>Finality</h3><p>The point at which a transaction is considered practically or legally irreversible. Meaning and timing vary by system.</p></article>
+        <article class="term"><h3>Precision</h3><p>Among cases a model flags as positive, the share that are actually positive. Useful when false alarms create material cost.</p></article>
+        <article class="term"><h3>Recall</h3><p>In model evaluation, among all actual positive cases, the share the model finds. Useful when missed cases are costly.</p></article>
+        <article class="term"><h3>Abstention</h3><p>A designed outcome in which a model does not decide because evidence or confidence is insufficient, routing work to another path.</p></article>
+        <article class="term"><h3>Model validation</h3><p>Independent assessment of a model's conceptual soundness, performance, implementation, limitations, and controls.</p></article>
+        <article class="term"><h3>Maker-checker</h3><p>A control pattern in which one person initiates or prepares an action and another independently reviews or approves it.</p></article>
+        <article class="term"><h3>Service-level agreement</h3><p>A defined expectation for service performance or response. An SLA should have a measurable clock, scope, and owner.</p></article>
+        <article class="term"><h3>Root cause</h3><p>The underlying condition that produced an issue. A repair clears the current item; root-cause remediation reduces recurrence.</p></article>
+        <article class="term"><h3>Residual risk</h3><p>The risk that remains after controls or mitigation. A strong handoff names it rather than implying every issue is eliminated.</p></article>
+      </div>
+      <div class="empty-search" id="emptySearch">No matching term. Try a product, process, or control word.</div>
+    </section>
+  </main>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <button class="mobile-btn active" data-view="overview"><svg viewBox="0 0 24 24"><path d="M4 5h6v6H4zM14 5h6v6h-6zM4 15h6v4H4zM14 15h6v4h-6z"/></svg>Paths</button>
+    <button class="mobile-btn" data-view="curriculum"><svg viewBox="0 0 24 24"><path d="M4 5h7v14H4zM13 5h7v6h-7zM13 13h7v6h-7z"/></svg>Guides</button>
+    <button class="mobile-btn" data-view="lab"><svg viewBox="0 0 24 24"><path d="M5 19V8l7-4 7 4v11M3 19h18M8 11h8M8 15h8"/></svg>Lab</button>
+    <button class="mobile-btn" data-view="roles"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.6-4 2.4-6 5.5-6s4.9 2 5.5 6M15 7h6M18 4v6"/></svg>Roles</button>
+    <button class="mobile-btn" data-view="glossary"><svg viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/></svg>Terms</button>
+  </nav>
+</div>
+<script>
+(() => {
+  const state = { visitedSections: new Set([1]), quizAnswers: {} };
+  const money0 = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+  const money2 = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const num0 = new Intl.NumberFormat('en-US');
+
+  function showView(id) {
+    document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === id));
+    document.querySelectorAll('[data-view]').forEach(b => b.classList.toggle('active', b.dataset.view === id));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => showView(b.dataset.view)));
+  document.querySelectorAll('[data-view-jump]').forEach(b => b.addEventListener('click', () => showView(b.dataset.viewJump)));
+  document.querySelectorAll('[data-open-lab]').forEach(b => b.addEventListener('click', () => { showView('lab'); showSection(1); }));
+  document.querySelectorAll('[data-open-section]').forEach(b => b.addEventListener('click', () => { showView('lab'); showSection(Number(b.dataset.openSection)); }));
+
+  document.querySelectorAll('.track-tab').forEach(tab => tab.addEventListener('click', () => {
+    document.querySelectorAll('.track-tab').forEach(x => x.classList.remove('active'));
+    tab.classList.add('active');
+    const filter = tab.dataset.trackFilter;
+    document.querySelectorAll('.track-card').forEach(card => { card.style.display = filter === 'all' || card.dataset.track === filter ? '' : 'none'; });
+  }));
+
+  function showGuide(name) {
+    document.querySelectorAll('.guide-tab').forEach(tab => tab.classList.toggle('active', tab.dataset.guide === name));
+    document.querySelectorAll('.guide-panel').forEach(panel => panel.classList.toggle('active', panel.dataset.guidePanel === name));
+  }
+  document.querySelectorAll('.guide-tab').forEach(tab => tab.addEventListener('click', () => showGuide(tab.dataset.guide)));
+  document.querySelectorAll('[data-open-track]').forEach(btn => btn.addEventListener('click', () => {
+    showView('curriculum'); showGuide(btn.dataset.openTrack);
+  }));
+
+  function updateProgress() {
+    const pct = Math.round(18 + (state.visitedSections.size - 1) * (72 / 6));
+    document.getElementById('progressText').textContent = pct + '%';
+    document.getElementById('progressFill').style.width = pct + '%';
+  }
+  function showSection(n) {
+    document.querySelectorAll('.lesson-panel').forEach(p => p.classList.toggle('active', Number(p.dataset.panel) === n));
+    document.querySelectorAll('.lesson-step').forEach(s => s.classList.toggle('active', Number(s.dataset.section) === n));
+    state.visitedSections.add(n); updateProgress();
+    if (n === 4) renderRevenueChart();
+    const target = document.getElementById('lab');
+    if (target.classList.contains('active')) window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  document.querySelectorAll('.lesson-step').forEach(b => b.addEventListener('click', () => showSection(Number(b.dataset.section))));
+  document.querySelectorAll('.next-section').forEach(b => b.addEventListener('click', () => showSection(Number(b.dataset.next))));
+
+  document.querySelectorAll('.day-tab').forEach(tab => tab.addEventListener('click', () => {
+    document.querySelectorAll('.day-tab').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.day-detail').forEach(x => x.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelector(`[data-day-panel="${tab.dataset.day}"]`).classList.add('active');
+  }));
+
+  const simIds = ['quantity','price','fee','collateral','days'];
+  function updateSimulation() {
+    const quantity = +document.getElementById('quantity').value;
+    const price = +document.getElementById('price').value;
+    const fee = +document.getElementById('fee').value;
+    const collateral = +document.getElementById('collateral').value;
+    const days = +document.getElementById('days').value;
+    const mv = quantity * price;
+    const daily = mv * (fee / 10000) / 360;
+    const revenue = daily * days;
+    document.getElementById('quantityOut').textContent = num0.format(quantity);
+    document.getElementById('priceOut').textContent = money2.format(price);
+    document.getElementById('feeOut').textContent = num0.format(fee) + ' bps';
+    document.getElementById('collateralOut').textContent = collateral + '%';
+    document.getElementById('daysOut').textContent = days;
+    document.getElementById('marketValue').textContent = money0.format(mv);
+    document.getElementById('collateralValue').textContent = money0.format(mv * collateral / 100);
+    document.getElementById('dailyRevenue').textContent = money2.format(daily);
+    document.getElementById('feeRevenue').textContent = money2.format(revenue);
+    document.getElementById('annualRate').textContent = (fee / 100).toFixed(2) + '%';
+  }
+  simIds.forEach(id => document.getElementById(id).addEventListener('input', updateSimulation));
+  updateSimulation();
+
+  const practiceLoans = [
+    { name: 'Loan A', marketValue: 2000000, feeBps: 180 },
+    { name: 'Loan B', marketValue: 1200000, feeBps: 120 },
+    { name: 'Loan C', marketValue: 800000, feeBps: 75 },
+    { name: 'Loan D', marketValue: 600000, feeBps: 50 }
+  ].map(d => ({ ...d, daily: d.marketValue * (d.feeBps / 10000) / 360 }));
+  function renderRevenueChart() {
+    const host = document.getElementById('revenueChart');
+    const width = 720, height = 310, left = 82, right = 28, top = 24, bottom = 54;
+    const plotW = width - left - right, plotH = height - top - bottom;
+    const dataMax = Math.max(...practiceLoans.map(d => d.daily));
+    const max = Math.ceil(dataMax / 25) * 25;
+    const tickCount = 4;
+    const band = plotW / practiceLoans.length;
+    const barW = Math.min(74, band * .54);
+    const ticks = Array.from({length: tickCount + 1}, (_, i) => max * i / tickCount);
+    let svg = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="chartTitle chartDesc"><title id="chartTitle">Illustrative daily fee revenue by loan</title><desc id="chartDesc">Bar chart from zero to ${money0.format(max)} per day comparing four hypothetical securities loans.</desc>`;
+    ticks.forEach(t => {
+      const y = top + plotH - (t / max) * plotH;
+      svg += `<line class="chart-grid" x1="${left}" x2="${width-right}" y1="${y}" y2="${y}"/><text class="chart-text" x="${left-10}" y="${y+4}" text-anchor="end">$${Math.round(t)}</text>`;
+    });
+    svg += `<line class="chart-axis" x1="${left}" x2="${width-right}" y1="${top+plotH}" y2="${top+plotH}"/>`;
+    practiceLoans.forEach((d, i) => {
+      const x = left + band * i + (band - barW) / 2;
+      const h = (d.daily / max) * plotH;
+      const y = top + plotH - h;
+      svg += `<rect class="chart-bar" x="${x}" y="${y}" width="${barW}" height="${h}"/><text class="chart-label" x="${x+barW/2}" y="${y-8}" text-anchor="middle">${money2.format(d.daily)}</text><text class="chart-text" x="${x+barW/2}" y="${top+plotH+22}" text-anchor="middle">${d.name}</text><text class="chart-text" x="${x+barW/2}" y="${top+plotH+38}" text-anchor="middle">${d.feeBps} bps</text>`;
+    });
+    svg += `</svg>`;
+    host.innerHTML = svg;
+    const total = practiceLoans.reduce((sum, d) => sum + d.daily, 0);
+    const topLoan = practiceLoans.reduce((a,b) => a.daily > b.daily ? a : b);
+    document.getElementById('chartSummary').textContent = `${topLoan.name} contributes the most in this practice set. Combined illustrative daily accrual: ${money2.format(total)}.`;
+  }
+  renderRevenueChart();
+
+  document.querySelectorAll('.scenario-btn').forEach(btn => btn.addEventListener('click', () => {
+    document.querySelectorAll('.scenario-btn').forEach(x => x.classList.remove('correct','incorrect'));
+    const right = btn.dataset.answer === 'right';
+    btn.classList.add(right ? 'correct' : 'incorrect');
+    const feedback = document.getElementById('scenarioFeedback');
+    feedback.classList.add('show');
+    feedback.innerHTML = right ? '<strong>Good triage.</strong> Matching settlement references, account details, quantity, and timing tests whether all parties are discussing the same instruction before you take a potentially disruptive action.' : '<strong>Not the best first move.</strong> First establish whether the three records refer to the same instruction and identify the exact mismatch. Then choose the repair and escalation path.';
+  }));
+
+  document.querySelectorAll('.quiz-btn').forEach(btn => btn.addEventListener('click', () => {
+    const q = btn.closest('.quiz-q');
+    const qNum = q.dataset.q;
+    if (state.quizAnswers[qNum]) return;
+    const isCorrect = btn.dataset.choice === q.dataset.correct;
+    state.quizAnswers[qNum] = isCorrect;
+    btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+    if (!isCorrect) q.querySelector(`[data-choice="${q.dataset.correct}"]`).classList.add('correct');
+    if (Object.keys(state.quizAnswers).length === 3) {
+      const score = Object.values(state.quizAnswers).filter(Boolean).length;
+      const scoreBox = document.getElementById('quizScore');
+      scoreBox.classList.add('show');
+      scoreBox.innerHTML = `<strong>${score} / 3 correct</strong><br>${score === 3 ? 'You are ready to explain the operating logic behind the desk.' : 'Review the highlighted answers, then revisit the relevant section from the lesson navigation.'}`;
+      state.visitedSections.add(7); updateProgress();
+    }
+  }));
+
+  const matchCopy = {
+    control: '<strong>Start with operations, collateral, risk, or reconciliation.</strong> These roles reward precision, prioritization, and strong control evidence.',
+    market: '<strong>Explore trading support, treasury, liquidity, or market operations.</strong> These roles sit closer to pricing, inventory, and time-sensitive market decisions.',
+    product: '<strong>Explore business analysis and product management.</strong> These roles translate pain points, controls, and data into better operating systems.',
+    tech: '<strong>Explore automation, AI product, data, or model operations.</strong> These roles combine workflow knowledge with technical judgment and governance.'
+  };
+  document.querySelectorAll('.match-btn').forEach(btn => btn.addEventListener('click', () => {
+    document.querySelectorAll('.match-btn').forEach(x => x.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('matchResult').innerHTML = matchCopy[btn.dataset.match];
+  }));
+
+  const terms = [...document.querySelectorAll('.term')];
+  document.getElementById('termSearch').addEventListener('input', e => {
+    const q = e.target.value.trim().toLowerCase(); let shown = 0;
+    terms.forEach(term => { const hit = term.textContent.toLowerCase().includes(q); term.hidden = !hit; if (hit) shown++; });
+    document.getElementById('emptySearch').classList.toggle('show', shown === 0);
+  });
+})();
+</script>
+</body>
+</html>
