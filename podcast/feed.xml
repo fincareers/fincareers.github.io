@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+  <channel>
+    <title>Finance Careers</title>
+    <link>https://fincareers.github.io/podcast/</link>
+    <language>en-us</language>
+    <description>A practical show about finance careers: what people in real finance jobs actually do all day, which skills matter, and how to get hired. From securities lending operations to DeFi, fintech, and AI in finance.</description>
+    <itunes:author>Anas Razzaq</itunes:author>
+    <itunes:owner>
+      <itunes:name>Anas Razzaq</itunes:name>
+      <itunes:email>anasrazzaq@gmail.com</itunes:email>
+    </itunes:owner>
+    <itunes:image href="https://fincareers.github.io/podcast/cover.jpg"/>
+    <itunes:category text="Business">
+      <itunes:category text="Careers"/>
+    </itunes:category>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:type>episodic</itunes:type>
+    <atom:link href="https://fincareers.github.io/podcast/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Ep 1: What a Securities Lending Analyst Actually Does</title>
+      <description>Securities lending is a multi-trillion-dollar market most people have never heard of — and it hires operations analysts every year. We walk through what the analyst actually does from morning reconcile to afternoon fails, which skills matter (Excel, SWIFT messages, nerve under pressure), and how to position yourself for the role.</description>
+      <pubDate>Sun, 20 Sep 2026 12:00:00 -0400</pubDate>
+      <enclosure url="https://fincareers.github.io/podcast/episodes/fc-ep01-securities-lending-analyst.mp3" length="6867917" type="audio/mpeg"/>
+      <guid>https://fincareers.github.io/podcast/episodes/fc-ep01-securities-lending-analyst.mp3</guid>
+      <itunes:duration>00:07:09</itunes:duration>
+      <itunes:explicit>no</itunes:explicit>
+    </item>
+  </channel>
+</rss>
