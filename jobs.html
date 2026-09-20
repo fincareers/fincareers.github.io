@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>Open Roles — Finance Careers Learning Platform</title>
+  <meta name="description" content="Verified open roles across traditional finance, DeFi, fintech, and AI in finance, mapped to the platform's role profiles." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#12211d" />
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f2f5f4;
+      --paper: #ffffff;
+      --paper-2: #e8eeeb;
+      --ink: #12211d;
+      --muted: #576760;
+      --line: #cbd6d1;
+      --line-strong: #9caaa4;
+      --nav: #12211d;
+      --nav-ink: #f1f6f3;
+      --nav-muted: #aab9b2;
+      --accent: #007a5a;
+      --accent-2: #c2761a;
+      --accent-soft: #d9f1e8;
+      --danger: #b23b36;
+      --shadow: 0 12px 30px rgba(21,42,35,.08);
+      --radius: 12px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1715;
+        --paper: #18221f;
+        --paper-2: #202e29;
+        --ink: #eef6f2;
+        --muted: #a7b8b1;
+        --line: #33443d;
+        --line-strong: #586b63;
+        --nav: #0a110f;
+        --nav-ink: #f2f8f5;
+        --nav-muted: #9cafA7;
+        --accent: #52d2a6;
+        --accent-2: #e4a24d;
+        --accent-soft: #17382e;
+        --danger: #ef7670;
+        --shadow: 0 14px 35px rgba(0,0,0,.24);
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.5;
+    }
+    a { color: inherit; }
+    .site-head {
+      background: var(--nav);
+      color: var(--nav-ink);
+    }
+    .site-head-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 18px clamp(24px, 5vw, 72px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand { font-weight: 700; font-size: 15px; letter-spacing: -.01em; }
+    .brand span { color: var(--nav-muted); font-weight: 400; }
+    .back-link {
+      color: var(--nav-ink);
+      text-decoration: none;
+      font: 500 13px "IBM Plex Mono", ui-monospace, monospace;
+      border: 1px solid rgba(255,255,255,.25);
+      padding: 9px 14px;
+      border-radius: 7px;
+    }
+    .back-link:hover { background: rgba(255,255,255,.1); }
+    .page {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 42px clamp(24px, 5vw, 72px) 80px;
+    }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      max-width: 780px;
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: .98;
+      letter-spacing: -.045em;
+    }
+    .lede { margin: 18px 0 0; max-width: 690px; color: var(--muted); font-size: 17px; }
+    .disclaimer {
+      margin: 22px 0 0;
+      padding: 12px 16px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent-2);
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 690px;
+    }
+    .filters { display: flex; gap: 6px; flex-wrap: wrap; margin: 34px 0 10px; }
+    .filter-btn {
+      border: 1px solid var(--line);
+      background: transparent;
+      padding: 8px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 13px;
+      font-family: inherit;
+    }
+    .filter-btn.active { border-color: var(--ink); background: var(--ink); color: var(--bg); }
+    .result-count {
+      color: var(--muted);
+      font: 500 12px "IBM Plex Mono", ui-monospace, monospace;
+      margin: 6px 0 18px;
+    }
+    .job-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+    }
+    .job-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--accent);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+    }
+    .job-card[data-track="defi"] { border-top-color: var(--accent-2); }
+    .job-card[data-track="fintech"] { border-top-color: #2378a0; }
+    .job-card[data-track="ai"] { border-top-color: #9a5f43; }
+    .job-card[hidden] { display: none; }
+    .job-employer {
+      color: var(--accent);
+      font: 600 11px "IBM Plex Mono", ui-monospace, monospace;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .job-card h3 { margin: 10px 0 6px; font-size: 20px; letter-spacing: -.01em; }
+    .job-meta { margin: 0; color: var(--muted); font-size: 13px; }
+    .job-meta dt { display: none; }
+    .job-meta dd { margin: 0; }
+    .job-meta .row { display: flex; gap: 8px; margin-top: 6px; }
+    .job-meta .k {
+      flex: 0 0 92px;
+      color: var(--muted);
+      font: 500 11px "IBM Plex Mono", ui-monospace, monospace;
+      text-transform: uppercase;
+      padding-top: 3px;
+    }
+    .job-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; }
+    .job-tags span {
+      padding: 6px 9px;
+      background: var(--paper-2);
+      font: 500 11px "IBM Plex Mono", ui-monospace, monospace;
+    }
+    .job-foot { margin-top: auto; padding-top: 18px; }
+    .verified {
+      color: var(--muted);
+      font: 500 11px "IBM Plex Mono", ui-monospace, monospace;
+      margin: 0 0 10px;
+    }
+    .apply-link {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 11px 16px;
+      border-radius: 7px;
+    }
+    @media (prefers-color-scheme: dark) { .apply-link { color: #081b15; } }
+    .apply-link:hover { filter: brightness(.96); }
+    .site-foot {
+      border-top: 1px solid var(--line);
+      padding: 26px clamp(24px, 5vw, 72px) 60px;
+      max-width: 1320px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    @media (max-width: 1040px) { .job-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 760px) { .job-grid { grid-template-columns: 1fr; } .page { padding: 28px 18px 54px; } }
+  </style>
+</head>
+<body>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <div class="brand">Finance Careers <span>Learning Platform</span></div>
+      <a class="back-link" href="index.html">&larr; Back to the learning platform</a>
+    </div>
+  </header>
+
+  <main class="page">
+    <p class="eyebrow">Open roles</p>
+    <h1>Jobs mapped to the role profiles</h1>
+    <p class="lede">A small, hand-checked sample of live postings across the four tracks. Each card names the role profile it maps to, so you can connect what you learn here to real openings.</p>
+    <p class="disclaimer"><strong>Note:</strong> Listings change frequently; last updated 2026-09-20.</p>
+
+    <div class="filters" role="tablist" aria-label="Filter by track">
+      <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+      <button class="filter-btn" data-filter="traditional" role="tab" aria-selected="false">Traditional finance</button>
+      <button class="filter-btn" data-filter="defi" role="tab" aria-selected="false">DeFi</button>
+      <button class="filter-btn" data-filter="fintech" role="tab" aria-selected="false">Fintech</button>
+      <button class="filter-btn" data-filter="ai" role="tab" aria-selected="false">AI in finance</button>
+    </div>
+    <p class="result-count" id="resultCount">Showing 12 of 12 roles</p>
+
+    <div class="job-grid" id="jobGrid">
+
+      <article class="job-card" data-track="traditional">
+        <p class="job-employer">JPMorgan Chase</p>
+        <h3>Trading Lifecycle Specialist &ndash; Operations Analyst</h3>
+        <dl class="job-meta">
+          <div class="row"><dt>Location</dt><dd class="k">Location</dd><dd>Jersey City, NJ, USA</dd></div>
+          <div class="row"><dt>Work model</dt><dd class="k">Model</dd><dd>Not specified</dd></div>
+        </dl>
+        <div class="job-tags"><span>Trading support analyst</span></div>
+        <div class="job-foot">
+          <p class="verified">Verified 2026-09-20</p>
+          <a class="apply-link" href="https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001/job/210526539/" target="_blank" rel="noopener">View official posting</a>
+        </div>
+      </article>
+
+      <article class="job-card" data-track="traditional">
+        <p class="job-employer">Janus Henderson</p>
+        <h3>Listed Trade Operations Analyst</h3>
+        <dl class="job-meta">
+          <div class="row"><dt>Location</dt><dd class="k">Location</dd><dd>Budapest, Hungary</dd></div>
+          <div class="row"><dt>Work model</dt><dd class="k">Model</dd><dd>Hybrid</dd></div>
+        </dl>
+        <div class="job-tags"><span>Trading support analyst</span></div>
+        <div class="job-foot">
+          <p class="verified">Verified 2026-09-20</p>
+          <a class="apply-link" href="https://jobs.janushenderson.com/job/Budapest-Listed-Trade-Operations-Analyst-1133/1394188700/" target="_blank" rel="noopener">View official posting</a>
+        </div>
+      </article>
+
+      <article class="job-card" data-track="traditional">
+        <p class="job-employer">Janus Henderson</p>
+        <h3>TA Operations Analyst</h3>
+        <dl class="job-meta">
+          <div class="row"><dt>Location</dt><dd class="k">Location</dd><dd>London, UK</dd></div>
+          <div class="row"><dt>Work model</dt><dd class="k">Model</dd><dd>Hybrid</dd></div>
+        </dl>
+        <div class="job-tags"><span>Treasury operations</span></div>
+        <div class="job-foot">
+          <p class="verified">Verified 2026-09-20</p>
+          <a class="apply-link" href="https://jobs.janushenderson.com/job/London-TA-Operations-Analyst-EC2M-3AE/1422951900/" target="_blank" rel="noopener">View official posting</a>
+        </div>
+      </article>
+
+      <article class="job-card" data-track="defi">
+        <p class="job-employer">Coinbase</p>
+        <h3>Credit Risk Analyst</h3>
+        <dl class="job-meta">
+          <div class="row"><dt>Location</dt><dd class="k">Location</dd><dd>Remote, USA</dd></div>
+          <div class="row"><dt>Work model</dt><dd class="k">Model</dd><dd>Remote</dd></div>
+        </dl>
+        <div class="job-tags"><span>Protocol risk analyst</span></div>
+        <div class="job-foot">
+          <p class="verified">Verified 2026-09-20</p>
+          <a class="apply-link" href="https://www.coinbase.com/careers/positions/8131356?gh_jid=8131356" target="_blank" rel="noopener">View official posting</a>
+        </div>
+      </article>
+
+      <article class="job-card" data-track="defi">
+        <p class="job-employer">Coinbase</p>
+        <h3>Operations Senior Associate</h3>
+        <dl class="job-meta">
+          <div class="row"><dt>Location</dt><dd class="k">Location</dd><dd>Remote, Luxembourg</dd></div>
+          <div class="row"><dt>Work model</dt><dd class="k">Model</dd><dd>Remote</dd></div>
+        </dl>
+        <div class="job-tags"><span>Protocol operations</span></div>
+        <div class="job-foot">
+          <p class="verified">Verified 2026-09-20</p>
+          <a class="apply-link" href="https://www.coinbase.com/careers/positions/8013718?gh_jid=8013718" target="_blank" rel="noopener">View official posting</a>
+        </div>
+      </article>
+
+      <article class="job-card" data-track="defi">
+        <p class="job-employer">Coinbase</p>
+        <h3>Staff Analytics Engineer, Compliance Data</h3>
+        <dl class="job-meta">
+          <div class="row"><dt>Location</dt><dd class="k">Location</dd><dd>Remote, USA</dd></div>
+          <div class="row"><dt>Work model</dt><dd class="k">Model</dd><dd>Remote</dd></div>
+        </dl>
+        <div class="job-tags"><span>On-chain data analyst</span></div>
+        <div class="job-foot">
+          <p class="verified">Verified 2026-09-20</p>
+          <a class="apply-link" href="https://www.coinbase.com/careers/positions/8104148?gh_jid=8104148" target="_blank" rel="noopener">View official posting</a>
+        </div>
+      </article>
+
+      <article class="job-card" data-track="fintech">
+        <p class="job-employer">Robinhood</p>
+        <h3>Fraud Investigator &ndash; Customer Protection</h3>
+        <dl class="job-meta">
+          <div class="row"><dt>Location</dt><dd class="k">Location</dd><dd>Denver, CO / Lake Mary, FL, USA</dd></div>
+          <div class="row"><dt>Work model</dt><dd class="k">Model</dd><dd>Not specified</dd></div>
+        </dl>
+        <div class="job-tags"><span>Fraud strategy analyst</span></div>
+        <div class="job-foot">
+          <p class="verified">Verified 2026-09-20</p>
+          <a class="apply-link" href="https://boards.greenhouse.io/robinhood/jobs/8186282" target="_blank" rel="noopener">View official posting</a>
+        </div>
+      </article>
+
+      <article class="job-card" data-track="fintech">
+        <p class="job-employer">Chime</p>
+        <h3>Lead Analyst, Financial Crimes</h3>
+        <dl class="job-meta">
+          <div class="row"><dt>Location</dt><dd class="k">Location</dd><dd>Chicago, IL, USA</dd></div>
+          <div class="row"><dt>Work model</dt><dd class="k">Model</dd><dd>Onsite</dd></div>
+        </dl>
+        <div class="job-tags"><span>Fraud strategy analyst</span></div>
+        <div class="job-foot">
+          <p class="verified">Verified 2026-09-20</p>
+          <a class="apply-link" href="https://boards.greenhouse.io/chime/jobs/8779819002" target="_blank" rel="noopener">View official posting</a>
+        </div>
+      </article>
+
+      <article class="job-card" data-track="fintech">
+        <p class="job-employer">Chime</p>
+        <h3>Senior Associate, Compliance Advisory</h3>
+        <dl class="job-meta">
+          <div class="row"><dt>Location</dt><dd class="k">Location</dd><dd>San Francisco, CA, USA</dd></div>
+          <div class="row"><dt>Work model</dt><dd class="k">Model</dd><dd>Onsite</dd></div>
+        </dl>
+        <div class="job-tags"><span>Operational risk analyst</span></div>
+        <div class="job-foot">
+          <p class="verified">Verified 2026-09-20</p>
+          <a class="apply-link" href="https://boards.greenhouse.io/chime/jobs/8786182002" target="_blank" rel="noopener">View official posting</a>
+        </div>
+      </article>
+
+      <article class="job-card" data-track="ai">
+        <p class="job-employer">Coinbase</p>
+        <h3>Group Product Manager, Compliance Automation</h3>
+        <dl class="job-meta">
+          <div class="row"><dt>Location</dt><dd class="k">Location</dd><dd>Remote, USA</dd></div>
+          <div class="row"><dt>Work model</dt><dd class="k">Model</dd><dd>Remote</dd></div>
+        </dl>
+        <div class="job-tags"><span>AI product manager</span></div>
+        <div class="job-foot">
+          <p class="verified">Verified 2026-09-20</p>
+          <a class="apply-link" href="https://www.coinbase.com/careers/positions/7701642?gh_jid=7701642" target="_blank" rel="noopener">View official posting</a>
+        </div>
+      </article>
+
+      <article class="job-card" data-track="ai">
+        <p class="job-employer">Coinbase</p>
+        <h3>Technical Program Manager, CX Intelligence &amp; AI</h3>
+        <dl class="job-meta">
+          <div class="row"><dt>Location</dt><dd class="k">Location</dd><dd>Remote, USA</dd></div>
+          <div class="row"><dt>Work model</dt><dd class="k">Model</dd><dd>Remote</dd></div>
+        </dl>
+        <div class="job-tags"><span>Model operations analyst</span></div>
+        <div class="job-foot">
+          <p class="verified">Verified 2026-09-20</p>
+          <a class="apply-link" href="https://www.coinbase.com/careers/positions/8013948?gh_jid=8013948" target="_blank" rel="noopener">View official posting</a>
+        </div>
+      </article>
+
+      <article class="job-card" data-track="ai">
+        <p class="job-employer">Affirm</p>
+        <h3>Model Risk Management Lead, Machine Learning</h3>
+        <dl class="job-meta">
+          <div class="row"><dt>Location</dt><dd class="k">Location</dd><dd>Remote, USA</dd></div>
+          <div class="row"><dt>Work model</dt><dd class="k">Model</dd><dd>Remote</dd></div>
+        </dl>
+        <div class="job-tags"><span>Model operations analyst</span></div>
+        <div class="job-foot">
+          <p class="verified">Verified 2026-09-20</p>
+          <a class="apply-link" href="https://job-boards.greenhouse.io/affirm/jobs/7775353003" target="_blank" rel="noopener">View official posting</a>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <footer class="site-foot">
+    <p>Every listing links to the employer's official posting and was verified live on 2026-09-20. Listings change frequently; last updated 2026-09-20.</p>
+  </footer>
+
+  <script>
+    (function () {
+      var buttons = Array.prototype.slice.call(document.querySelectorAll('.filter-btn'));
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.job-card'));
+      var count = document.getElementById('resultCount');
+      function apply(filter) {
+        var shown = 0;
+        cards.forEach(function (card) {
+          var match = filter === 'all' || card.getAttribute('data-track') === filter;
+          card.hidden = !match;
+          if (match) shown += 1;
+        });
+        count.textContent = 'Showing ' + shown + ' of ' + cards.length + ' roles';
+        buttons.forEach(function (btn) {
+          var active = btn.getAttribute('data-filter') === filter;
+          btn.classList.toggle('active', active);
+          btn.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+      }
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () { apply(btn.getAttribute('data-filter')); });
+      });
+      apply('all');
+    })();
+  </script>
+</body>
+</html>
