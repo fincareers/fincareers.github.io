@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The DeFi operations career path | Finance Careers Blog</title>
+  <meta name="description" content="What DeFi operations teams actually do: protocol monitoring, on-chain investigation, risk skills, and realistic routes into the field." />
+  <link rel="canonical" href="https://fincareers.github.io/blog/defi-ops-career-path.html" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f2f5f4;
+      --paper: #ffffff;
+      --paper-2: #e8eeeb;
+      --ink: #12211d;
+      --muted: #576760;
+      --line: #cbd6d1;
+      --line-strong: #9caaa4;
+      --nav: #12211d;
+      --nav-ink: #f1f6f3;
+      --nav-muted: #aab9b2;
+      --accent: #007a5a;
+      --accent-2: #c2761a;
+      --accent-soft: #d9f1e8;
+      --amber-soft: #f5e8d2;
+      --shadow: 0 12px 30px rgba(21,42,35,.08);
+      --radius: 12px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1715;
+        --paper: #18221f;
+        --paper-2: #202e29;
+        --ink: #eef6f2;
+        --muted: #a7b8b1;
+        --line: #33443d;
+        --line-strong: #586b63;
+        --nav: #0a110f;
+        --nav-ink: #f2f8f5;
+        --nav-muted: #9cafa7;
+        --accent: #52d2a6;
+        --accent-2: #e4a24d;
+        --accent-soft: #17382e;
+        --amber-soft: #3b2d1d;
+        --shadow: 0 14px 35px rgba(0,0,0,.24);
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      line-height: 1.65;
+    }
+    a { color: var(--accent); }
+    .topbar { background: var(--paper); border-bottom: 1px solid var(--line); }
+    .topbar-inner {
+      max-width: 840px; margin: 0 auto; padding: 14px 22px;
+      display: flex; gap: 16px; align-items: center; font-size: 14px;
+    }
+    .topbar-inner a { color: var(--muted); text-decoration: none; font-weight: 600; }
+    .topbar-inner a:hover { color: var(--accent); }
+    .topbar-inner .sep { color: var(--line-strong); }
+    .wrap { max-width: 840px; margin: 0 auto; padding: 40px 22px 70px; }
+    .eyebrow {
+      margin: 0 0 12px; color: var(--accent);
+      font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+    }
+    h1 { margin: 0 0 14px; font-size: clamp(30px, 4.6vw, 46px); line-height: 1.05; letter-spacing: -.03em; }
+    .dek { margin: 0 0 8px; color: var(--muted); font-size: 18px; max-width: 680px; }
+    .meta { color: var(--muted); font: 500 12px "IBM Plex Mono", monospace; margin: 14px 0 0; }
+    .day-video { margin: 26px 0 30px; }
+    .day-video audio { display: block; width: 100%; }
+    .day-video figcaption { font-size: 12px; color: var(--muted); margin-top: 8px; }
+    .post h2 { margin: 36px 0 10px; font-size: clamp(21px, 3vw, 27px); letter-spacing: -.02em; }
+    .post p { margin: 0 0 16px; font-size: 16.5px; }
+    .post p.lede { font-size: 19px; color: var(--muted); }
+    .post ul { margin: 0 0 18px; padding-left: 22px; }
+    .post li { margin-bottom: 8px; font-size: 16.5px; }
+    .post li::marker { color: var(--accent); }
+    .callout {
+      margin: 26px 0; padding: 18px 20px;
+      background: var(--amber-soft); border-left: 4px solid var(--accent-2);
+    }
+    .callout b { display: block; margin-bottom: 4px; }
+    .callout p { margin: 0; font-size: 15px; color: var(--ink); }
+    .backnav { margin-top: 46px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; gap: 18px; flex-wrap: wrap; }
+    .backnav a { font-weight: 600; text-decoration: none; }
+    .backnav a:hover { text-decoration: underline; }
+    footer {
+      border-top: 1px solid var(--line); padding: 26px 20px 60px;
+      text-align: center; color: var(--muted); font-size: 14px; line-height: 1.6;
+    }
+    footer a { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="../index.html">&larr; Home</a>
+      <span class="sep">/</span>
+      <a href="index.html">Blog</a>
+    </div>
+  </header>
+  <main class="wrap">
+    <p class="eyebrow">Finance Careers Blog &middot; DeFi</p>
+    <h1>The DeFi operations career path</h1>
+    <p class="dek">Protocol ops, risk monitoring, and on-chain investigation &mdash; what the work is, which skills transfer, and how to break in.</p>
+    <p class="meta">3-minute read &middot; narrated audio below</p>
+    <figure class="day-video">
+      <audio controls preload="none" aria-label="Narrated version of: The DeFi operations career path">
+        <source src="audio/defi-ops-career-path.mp3" type="audio/mpeg" />
+      </audio>
+      <figcaption>Narrated version &mdash; human voice.</figcaption>
+    </figure>
+    <article class="post">
+      <p class="lede">Decentralized finance runs without a traditional back office &mdash; there is no settlement desk, no custodian, no end-of-day batch. But someone still has to watch the money, investigate what went wrong, and keep the protocol safe. That someone works in DeFi operations, one of the newest and least understood career paths in finance.</p>
+
+      <h2>What the role actually is</h2>
+      <p>DeFi operations sits at the intersection of finance operations, risk, and on-chain investigation. A protocol operations team monitors smart-contract activity around the clock, tracks liquidity and utilization, responds to incidents, and coordinates changes to protocol parameters. Where a traditional ops analyst reconciles records between counterparties, a DeFi ops analyst reconciles the protocol&rsquo;s intended state against what is actually happening on-chain. The ledger is public; the job is reading it.</p>
+
+      <h2>The daily work has a distinct rhythm</h2>
+      <p>It starts with a state scan: reviewing contract events, liquidations, oracle prices, and governance activity since the last shift. Then comes monitoring &mdash; following transaction hashes, reading event logs, and tracing wallet flows to understand unusual activity. When something looks wrong, the analyst reconstructs the sequence: which addresses called which functions, in what order, and how the protocol&rsquo;s state changed. Afternoon work is often project-based: reviewing proposed parameter changes, checking the expected effects on borrowing and liquidity, and preparing decision packages for governance. Everything ends with documentation, because in a decentralized system the written record is the coordination mechanism.</p>
+
+      <h2>The skills that transfer from traditional finance are real</h2>
+      <p>If you have worked in reconciliations, settlements, or risk, you already own half the toolkit: investigating discrepancies, thinking in terms of exposure and deadlines, writing clear handoff notes, and staying calm during incidents. What changes is the evidence. Instead of counterparty confirmations you read block explorers; instead of settlement messages you read transaction traces. People who have done exception management in traditional ops consistently ramp faster than pure technologists, because the judgment &mdash; is this volatility or a malfunction? &mdash; is the same muscle.</p>
+
+      <h2>The skills you need to add</h2>
+      <ul>
+        <li><b>On-chain literacy:</b> reading a block explorer fluently, understanding how tokens move through approvals and transfers, and recognizing common transaction patterns.</li>
+        <li><b>Risk monitoring:</b> utilization rates, liquidation cascades, oracle behavior under stress, and stablecoin depegs.</li>
+        <li><b>Incident response discipline:</b> distinguishing market stress from a protocol defect, separating confirmed facts from inference, and communicating to users and stakeholders without causing panic.</li>
+        <li><b>Governance fluency:</b> most protocols change through on-chain or off-chain votes, and ops teams prepare the analysis those votes depend on.</li>
+      </ul>
+      <p>You do not need to be a smart-contract developer, but you need to read code-adjacent documentation and ask developers sharp questions.</p>
+
+      <h2>How to break in</h2>
+      <p>The honest routes: start in traditional finance operations and build on-chain skills on the side, then target protocol teams, risk firms, and blockchain analytics companies that value the combination. Or start in crypto-native support and customer operations &mdash; many exchanges and wallet providers hire operations generalists &mdash; and specialize in investigations. Either way, build public evidence: write up incident analyses, publish walkthroughs of notable on-chain events, contribute to open-source risk dashboards. In a field this new, a portfolio of sharp analysis outweighs credentials.</p>
+
+      <div class="callout">
+        <b>What to watch out for</b>
+        <p>This is still a young industry with real hazards. Compensation can be volatile when paid partly in tokens, and some protocols operate in regulatory gray areas &mdash; do your diligence on the team, the funding, and the legal structure before you join. On-call rotations can be intense because blockchains do not observe market hours; ask about the rotation schedule in interviews. And treat any employer that cannot explain its revenue model with skepticism.</p>
+      </div>
+
+      <h2>Why it is worth considering</h2>
+      <p>Few roles give you a live, public laboratory for financial operations. Every transaction is visible, every incident is a case study, and the skills &mdash; investigation, risk judgment, clear crisis communication &mdash; transfer back to traditional finance if you ever return. The path is less structured than a bank&rsquo;s analyst program, which means more responsibility earlier and a faster feedback loop on your judgment. If you like detective work and you are comfortable with ambiguity, DeFi operations is one of the most interesting seats in finance right now.</p>
+    </article>
+    <nav class="backnav">
+      <a href="index.html">&larr; Back to blog</a>
+      <a href="../index.html">&larr; Home</a>
+    </nav>
+  </main>
+  <footer>
+    <a href="../index.html">Finance Careers Learning Platform</a> &middot; practical guides for finance operations careers<br />
+    Educational content only &mdash; not financial or career advice.
+  </footer>
+</body>
+</html>
