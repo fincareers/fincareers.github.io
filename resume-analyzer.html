@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Resume Analyzer — Finance Careers Learning Platform</title>
+  <meta name="description" content="Free finance resume analyzer: upload your resume and get an ATS-style score, keyword coverage across 14 finance role profiles, skills gaps, and concrete fixes. Runs entirely in your browser — your resume never leaves this page." />
+  <meta name="keywords" content="finance resume analyzer, resume score, ATS resume check, finance resume keywords, operations resume, fintech resume, DeFi resume" />
+  <meta name="author" content="Finance Careers Learning Platform" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#12211d" />
+  <link rel="canonical" href="https://fincareers.github.io/resume-analyzer.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Finance Careers Learning Platform" />
+  <meta property="og:title" content="Resume Analyzer — Finance Careers Learning Platform" />
+  <meta property="og:description" content="Score your finance resume against 14 real role profiles. Keyword coverage, quantification, ATS checks — all in your browser, nothing uploaded." />
+  <meta property="og:url" content="https://fincareers.github.io/resume-analyzer.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Resume Analyzer — Finance Careers Learning Platform" />
+  <meta name="twitter:description" content="Free, private finance resume analyzer. Upload your resume, get a score and concrete fixes — everything runs in your browser." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Finance Resume Analyzer",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web browser",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+    "url": "https://fincareers.github.io/resume-analyzer.html",
+    "description": "Analyzes finance resumes against 14 role profiles across traditional finance, DeFi, fintech and AI. Scores keyword coverage, quantified achievements, and ATS-readiness, all client-side."
+  }
+  </script>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f2f5f4;
+      --paper: #ffffff;
+      --paper-2: #e8eeeb;
+      --ink: #12211d;
+      --muted: #576760;
+      --line: #cbd6d1;
+      --line-strong: #9caaa4;
+      --nav: #12211d;
+      --nav-ink: #f1f6f3;
+      --nav-muted: #aab9b2;
+      --accent: #007a5a;
+      --accent-2: #c2761a;
+      --accent-soft: #d9f1e8;
+      --amber-soft: #f5e8d2;
+      --danger: #b23b36;
+      --shadow: 0 12px 30px rgba(21,42,35,.08);
+      --radius: 12px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1715;
+        --paper: #18221f;
+        --paper-2: #202e29;
+        --ink: #eef6f2;
+        --muted: #a7b8b1;
+        --line: #33443d;
+        --line-strong: #586b63;
+        --nav: #0a110f;
+        --nav-ink: #f2f8f5;
+        --nav-muted: #9cafa7;
+        --accent: #52d2a6;
+        --accent-2: #e4a24d;
+        --accent-soft: #17382e;
+        --amber-soft: #3b2d1d;
+        --danger: #ef7670;
+        --shadow: 0 14px 35px rgba(0,0,0,.24);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      line-height: 1.5;
+    }
+    button, input, select, textarea { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; }
+    .app-shell { min-height: 100vh; }
+    .rail {
+      position: fixed;
+      inset: 0 auto 0 0;
+      width: 232px;
+      padding: 28px 18px 24px;
+      background: var(--nav);
+      color: var(--nav-ink);
+      display: flex;
+      flex-direction: column;
+      z-index: 10;
+    }
+    .rail-label {
+      margin: 0 12px 20px;
+      color: var(--nav-muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .nav-list { display: grid; gap: 5px; }
+    .nav-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--nav-muted);
+      display: grid;
+      grid-template-columns: 25px 1fr;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 12px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .nav-btn:hover, .nav-btn.active { background: rgba(255,255,255,.09); color: var(--nav-ink); }
+    a.nav-btn, a.mobile-btn { text-decoration: none; }
+    .nav-icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; display: block; }
+    .rail-meta { margin-top: auto; padding: 12px; border-top: 1px solid rgba(255,255,255,.12); }
+    .rail-meta strong { display: block; font-size: 13px; }
+    .rail-meta span { font-size: 12px; color: var(--nav-muted); }
+    .mobile-nav { display: none; }
+    .main { margin-left: 232px; padding: 40px 36px 80px; max-width: 1060px; }
+    .eyebrow {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 10px;
+    }
+    .page-head h1 { margin: 0 0 12px; font-size: clamp(28px, 4vw, 42px); line-height: 1.12; letter-spacing: -0.01em; }
+    .page-head p.lede { margin: 0 0 8px; color: var(--muted); font-size: 17px; max-width: 62ch; }
+    .privacy {
+      display: flex; gap: 10px; align-items: flex-start;
+      background: var(--accent-soft);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      margin: 20px 0 28px;
+      font-size: 14px;
+    }
+    .privacy strong { white-space: nowrap; }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .card h2 { margin: 0 0 6px; font-size: 20px; }
+    .card p.sub { margin: 0 0 18px; color: var(--muted); font-size: 14px; }
+    .dropzone {
+      border: 2px dashed var(--line-strong);
+      border-radius: var(--radius);
+      padding: 36px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .15s, background .15s;
+      margin-bottom: 16px;
+    }
+    .dropzone:hover, .dropzone.drag { border-color: var(--accent); background: var(--accent-soft); }
+    .dropzone .dz-title { font-weight: 600; font-size: 16px; margin-bottom: 4px; }
+    .dropzone .dz-sub { color: var(--muted); font-size: 13px; }
+    .dz-file { margin-top: 10px; font-size: 13px; color: var(--accent); font-weight: 600; }
+    textarea.paste {
+      width: 100%; min-height: 140px; resize: vertical;
+      border: 1px solid var(--line); border-radius: 8px;
+      padding: 12px; background: var(--paper-2); color: var(--ink);
+      font-family: "IBM Plex Mono", monospace; font-size: 12.5px;
+    }
+    .or { text-align: center; color: var(--muted); font-size: 13px; margin: 14px 0; }
+    .controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; margin-top: 16px; }
+    .field { display: grid; gap: 6px; }
+    .field label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+    select.role {
+      border: 1px solid var(--line); border-radius: 8px;
+      padding: 10px 12px; background: var(--paper-2); color: var(--ink);
+      max-width: 340px;
+    }
+    .btn {
+      border: 1px solid var(--line-strong);
+      background: var(--paper);
+      border-radius: 8px;
+      padding: 11px 22px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn-primary:hover { filter: brightness(1.08); }
+    .btn:disabled { opacity: .5; cursor: wait; }
+    .status { font-size: 13px; color: var(--muted); margin-top: 10px; min-height: 20px; }
+    .status.err { color: var(--danger); }
+    #results { display: none; }
+    .score-wrap { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; margin-bottom: 20px; }
+    .score-ring { position: relative; width: 148px; height: 148px; flex: none; }
+    .score-ring svg { transform: rotate(-90deg); }
+    .score-num {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    .score-num strong { font-size: 38px; line-height: 1; }
+    .score-num span { font-size: 12px; color: var(--muted); }
+    .score-note { max-width: 46ch; font-size: 14px; color: var(--muted); }
+    .score-note strong { color: var(--ink); }
+    .bars { display: grid; gap: 12px; margin: 6px 0 4px; }
+    .bar-row { display: grid; grid-template-columns: 170px 1fr 44px; gap: 12px; align-items: center; font-size: 13.5px; }
+    .bar-track { height: 10px; background: var(--paper-2); border-radius: 6px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--accent); border-radius: 6px; transition: width .6s ease; }
+    .bar-fill.warn { background: var(--accent-2); }
+    .bar-fill.bad { background: var(--danger); }
+    .bar-val { font-family: "IBM Plex Mono", monospace; font-size: 12.5px; text-align: right; }
+    .role-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-top: 14px; }
+    .role-card { border: 1px solid var(--line); border-radius: 10px; padding: 16px; background: var(--paper-2); }
+    .role-card.top { border: 2px solid var(--accent); background: var(--paper); }
+    .role-card .r-track { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+    .role-card h3 { margin: 4px 0 6px; font-size: 16px; }
+    .role-card .r-score { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      font-size: 12px; padding: 3px 9px; border-radius: 20px;
+      background: var(--accent-soft); border: 1px solid var(--line);
+    }
+    .chip.miss { background: transparent; border-style: dashed; color: var(--muted); }
+    .chip-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 8px 0 4px; }
+    .feedback { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 10px; }
+    .feedback li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; }
+    .dot { flex: none; width: 10px; height: 10px; border-radius: 50%; margin-top: 6px; }
+    .dot.high { background: var(--danger); }
+    .dot.med { background: var(--accent-2); }
+    .dot.low { background: var(--accent); }
+    .feedback li b { font-weight: 600; }
+    .kv { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 14px; }
+    .kv .stat { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: var(--paper-2); }
+    .kv .stat strong { display: block; font-size: 20px; font-family: "IBM Plex Mono", monospace; }
+    .kv .stat span { font-size: 12px; color: var(--muted); }
+    .sec-title { font-size: 15px; font-weight: 700; margin: 22px 0 4px; }
+    .muted { color: var(--muted); font-size: 13px; }
+    .site-foot { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; display: flex; gap: 18px; flex-wrap: wrap; }
+    .site-foot a { text-decoration: none; }
+    .site-foot a:hover { text-decoration: underline; }
+    @media (max-width: 860px) {
+      .rail { display: none; }
+      .main { margin-left: 0; padding: 24px 16px 110px; }
+      .mobile-nav {
+        display: flex;
+        position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+        background: var(--nav); color: var(--nav-ink);
+        padding: 8px 6px calc(8px + env(safe-area-inset-bottom));
+        justify-content: space-around;
+      }
+      .mobile-btn {
+        color: var(--nav-ink); text-decoration: none; font-size: 11px;
+        padding: 8px 10px; border-radius: 8px; text-align: center;
+      }
+      .mobile-btn svg { display: block; margin: 0 auto 3px; width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+      .mobile-btn.active { background: var(--accent); color: #fff; }
+      .bar-row { grid-template-columns: 1fr 44px; }
+      .bar-row .bar-name { grid-column: 1 / -1; font-weight: 600; }
+      .bar-track { grid-column: 1; }
+    }
+  </style>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="rail" aria-label="Primary navigation">
+    <p class="rail-label">Explore</p>
+    <nav class="nav-list">
+      <a class="nav-btn" href="index.html">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 5h6v6H4zM14 5h6v6h-6zM4 15h6v4H4zM14 15h6v4h-6z"/></svg></span><span>Learning platform</span>
+      </a>
+      <a class="nav-btn" href="jobs.html">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg></span><span>Jobs</span>
+      </a>
+      <a class="nav-btn" href="blog/index.html">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 20l1-4L16 5l3 3L8 19zM14 7l3 3"/></svg></span><span>Blog</span>
+      </a>
+      <a class="nav-btn" href="podcast/index.html">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/></svg></span><span>Podcast</span>
+      </a>
+      <a class="nav-btn active" href="resume-analyzer.html">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7"/></svg></span><span>Resume analyzer</span>
+      </a>
+    </nav>
+    <div class="rail-meta">
+      <strong>Resume analyzer</strong>
+      <span>Private · runs in your browser</span>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="page-head">
+      <p class="eyebrow">Career tools</p>
+      <h1>Is your resume speaking finance?</h1>
+      <p class="lede">Upload your resume and get an honest, ATS-style read: keyword coverage against 14 real finance role profiles, quantification of your impact, and the exact fixes that move your score.</p>
+    </header>
+
+    <div class="privacy" role="note">
+      <strong>🔒 Private by design.</strong>
+      <span>Everything runs locally in your browser. Your resume is never uploaded, stored, or sent anywhere — close the tab and it's gone.</span>
+    </div>
+
+    <section class="card" aria-label="Upload resume">
+      <h2>1 · Give it your resume</h2>
+      <p class="sub">PDF, Word (.docx), or plain text. Two pages max works best — the analyzer will tell you if it's running long.</p>
+      <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Upload resume file">
+        <div class="dz-title">Drop your resume here, or click to browse</div>
+        <div class="dz-sub">PDF · DOCX · TXT — parsed on your device, never uploaded</div>
+        <div class="dz-file" id="dzFile"></div>
+        <input type="file" id="fileInput" accept=".pdf,.docx,.txt" hidden />
+      </div>
+      <div class="or">— or paste the text —</div>
+      <textarea class="paste" id="pasteArea" placeholder="Paste your resume text here…" spellcheck="false"></textarea>
+      <div class="controls">
+        <div class="field">
+          <label for="roleSelect">Target role</label>
+          <select class="role" id="roleSelect"></select>
+        </div>
+        <button class="btn btn-primary" id="analyzeBtn">Analyze resume</button>
+        <button class="btn" id="sampleBtn" type="button">Try a sample</button>
+      </div>
+      <div class="status" id="status"></div>
+    </section>
+
+    <section id="results" aria-live="polite">
+      <div class="card">
+        <h2>2 · Your score</h2>
+        <p class="sub">Weighted across skills coverage, quantified impact, completeness, language, and ATS-readiness.</p>
+        <div class="score-wrap">
+          <div class="score-ring" role="img" aria-label="Overall resume score">
+            <svg width="148" height="148" viewBox="0 0 148 148">
+              <circle cx="74" cy="74" r="64" fill="none" stroke="var(--paper-2)" stroke-width="12"/>
+              <circle id="scoreArc" cx="74" cy="74" r="64" fill="none" stroke="var(--accent)" stroke-width="12"
+                      stroke-linecap="round" stroke-dasharray="402.1" stroke-dashoffset="402.1"/>
+            </svg>
+            <div class="score-num"><strong id="scoreNum">0</strong><span>/ 100</span></div>
+          </div>
+          <p class="score-note" id="scoreNote"></p>
+        </div>
+        <div class="bars" id="bars"></div>
+        <div class="kv" id="stats"></div>
+      </div>
+
+      <div class="card">
+        <h2>3 · Role matches</h2>
+        <p class="sub">How your resume reads against each of the platform's 14 finance role profiles, based on keyword coverage.</p>
+        <div class="role-grid" id="roleGrid"></div>
+      </div>
+
+      <div class="card">
+        <h2>4 · What to fix first</h2>
+        <p class="sub">Prioritized by impact. Red items move the needle most.</p>
+        <ul class="feedback" id="feedback"></ul>
+      </div>
+    </section>
+
+    <footer class="site-foot">
+      <span>Finance Careers Learning Platform</span>
+      <a href="index.html">Learning platform</a>
+      <a href="jobs.html">Jobs</a>
+      <a href="blog/index.html">Blog</a>
+      <a href="podcast/index.html">Podcast</a>
+    </footer>
+  </main>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <a class="mobile-btn" href="index.html"><svg viewBox="0 0 24 24"><path d="M4 5h6v6H4zM14 5h6v6h-6zM4 15h6v4H4zM14 15h6v4h-6z"/></svg>Learn</a>
+    <a class="mobile-btn" href="jobs.html"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg>Jobs</a>
+    <a class="mobile-btn" href="blog/index.html"><svg viewBox="0 0 24 24"><path d="M4 20l1-4L16 5l3 3L8 19zM14 7l3 3"/></svg>Blog</a>
+    <a class="mobile-btn" href="podcast/index.html"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/></svg>Podcast</a>
+    <a class="mobile-btn active" href="resume-analyzer.html"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7"/></svg>Resume</a>
+  </nav>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<script>
+"use strict";
+/* ============================================================
+   Finance Resume Analyzer — 100% client-side.
+   Scores a resume against the platform's 14 role profiles.
+   ============================================================ */
+
+/* Keyword taxonomy, built from the platform's role-profile "core fluency"
+   vocabulary, expanded with the terms recruiters and ATS systems scan for. */
+const ROLES = [
+  { id:"sec-lending", title:"Securities lending operations", track:"Traditional finance",
+    core:["securities lending","settlement","collateral","recall","corporate action","reconciliation","fail","billing","lifecycle","agency lending"],
+    ext:["custodian","manufactured dividend","mark to market","margin call","beneficial owner","agent lender","borrower","DTC","Euroclear","securities finance"] },
+  { id:"collateral", title:"Collateral analyst", track:"Traditional finance",
+    core:["collateral","valuation","haircut","eligibility","margin call","dispute","legal terms","mark to market"],
+    ext:["CSA","ISDA","margin","tri-party","pledge","collateral management","exposure","netting"] },
+  { id:"trading-support", title:"Trading support analyst", track:"Traditional finance",
+    core:["trade support","booking","settlement","cutoff","pricing","position","escalation","middle office","trade lifecycle"],
+    ext:["P&L","pnl","FIX","affirmation","confirmation","trade query","inventory","T+1","fails"] },
+  { id:"op-risk", title:"Operational risk analyst", track:"Traditional finance",
+    core:["operational risk","risk assessment","root cause","remediation","control testing","governance","incident"],
+    ext:["RCSA","KRI","risk taxonomy","issue tracking","audit","control framework","loss event","second line"] },
+  { id:"treasury-ops", title:"Treasury operations", track:"Traditional finance",
+    core:["treasury","cash management","liquidity","funding","cash forecast","intraday","settlement"],
+    ext:["nostro","wire","payment","balance","liquidity buffer","cash ladder","FX settlement","CLS"] },
+  { id:"protocol-ops", title:"Protocol operations", track:"DeFi",
+    core:["smart contract","wallet","governance","oracle","incident","treasury","on-chain","protocol"],
+    ext:["multisig","DAO","parameter","upgrade","bridge","treasury management","post-mortem","monitoring"] },
+  { id:"protocol-risk", title:"Protocol risk analyst", track:"DeFi",
+    core:["collateralization","liquidation","LTV","oracle risk","smart contract risk","monitoring","stress test"],
+    ext:["DeFi","risk parameter","bad debt","insolvency","peg","depeg","exploit","circuit breaker"] },
+  { id:"onchain-data", title:"On-chain data analyst", track:"DeFi",
+    core:["SQL","blockchain data","token flow","dashboard","data analysis","transaction analysis"],
+    ext:["Dune","Nansen","Etherscan","Python","contract event","address","wallet","query","visualization"] },
+  { id:"payments-ops", title:"Payments operations", track:"Fintech",
+    core:["payment","authorization","clearing","settlement","chargeback","dispute","refund","ledger"],
+    ext:["ACH","SWIFT","SEPA","exception","return","reconciliation","service level","SLA","wire"] },
+  { id:"product-ops", title:"Product operations manager", track:"Fintech",
+    core:["product operations","launch","runbook","metrics","KPI","stakeholder","process improvement"],
+    ext:["go-to-market","enablement","customer journey","failure state","operating model","retrospective","playbook"] },
+  { id:"fraud", title:"Fraud strategy analyst", track:"Fintech",
+    core:["fraud","chargeback","false positive","rules engine","AML","KYC","transaction monitoring","risk scoring"],
+    ext:["loss rate","queue","segmentation","experiment","decisioning","financial crime","sanctions","detection"] },
+  { id:"ai-pm", title:"AI product manager", track:"AI in finance",
+    core:["AI product","LLM","model evaluation","use case","roadmap","user research","adoption"],
+    ext:["prompt","generative AI","A/B test","model behavior","data pipeline","pilot","agent","RAG"] },
+  { id:"model-ops", title:"Model operations analyst", track:"AI in finance",
+    core:["model monitoring","drift","latency","threshold","model risk","validation","incident triage","deployment"],
+    ext:["MLOps","override","change control","versioning","backtest","performance monitoring","rollback","observability"] },
+  { id:"business-analyst", title:"Business analyst", track:"Cross-functional",
+    core:["requirement","process map","stakeholder","UAT","gap analysis","user story","test case"],
+    ext:["BPMN","Jira","Confluence","current state","target state","impact analysis","workshop","BRD"] }
+];
+
+const STRONG_VERBS = ["led","built","launched","designed","automated","reduced","increased","delivered","owned","drove","negotiated","resolved","streamlined","implemented","grew","cut","saved","accelerated","transformed","partnered","mentored","shipped","scaled","improved","created","established","spearheaded","optimized","migrated","prevented"];
+const WEAK_PHRASES = ["responsible for","duties included","assisted with","helped with","tasked with","worked on","involved in","familiar with","exposure to"];
+
+function escRe(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"); }
+function countTerm(text, term){
+  const re = new RegExp("\\b"+escRe(term.toLowerCase())+"s?\\b","gi");
+  const m = text.match(re);
+  return m ? m.length : 0;
+}
+
+/* ---------- File → text extraction (all local) ---------- */
+async function extractPdf(file){
+  if (typeof pdfjsLib === "undefined") throw new Error("PDF library failed to load. Paste the text instead.");
+  pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  const buf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+  let out = "";
+  const n = Math.min(pdf.numPages, 6);
+  for (let i = 1; i <= n; i++){
+    const page = await pdf.getPage(i);
+    const tc = await page.getTextContent();
+    out += tc.items.map(it => it.str).join(" ") + "\n";
+  }
+  return out;
+}
+async function extractDocx(file){
+  if (typeof mammoth === "undefined") throw new Error("DOCX library failed to load. Paste the text instead.");
+  const buf = await file.arrayBuffer();
+  const res = await mammoth.extractRawText({ arrayBuffer: buf });
+  return res.value || "";
+}
+async function fileToText(file){
+  const name = (file.name || "").toLowerCase();
+  if (name.endsWith(".pdf")) return extractPdf(file);
+  if (name.endsWith(".docx")) return extractDocx(file);
+  return await file.text();
+}
+
+/* ---------- Analysis engine ---------- */
+function analyze(text){
+  const lower = text.toLowerCase();
+  const words = text.trim().split(/\s+/).filter(Boolean);
+  const lines = text.split(/\n/).map(l=>l.trim()).filter(Boolean);
+
+  /* Contact & basics */
+  const hasEmail = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i.test(text);
+  const hasPhone = /(\+?1[\s.-]?)?(\(?\d{3}\)?[\s.-]?)?\d{3}[\s.-]?\d{4}/.test(text);
+  const hasLinkedIn = /linkedin\.com/i.test(text);
+  const hasLocation = /\b[A-Z][a-z]+,\s*[A-Z]{2}\b/.test(text) || /\b(remote|hybrid|new york|london|wilmington|chicago|san francisco)\b/i.test(text);
+
+  /* Sections */
+  const hasSummary = /\b(summary|profile|objective)\b/i.test(text.slice(0, 1200));
+  const hasExperience = /\b(experience|employment|work history|professional background)\b/i.test(text);
+  const hasEducation = /\b(education|bachelor|master|mba|university|college|degree)\b/i.test(text);
+  const hasSkills = /\b(skills|technical skills|core competencies|technologies)\b/i.test(text);
+
+  /* Bullets & quantification */
+  const bulletLines = lines.filter(l => /^([•\-*▪–>]|\d+\.)\s/.test(l) || l.length > 60);
+  const bulletsWithNumbers = bulletLines.filter(l => /(\$|%|\d)/.test(l)).length;
+  const quantRatio = bulletLines.length ? bulletsWithNumbers / bulletLines.length : 0;
+  const moneyHits = (text.match(/\$\s?[\d,]+(\.\d+)?\s*([mbk]|million|billion|thousand)?/gi) || []).length;
+  const pctHits = (text.match(/\d+(\.\d+)?\s*%/g) || []).length;
+  const scaleHits = (text.match(/\b(\d+\s*(member|person|analyst|client|account|trade|transaction|bp|basis point)s?|team of \d+|portfolio of|\$[\d,]+[mbk]?)/gi) || []).length;
+
+  /* Language */
+  let strong = 0; STRONG_VERBS.forEach(v => { strong += countTerm(lower, v); });
+  let weak = 0; WEAK_PHRASES.forEach(p => { weak += countTerm(lower, p); });
+  const firstPerson = (lower.match(/\b(i |my |me )\b/gi) || []).length;
+
+  /* Role scoring */
+  const roleScores = ROLES.map(r => {
+    let hit = 0, total = 0, matched = [], missing = [];
+    r.core.forEach(t => { total += 3; const c = countTerm(lower, t); if (c > 0){ hit += 3; matched.push(t); } else missing.push(t); });
+    r.ext.forEach(t => { total += 1.5; const c = countTerm(lower, t); if (c > 0){ hit += 1.5; matched.push(t); } else missing.push(t); });
+    const score = Math.round(100 * Math.min(1, hit / (total * 0.45)));
+    return { ...r, score, matched, missing };
+  }).sort((a,b) => b.score - a.score);
+
+  /* ATS / format checks */
+  const wordCount = words.length;
+  const estPages = wordCount / 500;
+  const specialChars = (text.match(/[^\x00-\x7F]/g) || []).length;
+  const specialRatio = words.length ? specialChars / words.length : 0;
+  const datePatterns = (text.match(/\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\s+\d{4}\b|\b\d{4}\s*[-–—]\s*(\d{4}|present|current)\b/gi) || []).length;
+  const hasReferencesLine = /references (available|upon request)/i.test(text);
+
+  /* Category scores (0–100) */
+  const contactScore = Math.round(100 * ([hasEmail,hasPhone,hasLinkedIn,hasLocation].filter(Boolean).length / 4));
+  const sectionsScore = Math.round(100 * ([hasSummary,hasExperience,hasEducation,hasSkills].filter(Boolean).length / 4));
+  const quantScore = Math.round(100 * Math.min(1, quantRatio * 1.4)) * 0.6
+    + Math.min(40, (moneyHits + pctHits + scaleHits) * 4);
+  const langScore = Math.max(0, Math.min(100,
+    55 + Math.min(30, strong * 3) - Math.min(35, weak * 8) - Math.min(20, firstPerson * 2)));
+  const atsScore = Math.max(0, Math.min(100,
+    100
+    - (wordCount < 250 ? 30 : wordCount > 1100 ? 25 : wordCount > 800 ? 8 : 0)
+    - (specialRatio > 0.05 ? 20 : 0)
+    - (datePatterns < 2 ? 15 : 0)
+    - (hasReferencesLine ? 10 : 0)));
+  const skillsScore = roleScores[0] ? roleScores[0].score : 0;
+
+  const overall = Math.round(
+    skillsScore * 0.30 + Math.min(100,quantScore) * 0.20 +
+    ((contactScore + sectionsScore) / 2) * 0.20 + langScore * 0.10 + atsScore * 0.20
+  );
+
+  return {
+    overall, wordCount, estPages, bulletLines: bulletLines.length, bulletsWithNumbers,
+    quantRatio, moneyHits, pctHits, scaleHits, strong, weak, firstPerson,
+    hasEmail, hasPhone, hasLinkedIn, hasLocation,
+    hasSummary, hasExperience, hasEducation, hasSkills,
+    specialRatio, datePatterns, hasReferencesLine,
+    roleScores,
+    cats: [
+      { name:"Skills coverage", score: Math.round(skillsScore) },
+      { name:"Quantified impact", score: Math.round(Math.min(100,quantScore)) },
+      { name:"Completeness", score: Math.round((contactScore+sectionsScore)/2) },
+      { name:"Language", score: Math.round(langScore) },
+      { name:"ATS-readiness", score: Math.round(atsScore) }
+    ]
+  };
+}
+
+/* ---------- Feedback builder ---------- */
+function buildFeedback(a, targetRole){
+  const fb = [];
+  const hi = (t)=>fb.push({level:"high",html:t});
+  const md = (t)=>fb.push({level:"med",html:t});
+  const lo = (t)=>fb.push({level:"low",html:t});
+
+  if (!a.hasEmail) hi("<b>Add an email address.</b> No email was detected — recruiters can't reach you without one.");
+  if (!a.hasPhone) md("<b>Add a phone number.</b> Many finance recruiters still screen by phone.");
+  if (!a.hasLinkedIn) md("<b>Add your LinkedIn URL.</b> Hiring managers check it; its absence reads as an incomplete application.");
+  if (!a.hasLocation) lo("<b>Add a location</b> (city, state or “Remote”). Location filters are one of the first ATS screens.");
+  if (!a.hasSummary) md("<b>Add a 2–3 line summary</b> naming your target role and years of relevant experience — it frames everything below it.");
+  if (!a.hasExperience) hi("<b>No experience section detected.</b> Add one with reverse-chronological roles, each with 3–5 bullet points.");
+  if (!a.hasEducation) md("<b>Add an education section</b> — degree, school, graduation year.");
+  if (!a.hasSkills) md("<b>Add a skills section.</b> It's the highest-density keyword real estate on the page.");
+
+  if (a.quantRatio < 0.5)
+    hi(`<b>Quantify your impact.</b> Only about ${Math.round(a.quantRatio*100)}% of your bullet points include a number. Aim for 70%+: dollars, percentages, volumes, time saved.`);
+  else if (a.quantRatio < 0.7)
+    md(`<b>Push quantification further.</b> ${Math.round(a.quantRatio*100)}% of bullets have numbers — strong, but 70%+ is the bar for competitive finance roles.`);
+  else
+    lo(`<b>Quantification looks strong</b> (${Math.round(a.quantRatio*100)}% of bullets carry numbers). Keep it up.`);
+
+  if (a.moneyHits + a.pctHits === 0 && a.bulletLines > 3)
+    hi("<b>No dollar or percentage figures found.</b> “Reduced breaks by 40%” beats “reduced breaks” every time — add scale to your top 3 achievements.");
+  if (a.weak > 0)
+    md(`<b>Replace ${a.weak} weak phrase${a.weak>1?"s":""}</b> like “responsible for” or “assisted with” with strong verbs: <i>led, built, automated, reduced, owned, resolved</i>.`);
+  if (a.firstPerson > 3)
+    lo("<b>Drop first-person pronouns</b> (“I”, “my”) — resume convention is implied-first-person bullet fragments.");
+  if (a.strong < 5 && a.bulletLines > 5)
+    md("<b>Lead bullets with strong action verbs.</b> Few were detected — start each bullet with what you <i>did</i>, not what you were part of.");
+
+  if (a.wordCount < 250) hi(`<b>Too short (${a.wordCount} words).</b> One full page (~450–550 words) is the minimum for an experienced hire.`);
+  else if (a.wordCount > 1100) hi(`<b>Too long (~${a.estPages.toFixed(1)} pages).</b> Cut to two pages max — trim older roles to one line each.`);
+  else if (a.wordCount > 800) md(`<b>Running long (~${a.estPages.toFixed(1)} pages).</b> Two pages is the ceiling; tighten anything beyond the last 10 years.`);
+  if (a.datePatterns < 2) md("<b>Employment dates look inconsistent or missing.</b> Use one format everywhere (e.g., “Jan 2021 – Present”).");
+  if (a.specialRatio > 0.05) md("<b>Unusual characters detected.</b> Fancy bullets, tables, and text boxes can scramble in an ATS — use simple • or - bullets.");
+  if (a.hasReferencesLine) lo("<b>Delete “references available upon request.”</b> It wastes a line everyone assumes.");
+
+  if (targetRole){
+    const missing = targetRole.missing.slice(0, 6);
+    if (missing.length)
+      hi(`<b>For ${targetRole.title}:</b> add these missing keywords where truthful — ${missing.map(m=>"<i>"+m+"</i>").join(", ")}.`);
+    else
+      lo(`<b>Keyword coverage for ${targetRole.title} looks complete.</b> Nice — your language matches the role.`);
+  } else {
+    const top = a.roleScores[0];
+    if (top && top.missing.length)
+      md(`<b>Closest match: ${top.title} (${top.score}%).</b> Strengthen it with: ${top.missing.slice(0,5).map(m=>"<i>"+m+"</i>").join(", ")}.`);
+  }
+  return fb;
+}
+
+/* ---------- UI wiring ---------- */
+const $ = id => document.getElementById(id);
+const dropzone = $("dropzone"), fileInput = $("fileInput"), dzFile = $("dzFile");
+const pasteArea = $("pasteArea"), roleSelect = $("roleSelect");
+const analyzeBtn = $("analyzeBtn"), sampleBtn = $("sampleBtn"), status = $("status");
+
+ROLES.forEach(r => {
+  const o = document.createElement("option");
+  o.value = r.id; o.textContent = r.title + " — " + r.track;
+  roleSelect.appendChild(o);
+});
+const autoOpt = document.createElement("option");
+autoOpt.value = ""; autoOpt.textContent = "Auto-detect (best match)";
+roleSelect.prepend(autoOpt);
+roleSelect.value = "";
+
+let pendingFile = null;
+dropzone.addEventListener("click", () => fileInput.click());
+dropzone.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " "){ e.preventDefault(); fileInput.click(); } });
+fileInput.addEventListener("change", () => {
+  if (fileInput.files.length){ pendingFile = fileInput.files[0]; dzFile.textContent = "✓ " + pendingFile.name; }
+});
+["dragover","dragenter"].forEach(ev => dropzone.addEventListener(ev, e => { e.preventDefault(); dropzone.classList.add("drag"); }));
+["dragleave","drop"].forEach(ev => dropzone.addEventListener(ev, e => { e.preventDefault(); dropzone.classList.remove("drag"); }));
+dropzone.addEventListener("drop", e => {
+  const f = e.dataTransfer.files && e.dataTransfer.files[0];
+  if (f){ pendingFile = f; dzFile.textContent = "✓ " + f.name; }
+});
+
+const SAMPLE = [
+"JORDAN LEE", "New York, NY · jordan.lee@email.com · (212) 555-0147 · linkedin.com/in/jordanlee",
+"",
+"SUMMARY", "Operations analyst with 4 years in securities lending at a global asset manager. Reconcile daily positions across 200+ counterparty accounts, resolve settlement fails, and automate break reporting.",
+"EXPERIENCE",
+"Securities Lending Operations Analyst — Meridian Asset Management, New York, NY (Jun 2021 – Present)",
+"• Reconcile 1,200+ daily loan positions across DTC and Euroclear, resolving 95% of breaks same-day",
+"• Reduced settlement fails by 38% ($4.2M exposure) by building an automated fail-tracking dashboard in Excel and Python",
+"• Issue margin calls on $850M collateral pool; negotiated 12 collateral disputes to resolution within SLA",
+"• Led recall process for 60+ corporate actions per quarter, ensuring manufactured dividends paid accurately",
+"• Automated billing reconciliation, cutting month-end close from 5 days to 2 days",
+"Operations Associate — First National Bank, New York, NY (Aug 2019 – May 2021)",
+"• Processed 400+ daily wire transfers with zero errors over 18 months",
+"• Partnered with treasury team on intraday liquidity monitoring",
+"EDUCATION", "B.S. Finance, Rutgers University (2019)",
+"SKILLS", "Securities lending · Reconciliation · Settlement (DTC, Euroclear) · Collateral & margin calls · Corporate actions · Excel (pivot tables, VLOOKUP) · Python · SQL"
+].join("\n");
+sampleBtn.addEventListener("click", () => {
+  pasteArea.value = SAMPLE; pendingFile = null; fileInput.value = ""; dzFile.textContent = "";
+  status.textContent = "Sample loaded — hit “Analyze resume”.";
+  status.className = "status";
+});
+
+function verdict(score){
+  if (score >= 80) return "Strong. This resume reads like a competitive finance application — polish the remaining items and ship it.";
+  if (score >= 60) return "Solid foundation with clear gaps. Work the red items first; each one is worth real points with recruiters and ATS filters.";
+  if (score >= 40) return "Needs work before it goes out. The fixes below are ordered by impact — start at the top.";
+  return "Not ready yet. Treat the feedback below as a rebuild checklist, top item first.";
+}
+
+function render(a, targetRole){
+  $("results").style.display = "block";
+  /* Score ring */
+  const arc = $("scoreArc"), C = 402.1;
+  arc.style.strokeDashoffset = C;
+  requestAnimationFrame(() => {
+    arc.style.transition = "stroke-dashoffset 1s ease";
+    arc.style.strokeDashoffset = C * (1 - a.overall / 100);
+    arc.setAttribute("stroke", a.overall >= 70 ? "var(--accent)" : a.overall >= 45 ? "var(--accent-2)" : "var(--danger)");
+  });
+  let n = 0; const target = a.overall;
+  const tick = setInterval(() => { n += 2; if (n >= target){ n = target; clearInterval(tick); } $("scoreNum").textContent = n; }, 18);
+  $("scoreNote").innerHTML = "<strong>" + verdict(target) + "</strong>";
+
+  /* Category bars */
+  $("bars").innerHTML = a.cats.map(c => {
+    const cls = c.score >= 70 ? "" : c.score >= 45 ? "warn" : "bad";
+    return `<div class="bar-row"><span class="bar-name">${c.name}</span>` +
+      `<div class="bar-track"><div class="bar-fill ${cls}" style="width:${c.score}%"></div></div>` +
+      `<span class="bar-val">${c.score}</span></div>`;
+  }).join("");
+
+  /* Stats */
+  const stats = [
+    [a.wordCount.toLocaleString(), "words (~" + a.estPages.toFixed(1) + " pages)"],
+    [Math.round(a.quantRatio*100) + "%", "bullets with numbers"],
+    [a.moneyHits + a.pctHits, "$ / % figures"],
+    [a.strong, "strong action verbs"],
+    [a.roleScores[0] ? a.roleScores[0].score + "%" : "–", "best role match"]
+  ];
+  $("stats").innerHTML = stats.map(s => `<div class="stat"><strong>${s[0]}</strong><span>${s[1]}</span></div>`).join("");
+
+  /* Role matches — top 6 */
+  $("roleGrid").innerHTML = a.roleScores.slice(0, 6).map((r, i) => `
+    <div class="role-card${i===0?" top":""}">
+      <div class="r-track">${r.track}</div>
+      <h3>${r.title}</h3>
+      <div class="r-score">${r.score}% keyword match</div>
+      <div class="chip-label">Found (${r.matched.length})</div>
+      <div class="chips">${r.matched.slice(0,10).map(m=>`<span class="chip">${m}</span>`).join("") || '<span class="muted">None yet</span>'}</div>
+      <div class="chip-label">Missing</div>
+      <div class="chips">${r.missing.slice(0,8).map(m=>`<span class="chip miss">${m}</span>`).join("")}</div>
+    </div>`).join("");
+
+  /* Feedback */
+  $("feedback").innerHTML = buildFeedback(a, targetRole)
+    .map(f => `<li><span class="dot ${f.level}"></span><span>${f.html}</span></li>`).join("");
+
+  $("results").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+analyzeBtn.addEventListener("click", async () => {
+  let text = pasteArea.value.trim();
+  status.className = "status"; status.textContent = "";
+  if (pendingFile && !text){
+    analyzeBtn.disabled = true;
+    status.textContent = "Reading " + pendingFile.name + "…";
+    try { text = (await fileToText(pendingFile)).trim(); }
+    catch (e){ status.textContent = e.message; status.className = "status err"; analyzeBtn.disabled = false; return; }
+    analyzeBtn.disabled = false;
+  }
+  if (!text || text.split(/\s+/).length < 30){
+    status.textContent = "Please upload a file or paste at least a few dozen words of resume text.";
+    status.className = "status err";
+    return;
+  }
+  status.textContent = "Analyzing…";
+  await new Promise(r => setTimeout(r, 30));
+  try {
+    const a = analyze(text);
+    const targetRole = roleSelect.value ? a.roleScores.find(r => r.id === roleSelect.value) : null;
+    render(a, targetRole);
+    status.textContent = "Done — " + text.split(/\s+/).length.toLocaleString() + " words analyzed.";
+  } catch (e){
+    status.textContent = "Analysis failed: " + e.message;
+    status.className = "status err";
+  }
+});
+</script>
+</body>
+</html>
