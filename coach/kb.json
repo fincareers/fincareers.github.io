@@ -1,0 +1,908 @@
+{
+ "generated_at": "2026-09-22",
+ "chunks": [
+  {
+   "id": "module-t1",
+   "title": "Traditional finance · Market structure",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Market structure' (~4 hrs) in the Traditional finance track. Learn how securities move through the market: who holds what, who settles what, and where an operations team sits in the chain. Without this map, every downstream process is just memorized steps. You will learn: The roles of custodians, agent lenders, borrowers, and CCPs; Settlement systems: DTC, Fedwire, Euroclear, and T+1 timing; How an order becomes a settled position, step by step. Practice: Sketch the full chain from beneficial owner to borrower on one page and label where settlement, collateral, and billing touch it."
+  },
+  {
+   "id": "module-t2",
+   "title": "Traditional finance · Trade lifecycle",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Trade lifecycle' (~4 hrs) in the Traditional finance track. Follow a trade from execution through affirmation, confirmation, booking, and settlement. This is the backbone every ops analyst leans on when something breaks near a cutoff. You will learn: Execution, affirmation, confirmation, and settlement stages; Booking conventions and how misbookings surface as breaks; Cutoff times and why missing one creates real exposure. Practice: Take one hypothetical equity trade and write out each lifecycle stage, the system or party responsible, and the cutoff that applies."
+  },
+  {
+   "id": "module-t3",
+   "title": "Traditional finance · Securities lending",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Securities lending' (~5 hrs) in the Traditional finance track. Understand borrow demand, inventory, pricing, collateral, recalls, and billing as one connected workflow. Securities lending is the desk where most ops careers in this track actually begin. You will learn: Locate, borrow, loan, recall, and return mechanics; Collateralization, manufactured dividends, and fee accrual; How billing is calculated and where disputes start. Practice: Walk a loan through its full life on paper: borrow request, collateral posted, a recall mid-loan, and the final billing line."
+  },
+  {
+   "id": "module-t4",
+   "title": "Traditional finance · Collateral operations",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Collateral operations' (~5 hrs) in the Traditional finance track. Learn how exposure is valued, how haircuts and eligibility schedules work, and how margin calls move under documented legal terms. Collateral is where ops meets real money, daily. You will learn: Valuation, haircuts, and eligibility schedules; Margin call issuance, agreement, and settlement flow; How disputes are documented and escalated under CSA/ISDA terms. Practice: Given a sample portfolio and an eligibility schedule, calculate a margin call by hand and write the escalation note for a disputed figure."
+  },
+  {
+   "id": "module-t5",
+   "title": "Traditional finance · Reconciliations",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Reconciliations' (~4 hrs) in the Traditional finance track. Reconciliation is the daily proof that records match reality. Learn break triage: what to check first, how to age exceptions, and when to escalate instead of digging. You will learn: Position, cash, and trade reconciliations and their break types; Break triage order: instruction, inventory, timing, matching, system; Exception aging, ownership, and escalation thresholds. Practice: Take a list of five sample breaks and write a triage note for each: likely cause, first check, and whether it needs escalation today."
+  },
+  {
+   "id": "module-t6",
+   "title": "Traditional finance · Asset servicing",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Asset servicing' (~4 hrs) in the Traditional finance track. Corporate actions, income, elections, and tax events all land on operations to process correctly. Learn how servicing choices flow into client positions and reporting. You will learn: Corporate action types: dividends, splits, mergers, elections; Income collection, tax treatment, and client reporting impacts; Election deadlines and the cost of a missed instruction. Practice: For one dividend-with-election corporate action, write the timeline of ops tasks from announcement to payment with deadlines."
+  },
+  {
+   "id": "module-t7",
+   "title": "Traditional finance · Risk and controls",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Risk and controls' (~5 hrs) in the Traditional finance track. Move from doing the work to proving it is controlled. Learn how controls are designed, tested, and evidenced — and how incidents become remediated issues rather than repeated ones. You will learn: Control design: preventive vs detective, and control evidence; Incident write-ups: root cause, impact, and remediation actions; How issues are tracked to closure with governance sign-off. Practice: Write a one-page incident note for a missed settlement: what happened, root cause, control gap, and the remediation you would propose."
+  },
+  {
+   "id": "module-t8",
+   "title": "Traditional finance · Client and management reporting",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Client and management reporting' (~3 hrs) in the Traditional finance track. Operations output only matters if decision-makers can read it. Learn which metrics a desk manager and a client each care about, and how to present exceptions honestly. You will learn: Desk KPIs: fail rates, break aging, SLA adherence, volumes; Client reporting: what gets disclosed and how exceptions are framed; Turning a recurring issue into a data-backed improvement proposal. Practice: Draft a weekly desk summary from sample data: three KPIs, one aging exception, and one recommended action."
+  },
+  {
+   "id": "module-t9",
+   "title": "Traditional finance · Portfolio artifact: process map",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Portfolio artifact: process map' (~6 hrs) in the Traditional finance track. Build one artifact that proves you can think like an operator: a complete process map of a securities lending loan or a reconciliation workflow, with controls and failure points marked. You will learn: Mapping a workflow end to end with owners and handoffs; Marking controls, cutoffs, and failure points on the map; Writing the one-page narrative that explains the map to a hiring manager. Practice: Produce your process map and a short walkthrough script, then explain it aloud in under five minutes."
+  },
+  {
+   "id": "module-t10",
+   "title": "Traditional finance · Interview readiness",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Interview readiness' (~4 hrs) in the Traditional finance track. Practice the answers that separate operators from memorizers: explain a full lifecycle, triage a deadline scenario, and describe a control improvement you would actually make. You will learn: Explaining a trade or loan lifecycle without notes; Triaging a scenario: fails piling up 30 minutes before cutoff; Describing one control improvement with before-and-after evidence. Practice: Record yourself answering all three prompts, then re-do the weakest one until the explanation is under three minutes."
+  },
+  {
+   "id": "module-d1",
+   "title": "DeFi · Wallets and custody",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Wallets and custody' (~3 hrs) in the DeFi track. Learn how assets are actually held on-chain: keys, seed phrases, hot vs cold storage, multisigs, and institutional custody. Every protocol operation starts with who can move funds. You will learn: Private keys, seed phrases, and how signatures authorize movement; Hot wallets vs cold storage vs multisig vs MPC custody; How institutional custody and withdrawal policies work in practice. Practice: Set up a test wallet, receive testnet tokens, and document each step as if writing a custody procedure."
+  },
+  {
+   "id": "module-d2",
+   "title": "DeFi · Blockchain settlement",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Blockchain settlement' (~4 hrs) in the DeFi track. Understand blocks, confirmations, finality, and gas — the settlement layer everything else depends on. Learn to read a block explorer like an ops analyst reads a settlement report. You will learn: Blocks, confirmations, finality, and reorgs; Gas, fees, and transaction ordering; Reading transactions, internal calls, and token transfers on an explorer. Practice: Pick any mainnet transaction and write out: sender, contract called, tokens moved, fee paid, and confirmations observed."
+  },
+  {
+   "id": "module-d3",
+   "title": "DeFi · DEX mechanics",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'DEX mechanics' (~4 hrs) in the DeFi track. Learn how decentralized exchanges price and settle trades: liquidity pools, automated market makers, slippage, and routing. This is the trading-support equivalent of DeFi. You will learn: AMM pools, constant-product pricing, and liquidity provision; Slippage, price impact, and MEV-adjacent execution risk; How aggregators route across venues. Practice: Simulate a swap on a testnet DEX and record the quoted price, executed price, slippage, and fee — then explain each line."
+  },
+  {
+   "id": "module-d4",
+   "title": "DeFi · Lending protocols",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Lending protocols' (~5 hrs) in the DeFi track. Study overcollateralized lending: deposits, borrows, collateral factors, and liquidations. The liquidation is the DeFi margin call — learn its triggers and failure modes. You will learn: Collateral factors, loan-to-value, and borrow caps; Liquidation triggers, incentives, and cascade risk; Interest rate models and utilization. Practice: Using a lending protocol dashboard, calculate at what price a sample position gets liquidated and write the monitoring rule you would set."
+  },
+  {
+   "id": "module-d5",
+   "title": "DeFi · Stablecoins",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Stablecoins' (~4 hrs) in the DeFi track. Learn the three peg designs — fiat-backed, crypto-backed, algorithmic — and how each one breaks. Stablecoin operations is largely peg monitoring and redemption readiness. You will learn: Fiat-backed, crypto-collateralized, and algorithmic peg mechanisms; Reserve attestations and what they do and do not prove; Depeg anatomy: redemptions, liquidity, and contagion. Practice: Write a one-page depeg playbook: which metrics you would watch, the thresholds, and the first three actions."
+  },
+  {
+   "id": "module-d6",
+   "title": "DeFi · Token economics",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Token economics' (~4 hrs) in the DeFi track. Understand supply schedules, vesting, emissions, and governance tokens well enough to assess a protocol's incentives. Token design drives user and risk behavior. You will learn: Supply, emissions, vesting, and unlock schedules; Governance tokens vs utility: what voting power actually controls; How incentive programs shape liquidity and mercenary capital. Practice: Read one protocol's token docs and summarize its supply schedule, unlocks, and governance powers in half a page."
+  },
+  {
+   "id": "module-d7",
+   "title": "DeFi · Oracles and governance",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Oracles and governance' (~5 hrs) in the DeFi track. Oracles feed prices into contracts and governance changes the rules. Both are operational dependencies: stale feeds and hostile votes have caused real losses. You will learn: How price oracles work and what staleness or manipulation costs; DAO governance: proposals, voting, timelocks, and privileged roles; Parameter changes as an operational event with monitoring needs. Practice: Trace one governance proposal from forum post to execution and list the operational checks a protocol ops team should run before and after."
+  },
+  {
+   "id": "module-d8",
+   "title": "DeFi · Protocol risk",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Protocol risk' (~5 hrs) in the DeFi track. Put it together: smart-contract risk, oracle risk, liquidity risk, and concentration risk as a monitoring discipline. Learn how incident reviews turn exploits into process. You will learn: Risk taxonomy: contract, oracle, liquidity, governance, concentration; Monitoring design: metrics, thresholds, and alert routing; Post-mortem structure: timeline, root cause, remediation, prevention. Practice: Read one published exploit post-mortem and rewrite it as an ops incident review with monitoring gaps and proposed controls."
+  },
+  {
+   "id": "module-d9",
+   "title": "DeFi · Portfolio artifact: annotated transaction trace",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Portfolio artifact: annotated transaction trace' (~6 hrs) in the DeFi track. Produce the artifact DeFi employers actually respect: a fully annotated trace of a real transaction — calls, events, assets, state changes, fees, and risks — with your own monitoring notes. You will learn: Selecting a transaction with real operational substance; Annotating calls, events, token flows, and state changes; Writing the business meaning and 'what I would monitor next'. Practice: Publish your annotated trace as a clean one-page document and rehearse a five-minute walkthrough of it."
+  },
+  {
+   "id": "module-d10",
+   "title": "DeFi · Interview readiness",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Interview readiness' (~4 hrs) in the DeFi track. Practice explaining one transaction end to end, reasoning through a liquidation scenario, and describing how you would monitor a protocol's health on day one. You will learn: Walking through a transaction trace without notes; Reasoning through a liquidation cascade under time pressure; Describing a day-one monitoring setup for a protocol you have never seen. Practice: Record yourself answering all three prompts and re-do the weakest until each answer is crisp and under three minutes."
+  },
+  {
+   "id": "module-f1",
+   "title": "Fintech · Payment orchestration",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Payment orchestration' (~4 hrs) in the Fintech track. Learn how money moves: authorization, clearing, and settlement across card networks, ACH, wires, and real-time rails. Exceptions in this flow are the daily work of payments operations. You will learn: Authorization, clearing, settlement: what happens at each stage; Card networks, ACH, wires, and real-time rails compared; Where failures, returns, and timing mismatches originate. Practice: Map one card payment and one ACH payment end to end, labeling the parties and the settlement timing at each hop."
+  },
+  {
+   "id": "module-f2",
+   "title": "Fintech · Banking APIs",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Banking APIs' (~4 hrs) in the Fintech track. Modern fintech runs on APIs and webhooks. Learn how money-movement integrations work, what idempotency protects you from, and how ops teams detect a broken integration. You will learn: REST APIs, webhooks, and event-driven money movement; Idempotency keys and duplicate-transaction prevention; How ops monitors integration health and handles provider outages. Practice: Write a short incident note for a webhook outage: what breaks, how you would detect it, and the manual workaround."
+  },
+  {
+   "id": "module-f3",
+   "title": "Fintech · Ledger design",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Ledger design' (~5 hrs) in the Fintech track. The ledger is the source of truth. Learn double-entry basics, balance integrity, and how reconciliation between the ledger and providers catches real discrepancies. You will learn: Double-entry concepts: debits, credits, and balanced postings; Ledger vs provider balances: why they drift and how to reconcile; Designing for auditability: immutable entries and correction patterns. Practice: Post a set of sample transactions to a simple ledger, then reconcile it against a 'provider statement' with two planted discrepancies."
+  },
+  {
+   "id": "module-f4",
+   "title": "Fintech · KYC and onboarding",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'KYC and onboarding' (~4 hrs) in the Fintech track. Before money moves, identity must be verified. Learn document checks, sanctions screening, KYB for businesses, and how onboarding exceptions queue for human review. You will learn: Identity verification: documents, biometrics, and data checks; Sanctions and PEP screening and what a 'hit' triggers; KYB, beneficial ownership, and ongoing monitoring obligations. Practice: Design the review queue for flagged onboardings: priority rules, evidence required, and the approve/reject/escalate criteria."
+  },
+  {
+   "id": "module-f5",
+   "title": "Fintech · Card disputes and chargebacks",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Card disputes and chargebacks' (~4 hrs) in the Fintech track. Disputes are deadline-driven casework. Learn reason codes, evidence standards, representment, and how win rates and loss rates are actually measured. You will learn: Chargeback reason codes and what evidence each one needs; Representment workflow and network deadlines; Measuring dispute outcomes: win rate, loss rate, and operational cost. Practice: Take one sample dispute and assemble the evidence packet you would submit, with a note on the deadline risk."
+  },
+  {
+   "id": "module-f6",
+   "title": "Fintech · Fraud strategy fundamentals",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Fraud strategy fundamentals' (~5 hrs) in the Fintech track. Fraud work is a three-way tradeoff: losses, customer friction, and review capacity. Learn how signals become rules, and how false positives are measured and managed. You will learn: Fraud signals: device, behavioral, velocity, and network signals; Rule tuning and the loss-vs-friction tradeoff; False-positive measurement and review queue design. Practice: Given sample transaction data and a loss event, propose one rule change and write down the expected effect on approvals and reviews."
+  },
+  {
+   "id": "module-f7",
+   "title": "Fintech · Product operations and incident response",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Product operations and incident response' (~5 hrs) in the Fintech track. When something breaks in production, product ops runs the response. Learn severity levels, runbooks, stakeholder communication, and blameless post-mortems. You will learn: Incident severity levels and who gets paged when; Runbooks: the first 15 minutes of a payments incident; Post-mortems that produce controls, not blame. Practice: Write a runbook for a stuck-settlement incident: detection, first actions, comms template, and escalation path."
+  },
+  {
+   "id": "module-f8",
+   "title": "Fintech · Metrics and stakeholder reporting",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Metrics and stakeholder reporting' (~3 hrs) in the Fintech track. Operations credibility comes from honest numbers. Learn the service levels and exception metrics fintech leaders watch, and how to report a bad week without hiding it. You will learn: Authorization rates, settlement timeliness, and exception aging; SLA design and breach communication; Dashboards for ops teams vs executives vs partners. Practice: Build a one-page weekly ops summary from sample data, including one metric that missed target and the planned fix."
+  },
+  {
+   "id": "module-f9",
+   "title": "Fintech · Portfolio artifact: exception-mapping piece",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Portfolio artifact: exception-mapping piece' (~6 hrs) in the Fintech track. Build an artifact that shows how you think under operational pressure: map a payment exception across every system and partner handoff, with ownership and resolution at each step. You will learn: Choosing an exception with real multi-party complexity; Mapping systems, handoffs, owners, and resolution steps; Writing the narrative: what broke, why, and how it was contained. Practice: Produce the exception map as a clean document and rehearse explaining it in under five minutes."
+  },
+  {
+   "id": "module-f10",
+   "title": "Fintech · Interview readiness",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Interview readiness' (~4 hrs) in the Fintech track. Practice the scenarios fintech interviewers actually use: map a failed payment, reason through a fraud-rule change, and describe an incident you would run well. You will learn: Mapping a failed payment across system and partner handoffs; Proposing a fraud-rule change with loss and friction tradeoffs; Walking through an incident response from detection to post-mortem. Practice: Record yourself answering all three prompts and re-do the weakest until each is under three minutes and concrete."
+  },
+  {
+   "id": "module-a1",
+   "title": "AI in finance · Model fundamentals",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Model fundamentals' (~4 hrs) in the AI in finance track. Learn what large language models actually do — predict likely next tokens from training patterns — so you can reason about their strengths instead of treating them as magic or as databases. You will learn: Token prediction, context windows, and why outputs vary; Training data, fine-tuning, and what the model does not know; Probabilistic output: why the same prompt can give different answers. Practice: Run the same factual prompt five times on a public model and document the variations and what that implies for ops use."
+  },
+  {
+   "id": "module-a2",
+   "title": "AI in finance · LLM capabilities and limits for finance",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'LLM capabilities and limits for finance' (~4 hrs) in the AI in finance track. Learn exactly where models help in finance workflows and where they fail: hallucinations, unreliable arithmetic, and stale knowledge. This judgment is the core skill of every AI-in-finance role. You will learn: Hallucination patterns and why confident-sounding errors are the danger; Where models fail: math, citations, and recent facts; The human-in-the-loop boundary: what must never be fully automated. Practice: Give a model a reconciliation-style arithmetic task, verify the output by hand, and write up where it went wrong."
+  },
+  {
+   "id": "module-a3",
+   "title": "AI in finance · Data and evaluation",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Data and evaluation' (~5 hrs) in the AI in finance track. A model is only as trustworthy as its evaluation. Learn golden datasets, ground truth, and how to measure whether an AI output is good enough for a controlled finance process. You will learn: Building a golden dataset: representative, labeled examples; Evaluation metrics: accuracy, precision, recall in plain terms; When an eval result means 'ship', 'fix', or 'do not use'. Practice: Build a 20-example golden set for a document-classification task and score a model's outputs against it by hand."
+  },
+  {
+   "id": "module-a4",
+   "title": "AI in finance · Prompt and retrieval design (RAG)",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Prompt and retrieval design (RAG)' (~5 hrs) in the AI in finance track. Learn to ground model outputs in your own documents: chunking, retrieval, and citation. RAG is how finance teams get useful answers without trusting the model's memory. You will learn: Chunking and embeddings: how documents become searchable; Retrieval design: what gets fetched and what gets missed; Citation requirements and verifying answers against sources. Practice: Design a RAG setup on paper for a policy manual: chunking strategy, retrieval rules, and how every answer cites its source."
+  },
+  {
+   "id": "module-a5",
+   "title": "AI in finance · Operations copilots",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Operations copilots' (~4 hrs) in the AI in finance track. Learn where AI assistants genuinely save ops time — drafting client comms, summarizing break reports, triaging queues — and the review discipline that keeps them safe. You will learn: High-value copilot tasks: drafting, summarizing, triaging; Review discipline: what a human must check before sending; Measuring time saved without hiding error rates. Practice: Use a copilot to draft three client emails from messy break notes, then mark up every line you had to correct."
+  },
+  {
+   "id": "module-a6",
+   "title": "AI in finance · Document intelligence",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Document intelligence' (~5 hrs) in the AI in finance track. Extraction from statements, confirmations, and invoices is the most deployed AI use case in finance ops. Learn extraction, validation rules, and the exception queues that catch the rest. You will learn: Field extraction and confidence scores; Validation rules: cross-checks that catch bad extractions; Exception queue design for low-confidence documents. Practice: Design the validation rules and exception queue for extracting totals from invoices, including the reject-and-reroute criteria."
+  },
+  {
+   "id": "module-a7",
+   "title": "AI in finance · Model risk and governance",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Model risk and governance' (~5 hrs) in the AI in finance track. Regulated finance requires models to be inventoried, tiered, approved, and evidenced. Learn the governance lifecycle that every AI deployment in a bank must pass through. You will learn: Model inventory, risk tiering, and approval gates; Documentation and evidence regulators expect; Change control: what triggers re-approval. Practice: Write a one-page model risk summary for a hypothetical document-extraction tool: tier, risks, controls, and evidence."
+  },
+  {
+   "id": "module-a8",
+   "title": "AI in finance · Model monitoring and incident response",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Model monitoring and incident response' (~4 hrs) in the AI in finance track. Models degrade: data drifts, latency spikes, overrides pile up. Learn the monitoring loop — thresholds, alerts, triage, rollback — that keeps production AI under control. You will learn: Drift, latency, and quality metrics worth monitoring; Thresholds, alerting, and override tracking; Incident triage and rollback decisions for model issues. Practice: Design a monitoring dashboard on paper for a classification model: five metrics, thresholds, and who gets alerted."
+  },
+  {
+   "id": "module-a9",
+   "title": "AI in finance · Portfolio artifact: governed AI use-case proposal",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Portfolio artifact: governed AI use-case proposal' (~6 hrs) in the AI in finance track. Produce the artifact AI-in-finance employers want to see: a complete, governed proposal for one AI use case — workflow, evaluation plan, risks, controls, and adoption measures. You will learn: Selecting a use case with real operational value; Defining evaluation criteria and the human-in-the-loop design; Writing the risk, control, and evidence sections. Practice: Finish the proposal as a clean document and rehearse defending the control design in five minutes."
+  },
+  {
+   "id": "module-a10",
+   "title": "AI in finance · Interview readiness",
+   "section": "Learning module",
+   "url": "index.html#curriculum",
+   "text": "Learning module 'Interview readiness' (~4 hrs) in the AI in finance track. Practice the questions that test judgment, not trivia: where automation stops, how you would evaluate a model, and how you would respond to a quality drop in production. You will learn: Defining where automation stops and human judgment begins; Designing an evaluation for a model you have never seen; Diagnosing a quality drop without assuming the model is the only cause. Practice: Record yourself answering all three prompts and re-do the weakest until each answer is concrete and under three minutes."
+  },
+  {
+   "id": "track-traditional-finance",
+   "title": "Track: Traditional finance",
+   "section": "Learning track",
+   "url": "index.html#curriculum",
+   "text": "Track 01 · institutional operating model — Traditional finance. Learn how trades become positions, cash and assets move, records stay aligned, and regulated institutions prove control. This path is especially useful for operations, product, business-analysis, and risk pivots. CORE QUESTION: Can the firm prove what it owns, owes, moved, and controlled?. COMMON ENTRY POINTS: Operations · client service · controls · business analysis. TRANSFERABLE EDGE: Exception management, stakeholder coordination, audit-ready evidence."
+  },
+  {
+   "id": "track-defi",
+   "title": "Track: DeFi",
+   "section": "Learning track",
+   "url": "index.html#curriculum",
+   "text": "Track 02 · programmable financial systems — DeFi. Learn to read protocol state, trace transactions, understand economic incentives, and operate safely around immutable execution, volatile collateral, governance, and smart-contract dependencies. CORE QUESTION: What state changed on-chain, why, and what risk did that create?. COMMON ENTRY POINTS: Protocol operations · risk · analytics · ecosystem support. TRANSFERABLE EDGE: Financial controls plus transaction-level technical curiosity."
+  },
+  {
+   "id": "track-fintech",
+   "title": "Track: Fintech",
+   "section": "Learning track",
+   "url": "index.html#curriculum",
+   "text": "Track 03 · financial products at software speed — Fintech. Learn how customer actions become ledger entries and external money movement, with identity, fraud, partner, compliance, and reliability controls around every handoff. CORE QUESTION: Did the customer action produce the correct financial and ledger outcome?. COMMON ENTRY POINTS: Payments operations · product operations · implementation · business analysis. TRANSFERABLE EDGE: Process mapping, client empathy, control thinking, and data fluency."
+  },
+  {
+   "id": "track-ai-in-finance",
+   "title": "Track: AI in finance",
+   "section": "Learning track",
+   "url": "index.html#curriculum",
+   "text": "Track 04 · governed human-plus-model work — AI in finance. Learn how to select useful workflows, design evaluations, manage data and model risk, place human judgment, monitor production behavior, and earn adoption without overstating automation. CORE QUESTION: Is the model-assisted decision useful, controlled, explainable, and monitored?. COMMON ENTRY POINTS: AI product · model operations · intelligent automation · governance. TRANSFERABLE EDGE: Deep workflow knowledge paired with structured experimentation."
+  },
+  {
+   "id": "role-securities-lending-operations",
+   "title": "Role profile: Securities lending operations (Traditional Finance)",
+   "section": "Role profile",
+   "url": "index.html#roles",
+   "text": "Securities lending operations: Keeps the live loan book accurate, settled, collateralized, and controlled. DAILY OUTPUT: Reconciled positions, resolved settlements, documented exceptions. CORE FLUENCY: Lifecycle events, settlement, collateral, recalls, billing. PROOF OF SKILL: Explain how you triaged a break under a market deadline. WHERE THIS LEADS: Team lead → operations manager → head of agency lending or securities finance operations. PIVOT PATHS: Collateral analyst, trading support analyst, product operations on lending platforms, client relationship management."
+  },
+  {
+   "id": "role-collateral-analyst",
+   "title": "Role profile: Collateral analyst (Traditional Finance)",
+   "section": "Role profile",
+   "url": "index.html#roles",
+   "text": "Collateral analyst: Monitors exposure and drives margin movements under documented terms. DAILY OUTPUT: Validated marks, agreed calls, resolved disputes. CORE FLUENCY: Valuation, eligibility, haircuts, settlement, legal terms. PROOF OF SKILL: Walk through a disputed call from data to resolution. WHERE THIS LEADS: Senior analyst → margin operations manager → head of collateral management. PIVOT PATHS: Credit risk analyst, treasury operations, operational risk, repo and trading support."
+  },
+  {
+   "id": "role-payments-operations",
+   "title": "Role profile: Payments operations (Fintech)",
+   "section": "Role profile",
+   "url": "index.html#roles",
+   "text": "Payments operations: Keeps payment flows moving while controlling failure, fraud, and reconciliation risk. DAILY OUTPUT: Resolved exceptions, balanced ledgers, monitored service levels. CORE FLUENCY: Authorization, clearing, settlement, returns, disputes. PROOF OF SKILL: Map a failed payment across system and partner handoffs. WHERE THIS LEADS: Senior analyst → payments operations manager → director of payments. PIVOT PATHS: Product operations, fraud strategy, implementation and onboarding, treasury operations, payments compliance."
+  },
+  {
+   "id": "role-protocol-operations",
+   "title": "Role profile: Protocol operations (Defi)",
+   "section": "Role profile",
+   "url": "index.html#roles",
+   "text": "Protocol operations: Monitors on-chain activity, governance, liquidity, and operational risk. DAILY OUTPUT: Incident reviews, parameter checks, treasury and protocol reporting. CORE FLUENCY: Wallets, transactions, smart contracts, oracles, governance. PROOF OF SKILL: Trace a transaction and explain the protocol state change. WHERE THIS LEADS: Operations lead → head of protocol operations at a DAO or foundation. PIVOT PATHS: Protocol risk analyst, on-chain data analyst, DeFi product manager, developer-relations-adjacent operations."
+  },
+  {
+   "id": "role-ai-product-manager",
+   "title": "Role profile: AI product manager (Ai In Finance)",
+   "section": "Role profile",
+   "url": "index.html#roles",
+   "text": "AI product manager: Turns a financial workflow into a governed, measurable human-plus-model product. DAILY OUTPUT: Prioritized use cases, evaluation criteria, control decisions. CORE FLUENCY: Workflow design, model behavior, data, risk, adoption. PROOF OF SKILL: Define where automation stops and human judgment begins. WHERE THIS LEADS: Senior PM → group product manager → head of product. PIVOT PATHS: Product operations, AI governance, solutions architect, founder."
+  },
+  {
+   "id": "role-business-analyst",
+   "title": "Role profile: Business analyst (Cross-Functional)",
+   "section": "Role profile",
+   "url": "index.html#roles",
+   "text": "Business analyst: Translates desk behavior, data, and control needs into implementable change. DAILY OUTPUT: Process maps, requirements, test cases, impact analysis. CORE FLUENCY: Current state, target state, exceptions, evidence, stakeholders. PROOF OF SKILL: Turn one BAU pain point into a testable requirement. WHERE THIS LEADS: Senior business analyst → product owner or delivery lead. PIVOT PATHS: Product manager, product operations, data analyst, project or program manager."
+  },
+  {
+   "id": "role-trading-support-analyst",
+   "title": "Role profile: Trading support analyst (Traditional Finance)",
+   "section": "Role profile",
+   "url": "index.html#roles",
+   "text": "Trading support analyst: Connects inventory, pricing, bookings, and lifecycle events around a live desk. DAILY OUTPUT: Accurate bookings, inventory visibility, resolved trade queries. CORE FLUENCY: Market conventions, positions, pricing, cutoffs, escalation. PROOF OF SKILL: Explain how you would support a time-sensitive position issue. WHERE THIS LEADS: Senior trade support → desk operations manager → head of middle office. PIVOT PATHS: Trading assistant, product operations, business analyst, operational risk."
+  },
+  {
+   "id": "role-operational-risk-analyst",
+   "title": "Role profile: Operational risk analyst (Traditional Finance)",
+   "section": "Role profile",
+   "url": "index.html#roles",
+   "text": "Operational risk analyst: Evaluates processes, controls, incidents, issues, and residual exposure. DAILY OUTPUT: Risk assessments, control tests, issue tracking, challenge. CORE FLUENCY: Risk taxonomy, evidence, root cause, remediation, governance. PROOF OF SKILL: Distinguish a control failure from an isolated processing error. WHERE THIS LEADS: Senior analyst → operational risk manager → head of operational risk. PIVOT PATHS: Compliance, internal audit, business continuity, product risk at fintechs, GRC roles."
+  },
+  {
+   "id": "role-treasury-operations",
+   "title": "Role profile: Treasury operations (Traditional Finance)",
+   "section": "Role profile",
+   "url": "index.html#roles",
+   "text": "Treasury operations: Coordinates liquidity, cash positioning, funding, and settlement readiness. DAILY OUTPUT: Cash forecasts, funding actions, resolved balance breaks. CORE FLUENCY: Cash ladders, settlement, liquidity buffers, intraday timing. PROOF OF SKILL: Walk through how you would investigate an unexpected cash position. WHERE THIS LEADS: Treasury analyst → treasury manager → assistant treasurer or head of treasury operations. PIVOT PATHS: Corporate treasury, liquidity risk, payments operations, FP&A."
+  },
+  {
+   "id": "role-protocol-risk-analyst",
+   "title": "Role profile: Protocol risk analyst (Defi)",
+   "section": "Role profile",
+   "url": "index.html#roles",
+   "text": "Protocol risk analyst: Studies collateral, liquidity, oracles, governance, and liquidation behavior. DAILY OUTPUT: Risk monitoring, scenario analysis, parameter recommendations. CORE FLUENCY: On-chain data, collateral health, smart-contract dependencies. PROOF OF SKILL: Explain how oracle movement can become liquidation risk. WHERE THIS LEADS: Risk lead → head of risk at a protocol or DeFi fund. PIVOT PATHS: DeFi research analyst, on-chain data analyst, traditional credit or market risk, DeFi insurance and underwriting."
+  },
+  {
+   "id": "role-on-chain-data-analyst",
+   "title": "Role profile: On-chain data analyst (Defi)",
+   "section": "Role profile",
+   "url": "index.html#roles",
+   "text": "On-chain data analyst: Turns public contract activity into product, treasury, and risk insight. DAILY OUTPUT: Wallet and transaction analysis, dashboards, event explanations. CORE FLUENCY: Explorers, contract events, addresses, token flows, SQL. PROOF OF SKILL: Present an annotated transaction trace and its business meaning. WHERE THIS LEADS: Senior analyst → research or data lead. PIVOT PATHS: Data scientist, DeFi research, product analytics, protocol risk analyst, quant-adjacent analytics."
+  },
+  {
+   "id": "role-product-operations-manager",
+   "title": "Role profile: Product operations manager (Fintech)",
+   "section": "Role profile",
+   "url": "index.html#roles",
+   "text": "Product operations manager: Connects launches, incidents, support signals, controls, and operating readiness. DAILY OUTPUT: Runbooks, launch checklists, issue themes, operating changes. CORE FLUENCY: Customer journeys, metrics, partners, failure states, enablement. PROOF OF SKILL: Turn recurring support pain into a measurable product change. WHERE THIS LEADS: Senior product operations → head of product operations, with a path toward COO-track roles. PIVOT PATHS: Product manager, program manager, customer success leadership, strategy and operations."
+  },
+  {
+   "id": "role-fraud-strategy-analyst",
+   "title": "Role profile: Fraud strategy analyst (Fintech)",
+   "section": "Role profile",
+   "url": "index.html#roles",
+   "text": "Fraud strategy analyst: Balances loss prevention with approval, customer friction, and review capacity. DAILY OUTPUT: Rule analysis, queue tuning, loss and false-positive reporting. CORE FLUENCY: Signals, decisioning, chargebacks, segmentation, experiments. PROOF OF SKILL: Explain how you would investigate an approval-rate change safely. WHERE THIS LEADS: Senior analyst → fraud strategy manager → head of fraud or financial-crime risk. PIVOT PATHS: Data science for risk modeling, product manager in trust and safety, AML and financial crime, payments operations."
+  },
+  {
+   "id": "role-model-operations-analyst",
+   "title": "Role profile: Model operations analyst (Ai In Finance)",
+   "section": "Role profile",
+   "url": "index.html#roles",
+   "text": "Model operations analyst: Runs the production control loop around model quality, reliability, and change. DAILY OUTPUT: Monitoring reviews, incident triage, version evidence, issue tracking. CORE FLUENCY: Evaluation, drift, latency, overrides, thresholds, change control. PROOF OF SKILL: Diagnose a quality drop without assuming the model is the only cause. WHERE THIS LEADS: Model operations lead → head of model operations or model risk management. PIVOT PATHS: MLOps engineer, model validation, AI governance analyst, data engineering."
+  },
+  {
+   "id": "glossary-beneficial-owner",
+   "title": "Desk dictionary: Beneficial owner",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Beneficial owner: The investor that owns the economic interest in assets made available for lending, often through an agent."
+  },
+  {
+   "id": "glossary-borrow-fee",
+   "title": "Desk dictionary: Borrow fee",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Borrow fee: The economic charge associated with borrowing a security. On a desk, the agreed rate must flow correctly into accrual and billing records."
+  },
+  {
+   "id": "glossary-collateral",
+   "title": "Desk dictionary: Collateral",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Collateral: Assets delivered to secure an exposure. Operations monitors value, eligibility, movement, and release against contractual terms."
+  },
+  {
+   "id": "glossary-fail",
+   "title": "Desk dictionary: Fail",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Fail: A movement that did not settle as expected. The useful question is why: instruction, inventory, timing, matching, or another cause."
+  },
+  {
+   "id": "glossary-haircut",
+   "title": "Desk dictionary: Haircut",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Haircut: A valuation adjustment used in determining how much collateral is required relative to an exposure."
+  },
+  {
+   "id": "glossary-locate",
+   "title": "Desk dictionary: Locate",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Locate: A check or indication that a security may be available to borrow. The exact process and obligation depend on context and market rules."
+  },
+  {
+   "id": "glossary-manufactured-payment",
+   "title": "Desk dictionary: Manufactured payment",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Manufactured payment: A payment intended to pass through an economic entitlement when the borrowed security has an income event during the loan."
+  },
+  {
+   "id": "glossary-recall",
+   "title": "Desk dictionary: Recall",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Recall: A lender-initiated request for borrowed securities to be returned. It creates a deadline-sensitive workflow."
+  },
+  {
+   "id": "glossary-reconciliation",
+   "title": "Desk dictionary: Reconciliation",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Reconciliation: A control comparing two records, explaining differences, and driving unresolved items to a documented outcome."
+  },
+  {
+   "id": "glossary-smart-contract",
+   "title": "Desk dictionary: Smart contract",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Smart contract: Code deployed to a blockchain that changes protocol state when defined conditions and transactions are processed."
+  },
+  {
+   "id": "glossary-oracle",
+   "title": "Desk dictionary: Oracle",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Oracle: A mechanism that supplies external or derived data—often prices—to a smart contract. Bad or stale inputs can change protocol outcomes."
+  },
+  {
+   "id": "glossary-liquidity-pool",
+   "title": "Desk dictionary: Liquidity pool",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Liquidity pool: Assets committed to a smart contract to facilitate protocol activity such as swapping or lending, subject to that protocol's rules and risks."
+  },
+  {
+   "id": "glossary-ledger",
+   "title": "Desk dictionary: Ledger",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Ledger: The authoritative record of balances and movements. In fintech, reconciliation often proves that product events and ledger entries agree."
+  },
+  {
+   "id": "glossary-clearing",
+   "title": "Desk dictionary: Clearing",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Clearing: The process of validating and preparing obligations for settlement, including calculation and matching steps."
+  },
+  {
+   "id": "glossary-human-in-the-loop",
+   "title": "Desk dictionary: Human in the loop",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Human in the loop: A workflow in which a person reviews, decides, or intervenes at defined points rather than delegating the entire outcome to a model."
+  },
+  {
+   "id": "glossary-model-drift",
+   "title": "Desk dictionary: Model drift",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Model drift: A change in model behavior or performance as data or conditions differ from those used during development and validation."
+  },
+  {
+   "id": "glossary-authorization",
+   "title": "Desk dictionary: Authorization",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Authorization: A payment-stage decision about whether a transaction may proceed. Approval does not necessarily mean final settlement."
+  },
+  {
+   "id": "glossary-webhook",
+   "title": "Desk dictionary: Webhook",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Webhook: A system-to-system notification sent when an event occurs. Operations must account for delays, duplicates, and delivery failure."
+  },
+  {
+   "id": "glossary-idempotency",
+   "title": "Desk dictionary: Idempotency",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Idempotency: A design property that lets the same request be retried without creating an unintended duplicate financial outcome."
+  },
+  {
+   "id": "glossary-double-entry-ledger",
+   "title": "Desk dictionary: Double-entry ledger",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Double-entry ledger: A recording model in which every financial event produces balanced debit and credit entries across accounts."
+  },
+  {
+   "id": "glossary-health-factor",
+   "title": "Desk dictionary: Health factor",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Health factor: A protocol-specific indicator of collateral safety. Crossing a defined threshold may make a borrowing position liquidatable."
+  },
+  {
+   "id": "glossary-liquidation",
+   "title": "Desk dictionary: Liquidation",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Liquidation: A process that reduces or closes an undercollateralized position according to protocol rules, often with an incentive for the executor."
+  },
+  {
+   "id": "glossary-slippage",
+   "title": "Desk dictionary: Slippage",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Slippage: The difference between an expected trade price and the executed result, often influenced by size, liquidity, and market movement."
+  },
+  {
+   "id": "glossary-finality",
+   "title": "Desk dictionary: Finality",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Finality: The point at which a transaction is considered practically or legally irreversible. Meaning and timing vary by system."
+  },
+  {
+   "id": "glossary-precision",
+   "title": "Desk dictionary: Precision",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Precision: Among cases a model flags as positive, the share that are actually positive. Useful when false alarms create material cost."
+  },
+  {
+   "id": "glossary-recall",
+   "title": "Desk dictionary: Recall",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Recall: In model evaluation, among all actual positive cases, the share the model finds. Useful when missed cases are costly."
+  },
+  {
+   "id": "glossary-abstention",
+   "title": "Desk dictionary: Abstention",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Abstention: A designed outcome in which a model does not decide because evidence or confidence is insufficient, routing work to another path."
+  },
+  {
+   "id": "glossary-model-validation",
+   "title": "Desk dictionary: Model validation",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Model validation: Independent assessment of a model's conceptual soundness, performance, implementation, limitations, and controls."
+  },
+  {
+   "id": "glossary-maker-checker",
+   "title": "Desk dictionary: Maker-checker",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Maker-checker: A control pattern in which one person initiates or prepares an action and another independently reviews or approves it."
+  },
+  {
+   "id": "glossary-service-level-agreement",
+   "title": "Desk dictionary: Service-level agreement",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Service-level agreement: A defined expectation for service performance or response. An SLA should have a measurable clock, scope, and owner."
+  },
+  {
+   "id": "glossary-root-cause",
+   "title": "Desk dictionary: Root cause",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Root cause: The underlying condition that produced an issue. A repair clears the current item; root-cause remediation reduces recurrence."
+  },
+  {
+   "id": "glossary-residual-risk",
+   "title": "Desk dictionary: Residual risk",
+   "section": "Glossary",
+   "url": "index.html#glossary",
+   "text": "Residual risk: The risk that remains after controls or mitigation. A strong handoff names it rather than implying every issue is eliminated."
+  },
+  {
+   "id": "lab-the-value-exchange",
+   "title": "The value exchange",
+   "section": "Desk lab",
+   "url": "index.html#lab",
+   "text": "The value exchange. A lender monetizes otherwise idle inventory. A borrower gains temporary access to securities—for example, to support settlement, market-making, or a trading strategy. The lending agent may sit between them, handling allocation, pricing, settlement, collateral, income, and controls. Lender Provides the security while retaining the economic exposure defined by the agreement. Borrower Posts collateral, pays the agreed economics, and returns equivalent securities. Agent Runs the operational and control layer on the lender's behalf. Desk lens The trade is not “done” when it is booked. It remains a living position: values change, collateral moves, rates can change, income events occur, and either side may initiate a return or recall."
+  },
+  {
+   "id": "lab-what-an-operator-is-really-controlling",
+   "title": "What an operator is really controlling",
+   "section": "Desk lab",
+   "url": "index.html#lab",
+   "text": "What an operator is really controlling. POSITION Do both sides agree on security, quantity, rate, and dates? BOOK & RECORD EXPOSURE Does collateral sufficiently cover current loan value under the agreement? DAILY CONTROL MOVEMENT Did securities and collateral settle where and when expected? SETTLEMENT INCOME Were fees, rebates, and manufactured payments calculated and paid correctly? BILLING Continue to lifecycle → Section 02 · loan lifecycle Follow the position The lifecycle is a chain of connected handoffs. A clean book depends on each event being reflected consistently across the trading, operations, custody, and collateral records."
+  },
+  {
+   "id": "lab-from-demand-to-close",
+   "title": "From demand to close",
+   "section": "Desk lab",
+   "url": "index.html#lab",
+   "text": "From demand to close. 01 Locate Borrow demand meets lendable inventory. 02 Agree Quantity, rate, term, collateral and settlement. 03 Book Trade enters the official records. 04 Settle Security and collateral movements complete. 05 Maintain Marks, margins, rates, income and exceptions. 06 Return Equivalent securities return; collateral releases. Handoff risk If a rate update appears in the trading record but not the billing record, the position can settle cleanly and still produce the wrong invoice. Controls must follow the whole lifecycle, not one system."
+  },
+  {
+   "id": "lab-what-equivalent-securities-means",
+   "title": "What “equivalent securities” means",
+   "section": "Desk lab",
+   "url": "index.html#lab",
+   "text": "What “equivalent securities” means. The borrower typically returns securities of the same issuer, issue, class, and quantity—not necessarily the exact same certificates or units. Legal terms and market convention determine the precise obligation. Operational consequence: teams reconcile economic attributes and quantities, not a story about where a particular share traveled. Continue to the workday → Section 03 · business as usual A day on the desk Choose a window to see the operating objective, the decisions being made, and the signal an experienced analyst watches."
+  },
+  {
+   "id": "lab-intraday-operating-rhythm",
+   "title": "Intraday operating rhythm",
+   "section": "Desk lab",
+   "url": "index.html#lab",
+   "text": "Intraday operating rhythm. Open Morning Midday Close OPEN Start with overnight truth Review settlement status, collateral calls, recalls, returns, corporate-action notices, rate changes, and unmatched positions across internal and counterparty records. Experienced signal: prioritize by exposure and deadline, not by the age of the email. A same-day settlement risk can matter more than an older low-value static-data break. AM Resolve the movement queue Work failed or pending settlements, validate instructions, chase counterparties or custodians, and make sure recalled securities are on a credible path back. Experienced signal: distinguish a true fail from a timing mismatch. The same symptom can have a different owner and escalation path. MID Maintain the live book Process new loans, returns, rate changes, reallocations, marks, and margin movements. Reconcile changes before downstream billing and reporting consume them. Experienced signal: a cluster of breaks with one counterparty or security often points to a shared upstream cause. CLOSE Prove control and hand over risk Complete reconciliations,"
+  },
+  {
+   "id": "lab-the-five-question-morning-scan",
+   "title": "The five-question morning scan",
+   "section": "Desk lab",
+   "url": "index.html#lab",
+   "text": "The five-question morning scan. What changed? New trades, returns, recalls, rate changes, marks, and income events. What failed? Movements or records that did not reach the expected state. What is exposed? Positions where timing or value creates meaningful risk. What is due? Market cutoffs, recalls, margin, billing and client reporting. Who owns it? The named party with the next executable action. Open the economics lab → Section 04 · economics lab Price the loan Change the assumptions to see how market value, fee, collateralization, and time flow into simple loan economics."
+  },
+  {
+   "id": "lab-interactive-loan-scenario",
+   "title": "Interactive loan scenario",
+   "section": "Desk lab",
+   "url": "index.html#lab",
+   "text": "Interactive loan scenario. This is an illustrative practice calculation, not market data or a statement of any firm's billing convention. Real agreements can use different bases, rebates, currencies, haircuts, and fee treatments. Quantity 100,000 Security price $42.00 Annual fee 125 bps Collateralization 102% Loan days 30 ILLUSTRATIVE FEE REVENUE $4,375.00 Loan market value $4,200,000 Collateral requirement $4,284,000 Daily fee accrual $145.83 Annualized fee rate 1.25% fee = market value × (bps ÷ 10,000) × (days ÷ 360) collateral = market value × collateralization"
+  },
+  {
+   "id": "lab-practice-book-daily-fee-contribution",
+   "title": "Practice book: daily fee contribution",
+   "section": "Desk lab",
+   "url": "index.html#lab",
+   "text": "Practice book: daily fee contribution. Four hypothetical open loans, calculated on a 360-day basis. Bar length starts at zero and represents daily fee revenue in US dollars. Continue to exceptions → Section 05 · exception management Work the break, not the symptom Experienced operators classify an exception, quantify the risk, identify the true owner, and drive an action before the relevant deadline."
+  },
+  {
+   "id": "lab-a-practical-triage-order",
+   "title": "A practical triage order",
+   "section": "Desk lab",
+   "url": "index.html#lab",
+   "text": "A practical triage order. 1 · EXPOSURE How much risk exists if no action is taken? QUANTIFY 2 · CUTOFF When does the next operational option disappear? TIME-BOX 3 · CAUSE Is the break trade, settlement, static data, valuation, or timing? CLASSIFY 4 · OWNER Which team or counterparty can take the next action? ASSIGN 5 · EVIDENCE What record proves the diagnosis and action? DOCUMENT Desk drill A recalled position is due back today. Your internal book shows the return instructed; the custodian shows no matching receipt; the borrower says it sent the securities. What is the best first move? Wait for the custodian's end-of-day file Compare settlement references and instruction details across all three records Cancel and rebook the entire loan immediately"
+  },
+  {
+   "id": "lab-escalation-that-helps",
+   "title": "Escalation that helps",
+   "section": "Desk lab",
+   "url": "index.html#lab",
+   "text": "Escalation that helps. A useful escalation gives the receiver a decision-ready package: position, value or exposure, contractual or market deadline, current state, verified cause, actions already taken, the next requested action, and the consequence of waiting. Avoid the inbox trap Forwarding a long email chain transfers reading, not ownership. Summarize the issue in the first lines and attach the evidence underneath. Continue to reconciliation → Section 06 · books and records Reconcile the position A reconciliation is not just a difference report. It is a control process that explains the difference, determines whether it is valid, and assigns resolution."
+  },
+  {
+   "id": "lab-sample-position-comparison",
+   "title": "Sample position comparison",
+   "section": "Desk lab",
+   "url": "index.html#lab",
+   "text": "Sample position comparison. The rows below are a hypothetical training set. Identify the true break and the timing difference. Security Internal qty Counterparty qty Difference Likely status Security A 250,000 250,000 0 Matched Security B 80,000 50,000 30,000 Investigate partial return Security C 0 125,000 −125,000 Check booking cutoff Interpret before you repair Security B may be a genuine quantity break. Security C might be a timing difference if a return was booked internally after the counterparty produced its snapshot. Validate effective times before changing records."
+  },
+  {
+   "id": "lab-control-evidence",
+   "title": "Control evidence",
+   "section": "Desk lab",
+   "url": "index.html#lab",
+   "text": "Control evidence. Completeness All in-scope positions are included. Accuracy Fields and calculations match source records. Timeliness Review and escalation happen before risk-relevant deadlines. Ownership Every unresolved item has a named next action. Evidence The reviewer can retrace what was checked and why. Take the knowledge check → Section 07 · knowledge check Can you run the morning? Answer three desk-level questions. Feedback appears immediately; your score only lasts for this session. 1. Why is an open loan a “living position”? The security can only be priced once Value, collateral, rates, income, and lifecycle events can change Every loan must be closed at end of day The original security units must be tracked individually 2. Which is the most useful first principle for exception prioritization? Oldest email first Largest number of messages first Exposure and deadline first Alphabetical by counterparty 3. An internal and counterparty quantity differ. What comes before changing the book? Validate snapshots, effective times, and the u"
+  },
+  {
+   "id": "blog-back-office-salary-negotiation",
+   "title": "Salary negotiation for back-office roles | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/back-office-salary-negotiation.html",
+   "text": "Operations professionals leave money on the table more often than almost anyone in finance — not because they are bad negotiators, but because the culture of the back office treats compensation as something handed down rather than something discussed. Here is how to negotiate well, honestly, and without bluffing. Start with research, not a number Before any conversation, build a picture of the market from multiple sources: posted salary ranges on job listings, which in many jurisdictions employers are now required to disclose; compensation data from recruiters who specialize in operations roles; and conversations with peers at similar firms. Pay attention to the bands, not individual data points — one person’s outlier offer tells you nothing. Note how the range moves with the variables that matter: asset class, product complexity, shift coverage, and whether the role carries client or regulatory exposure. A reconciliations analyst on a complex derivatives desk and one on plain-vanilla equities may share a title and sit in different pay bands, and knowing which band you are in is the foundation of everything else."
+  },
+  {
+   "id": "blog-back-office-salary-negotiation-b",
+   "title": "Salary negotiation for back-office roles | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/back-office-salary-negotiation.html",
+   "text": "Understand total compensation, not just base salary Back-office offers are often presented as a single base number, but the package usually includes more: an annual bonus tied to firm and individual performance, overtime or shift differentials for coverage roles, retirement plan matching, and benefits with real cash value like health coverage and time off. When you compare offers — or your current pay against the market — add up the whole package. A slightly lower base with a strong bonus history and better benefits can beat a higher base. Ask the recruiter directly: what is the target bonus percentage for this level, and what did it actually pay over the last two years? The second question matters more than the first. Anchor with evidence, not attitude The strongest negotiating position is a researched range presented calmly. When asked for your expectations, give a range whose bottom is a number you would genuinely accept — never name a figure you would regret. Frame it in market terms: “Based on the posted ranges for comparable roles and my experience with [specific skill], I am targeting the [lower]-to-[upper] range.” If you are employed, you have leverage: the cost to the employer of losing a trained analyst and rehiring is real, and it is fair to name it."
+  },
+  {
+   "id": "blog-back-office-salary-negotiation-b-b",
+   "title": "Salary negotiation for back-office roles | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/back-office-salary-negotiation.html",
+   "text": "What does not work is ultimatums without alternatives, inflated competing offers, or personal-budget arguments — employers pay for market value, not for your rent. Negotiate the whole package, in writing Base salary gets the attention, but several other terms are often more negotiable, especially at banks with rigid bands: a sign-on bonus to close a gap the band cannot, an early performance review with a defined raise trigger, a title that matches the scope of the work, and professional development funding for certifications. Get every agreed term in the written offer. Verbal promises about future raises have a way of evaporating with management changes. Handle the tricky moments If the offer is below your range, do not reject it on the call. Thank them, ask for the written details, and respond within a day or two with a specific counter grounded in your research. If they say the band is fixed, pivot to the other terms — sign-on, review timing, title. If a current employer counters when you resign, treat it carefully: accept only if the underlying reasons you looked have actually been fixed, because most people who accept a counteroffer end up leaving within the year anyway."
+  },
+  {
+   "id": "blog-back-office-salary-negotiation-b-b-b",
+   "title": "Salary negotiation for back-office roles | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/back-office-salary-negotiation.html",
+   "text": "And if you are underpaid relative to new hires on your own team, that is a retention conversation to have with evidence, not a grievance to air with emotion. A final note on timing The best time to negotiate is before you need to. Keep your market research current even when you are happy, document your measurable impact as it happens — breaks cleared, backlogs reduced, controls built — and raise compensation proactively in performance reviews with that evidence in hand. Negotiation is not a confrontation. It is a business conversation between two parties who both want the working relationship to continue on fair terms. Operations people already run those conversations every day with counterparties. This one is just about your own account."
+  },
+  {
+   "id": "blog-breaking-into-finance-ops",
+   "title": "Breaking into finance operations without a finance degree | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/breaking-into-finance-ops.html",
+   "text": "Here is the open secret of finance operations: a large share of the best people in the building never studied finance. They came from customer service, retail, logistics, teaching, the military, or call centers. The industry hires for how you think and how you work far more than for what your diploma says. If you are outside finance and looking in, here is a practical playbook for getting through the door. 1. Understand what operations teams actually buy Hiring managers in operations are solving a specific problem: they need someone who can keep accurate records, meet hard deadlines, and communicate clearly when something goes wrong. A job posting that asks for a finance degree is often describing a proxy for those traits, not a hard requirement. When you apply, translate your background into their language. “Resolved customer complaints” becomes “investigated and resolved exceptions under time pressure.” “Shift supervisor at a warehouse” becomes “owned daily reconciliation of inventory movements and escalated discrepancies.” This is not spin — it is accurate translation, and it is exactly what interviewers are listening for. 2."
+  },
+  {
+   "id": "blog-breaking-into-finance-ops-b",
+   "title": "Breaking into finance operations without a finance degree | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/breaking-into-finance-ops.html",
+   "text": "Pick certifications that signal seriousness, not magic The certifications most often named for operations-adjacent paths are the Financial Industry Regulatory Authority exams, particularly the Securities Industry Essentials, Series 7, and Series 66. A word of honesty: these exams do not qualify you on their own, and you generally need a firm to sponsor most of them. But passing the Securities Industry Essentials on your own — it does not require sponsorship — is a credible signal that you understand the basics and are investing in the industry. For operations roles specifically, domain knowledge of settlement, corporate actions, and reconciliation often matters more than any single credential, which is why structured learning and desk-specific training carry real weight. 3. Target the right entry points Not every finance job is equally reachable. The realistic doors for career changers are: client services and onboarding, trade support, reconciliations, corporate actions processing, and fund administration. These roles value accuracy, stamina, and communication — transferable skills you can demonstrate from any industry. Titles to search include operations analyst, trade support analyst, reconciliations analyst, client onboarding associate, and fund accountant."
+  },
+  {
+   "id": "blog-breaking-into-finance-ops-b-b",
+   "title": "Breaking into finance operations without a finance degree | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/breaking-into-finance-ops.html",
+   "text": "Apply to the ones whose daily work you can already describe in your own words. 4. Build proof of the three skills that matter Hiring managers screen for three things: attention to detail, deadline discipline, and clear written communication. Your resume should show all three with evidence, not adjectives. Replace “detail-oriented” with a line like: “Processed 200-plus daily orders with a documented error rate under one percent.” Replace “great communicator” with: “Wrote the shift handoff notes the whole team relied on.” If you lack numbers from your current job, create them: run a personal project, document your process, and put the artifact on your resume. A one-page write-up of how you would reconcile a sample data set says more than any summary line. 5. Learn the vocabulary before you need it You do not need a degree, but you do need to speak the language. In interviews, people stumble not on concepts but on terms: settlement, fails, breaks, corporate actions, collateral, net asset value, trade date versus settlement date. Spend a few weeks with a structured curriculum until you can explain each term in plain English and connect it to a real workflow. An interviewer who hears you correctly use “break” and “exception” in context will stop caring about your major. 6."
+  },
+  {
+   "id": "blog-breaking-into-finance-ops-b-b-b",
+   "title": "Breaking into finance operations without a finance degree | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/breaking-into-finance-ops.html",
+   "text": "Use informational conversations wisely People in operations are unusually generous with advice because most of them got in through a side door themselves. When you reach out, ask about the work, not the job: “What does your Tuesday actually look like?” and “What separates the good analysts on your team from the average ones?” Then listen for the real hiring criteria and mirror them in your applications. One honest conversation with a reconciliations analyst will teach you more about the role than ten generic career guides. A final reality check The path is real but it is not instant. Expect several months of applications, and expect to start at an entry-level title even if you are senior in your current field. That is not a verdict on your worth — it is the price of learning a new industry’s plumbing from the inside. Once you are in, the same traits that got you hired will promote you: the people who rise fastest in operations are the ones who turn exceptions into process improvements and process improvements into fewer exceptions. Your degree got you this far. Your habits will get you the rest of the way."
+  },
+  {
+   "id": "blog-defi-ops-career-path",
+   "title": "The DeFi operations career path | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/defi-ops-career-path.html",
+   "text": "Decentralized finance runs without a traditional back office — there is no settlement desk, no custodian, no end-of-day batch. But someone still has to watch the money, investigate what went wrong, and keep the protocol safe. That someone works in DeFi operations, one of the newest and least understood career paths in finance. What the role actually is DeFi operations sits at the intersection of finance operations, risk, and on-chain investigation. A protocol operations team monitors smart-contract activity around the clock, tracks liquidity and utilization, responds to incidents, and coordinates changes to protocol parameters. Where a traditional ops analyst reconciles records between counterparties, a DeFi ops analyst reconciles the protocol’s intended state against what is actually happening on-chain. The ledger is public; the job is reading it. The daily work has a distinct rhythm It starts with a state scan: reviewing contract events, liquidations, oracle prices, and governance activity since the last shift. Then comes monitoring — following transaction hashes, reading event logs, and tracing wallet flows to understand unusual activity."
+  },
+  {
+   "id": "blog-defi-ops-career-path-b",
+   "title": "The DeFi operations career path | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/defi-ops-career-path.html",
+   "text": "When something looks wrong, the analyst reconstructs the sequence: which addresses called which functions, in what order, and how the protocol’s state changed. Afternoon work is often project-based: reviewing proposed parameter changes, checking the expected effects on borrowing and liquidity, and preparing decision packages for governance. Everything ends with documentation, because in a decentralized system the written record is the coordination mechanism. The skills that transfer from traditional finance are real If you have worked in reconciliations, settlements, or risk, you already own half the toolkit: investigating discrepancies, thinking in terms of exposure and deadlines, writing clear handoff notes, and staying calm during incidents. What changes is the evidence. Instead of counterparty confirmations you read block explorers; instead of settlement messages you read transaction traces. People who have done exception management in traditional ops consistently ramp faster than pure technologists, because the judgment — is this volatility or a malfunction? — is the same muscle. The skills you need to add On-chain literacy: reading a block explorer fluently, understanding how tokens move through approvals and transfers, and recognizing common transaction patterns."
+  },
+  {
+   "id": "blog-defi-ops-career-path-b-b",
+   "title": "The DeFi operations career path | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/defi-ops-career-path.html",
+   "text": "Risk monitoring: utilization rates, liquidation cascades, oracle behavior under stress, and stablecoin depegs. Incident response discipline: distinguishing market stress from a protocol defect, separating confirmed facts from inference, and communicating to users and stakeholders without causing panic. Governance fluency: most protocols change through on-chain or off-chain votes, and ops teams prepare the analysis those votes depend on. You do not need to be a smart-contract developer, but you need to read code-adjacent documentation and ask developers sharp questions. How to break in The honest routes: start in traditional finance operations and build on-chain skills on the side, then target protocol teams, risk firms, and blockchain analytics companies that value the combination. Or start in crypto-native support and customer operations — many exchanges and wallet providers hire operations generalists — and specialize in investigations. Either way, build public evidence: write up incident analyses, publish walkthroughs of notable on-chain events, contribute to open-source risk dashboards. In a field this new, a portfolio of sharp analysis outweighs credentials. What to watch out for This is still a young industry with real hazards."
+  },
+  {
+   "id": "blog-defi-ops-career-path-b-b-b",
+   "title": "The DeFi operations career path | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/defi-ops-career-path.html",
+   "text": "Compensation can be volatile when paid partly in tokens, and some protocols operate in regulatory gray areas — do your diligence on the team, the funding, and the legal structure before you join. On-call rotations can be intense because blockchains do not observe market hours; ask about the rotation schedule in interviews. And treat any employer that cannot explain its revenue model with skepticism. Why it is worth considering Few roles give you a live, public laboratory for financial operations. Every transaction is visible, every incident is a case study, and the skills — investigation, risk judgment, clear crisis communication — transfer back to traditional finance if you ever return. The path is less structured than a bank’s analyst program, which means more responsibility earlier and a faster feedback loop on your judgment. If you like detective work and you are comfortable with ambiguity, DeFi operations is one of the most interesting seats in finance right now."
+  },
+  {
+   "id": "blog-ops-to-product-90-day-plan",
+   "title": "A 90-day plan for pivoting from operations to product | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/ops-to-product-90-day-plan.html",
+   "text": "Moving from operations to product management is one of the most natural pivots in finance — you already know how the systems work, where they break, and what users actually need. The challenge is converting that knowledge into product skills: discovery, prioritization, and shipping. Here is a concrete week-by-week plan. Days 1–14: Learn the vocabulary and audit your experience Week one, study how product managers talk: user stories, acceptance criteria, prioritization frameworks, and roadmaps. A structured course helps — this platform’s fintech and AI tracks cover the domain side. Week two, inventory your operations experience as product evidence. List every process improvement you have made, every workaround you built, every time you translated a user complaint into a system change. That list is the raw material of your product portfolio. Most ops people are shocked at how much of it already is product work. Days 15–30: Pick a real problem and run a discovery sprint Choose one painful workflow you know intimately — reconciliation queues, exception handling, client onboarding — and treat it like a product problem."
+  },
+  {
+   "id": "blog-ops-to-product-90-day-plan-b",
+   "title": "A 90-day plan for pivoting from operations to product | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/ops-to-product-90-day-plan.html",
+   "text": "Interview three to five colleagues who do the work: what takes the longest, what breaks most often, what workaround are they embarrassed to admit? Write up the findings as a one-page problem brief: who the user is, what the pain costs in time and errors, and what a better outcome would look like. This document is your first product artifact, and it demonstrates the skill hiring managers doubt most in ops candidates: structured user discovery. Days 31–45: Ship something small Product credibility comes from shipped work, not certificates. Find something you can deliver in two weeks: a dashboard, an automated report, a redesigned exception queue, a clearer handoff template. Write a one-page spec first — problem, users, success metric, scope, and what you are explicitly not building — then build it and measure the result. “Reduced daily exception review time from 90 minutes to 40” is a product outcome on your resume. If your current role has no room for this, build it as a side project against public or simulated data and publish the write-up. Days 46–60: Learn prioritization and stakeholder management Product managers live in trade-offs."
+  },
+  {
+   "id": "blog-ops-to-product-90-day-plan-b-b",
+   "title": "A 90-day plan for pivoting from operations to product | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/ops-to-product-90-day-plan.html",
+   "text": "Practice the skill explicitly: take your team’s backlog — real or imagined — and rank it using a simple framework like reach, impact, confidence, and effort. Write the reasoning down. Then practice the harder half: saying no with evidence. Draft the email you would send a stakeholder whose request did not make the cut: acknowledge the need, show the trade-off, offer what you can do instead. Share your prioritization with a mentor or a product manager you know and ask where your reasoning breaks. This is the muscle that separates product thinkers from feature collectors. Days 61–75: Build your product portfolio and rewrite your story Assemble three artifacts: the discovery brief, the shipped improvement with measured results, and the prioritization write-up. Put them on a simple portfolio page with context on each: the problem, your role, the outcome. Then rewrite your resume and your pitch. Your headline is no longer “operations analyst with five years of experience” — it is “operations specialist who ships product improvements,” followed by outcomes. Prepare a two-minute story of the pivot that connects the dots: what operations taught you about users, what you built, and why product is the right next step."
+  },
+  {
+   "id": "blog-ops-to-product-90-day-plan-b-b-b",
+   "title": "A 90-day plan for pivoting from operations to product | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/ops-to-product-90-day-plan.html",
+   "text": "Days 76–90: Interview as a product thinker Target product operations, associate product manager, and business analyst roles at fintechs and banks — these value domain knowledge most. In interviews, answer every question with the product toolkit: users, problem, evidence, trade-offs, metrics. When they ask about your background, frame operations as an unfair advantage: you have sat with the users, felt the pain, and shipped fixes. Do a mock interview with a real product manager and ask for brutal feedback on whether you sound like an analyst describing tasks or a product person describing outcomes. Adjust until it is the latter. Two honest caveats First, the pivot usually involves a title step sideways or slightly back — associate product roles before full product manager. That is normal and temporary; domain expertise compounds fast. Second, keep doing excellent operations work during the 90 days. Your current job is funding this pivot, and the improvements you ship there become your portfolio. The plan works because it turns your day job into your training ground rather than treating it as something to escape."
+  },
+  {
+   "id": "blog-reconciliation-interview-questions",
+   "title": "Reconciliation interview questions &mdash; and how to answer them | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/reconciliation-interview-questions.html",
+   "text": "Reconciliation interviews are not trivia contests. The interviewer is trying to answer one question: can this person find out why two records disagree and resolve it without creating new problems? 1. “Walk me through how you investigate a reconciliation break.” A strong answer shows a method, not just effort. Describe your sequence: first confirm the break is real by checking timing differences and re-running the data, then categorize it — is it quantity, price, fee, corporate action, or settlement? Then gather evidence from both sides of the record, identify which side is wrong, and either correct your book or contact the counterparty with the specific discrepancy documented. Close by explaining how you track the break until it clears and what you do to stop it recurring. The key phrase is “root cause”: interviewers want to hear that you fix causes, not just individual breaks. 2. “How do you prioritize when you have fifty breaks and two hours until a deadline?” This tests judgment under pressure. Good answers start with triage criteria: financial exposure first, then regulatory or client deadlines, then age of the break, then count."
+  },
+  {
+   "id": "blog-reconciliation-interview-questions-b",
+   "title": "Reconciliation interview questions &mdash; and how to answer them | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/reconciliation-interview-questions.html",
+   "text": "Explain that you would quickly scan for clusters — breaks from one counterparty or one security often share a single cause — and that you escalate early when a break cannot be resolved before a cutoff. Mention that you communicate the plan: the desk and your manager should know which breaks are covered, which are at risk, and who owns each. Never say you would just work faster. They are testing whether you manage the queue or let the queue manage you. 3. “Tell me about a time you found an error that nobody else had caught.” Use the situation, task, action, result format. Pick a story — from any industry — where a small discrepancy led you somewhere important. The structure that works: what the numbers showed, what made you suspicious, what evidence you gathered, what the root cause turned out to be, and what changed afterward. End with the control or process improvement that came out of it. If you have no finance example, a retail inventory story or a billing discrepancy story works perfectly. The interviewer is grading your detective instinct and your follow-through, not the dollar amount. 4. “What is the difference between a timing break and a true error, and why does it matter?” This is the classic domain check."
+  },
+  {
+   "id": "blog-reconciliation-interview-questions-b-b",
+   "title": "Reconciliation interview questions &mdash; and how to answer them | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/reconciliation-interview-questions.html",
+   "text": "A timing break happens when both sides are correct but booked an event in different periods — a trade confirmed today that settles tomorrow, a corporate action processed on different dates. A true error means something is genuinely wrong: a wrong quantity, a missing booking, a bad price. It matters because chasing timing breaks wastes everyone’s time and annoys counterparties, while ignoring true errors lets real risk sit on the books. Strong candidates explain that they verify timing first before escalating, and that they document which category each break falls into. 5. “How do you handle a counterparty who disagrees that the break is theirs?” Operations is a relationship job. A good answer stays factual and calm: restate the specific discrepancy with evidence — trade reference, confirmation, the exact field that differs — and ask for their supporting record rather than arguing conclusions. If the records genuinely conflict, escalate through the agreed channel with both sets of evidence, and keep your own book accurate in the meantime rather than forcing a match. Mention that you keep the tone professional because you will work with the same counterparties for years. Interviewers are listening for emotional steadiness and evidence-first communication. 6."
+  },
+  {
+   "id": "blog-reconciliation-interview-questions-b-b-b",
+   "title": "Reconciliation interview questions &mdash; and how to answer them | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/reconciliation-interview-questions.html",
+   "text": "“Describe a control you would put in place to prevent breaks.” Now they are testing whether you think like an owner. Pick something concrete: a pre-settlement matching check that flags quantity mismatches before value date, a daily tolerance report that surfaces only breaks above a threshold so the team focuses on what matters, or a maker-checker step on manual journal entries. Explain what the control catches, who acts on it, and how you would know it is working — for example, a falling count of aged breaks from a particular source. The best answers connect the control to a real pain point you have seen. 7. “Why do you want this role?” Do not improvise this one. Connect your background to the work honestly: what you have done that resembles it, what specifically attracts you — the detective work, the market rhythm, the responsibility — and what you want to learn in the first year. Interviewers can tell the difference between “I need a job” and “I understand this job and want it.” A sentence about the team or the desk’s reputation shows you did your homework. One last tip, for all seven answers Bring numbers. “I cleared a backlog of 300 aged breaks” beats “I handled reconciliations.” “I cut our daily exception queue by a third by fixing a feed mapping” beats “I improved processes.” Quantified evidence is the universal language of operations interviews — speak it."
+  },
+  {
+   "id": "blog-securities-lending-analyst-day-to-day",
+   "title": "What a securities-lending analyst actually does | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/securities-lending-analyst-day-to-day.html",
+   "text": "Securities lending is one of the most important jobs in finance that almost nobody outside the industry has heard of. When you read that a large asset manager “lends out” shares it holds for clients, there is an analyst somewhere making sure every share, every dollar of collateral, and every corporate action is accounted for. That analyst might be you. The basics in one paragraph Securities lending lets long-term investors, like pension funds, earn extra income by temporarily lending out the stocks and bonds they own. Borrowers are usually hedge funds and market makers who need the shares to settle short sales or meet delivery obligations. The loan is over-collateralized, marked to market daily, and can be recalled at any time. The analyst sits in the middle of this machinery. The morning starts with the overnight position Every day opens with a review of what happened since you last looked. You check settlement fails, recall notices, corporate actions, cash movements, and any breaks that aged overnight. This is the control loop of the job: scan, prioritize by risk and deadline, and build a queue. Learning to tell the difference between a timing difference and a genuine error is the core judgment skill of the role."
+  },
+  {
+   "id": "blog-securities-lending-analyst-day-to-day-b",
+   "title": "What a securities-lending analyst actually does | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/securities-lending-analyst-day-to-day.html",
+   "text": "Then comes reconciliation and break resolution You compare your books against the records of agent lenders, borrowers, and custodians. Most days, most things match. The exceptions — the breaks — are your worklist. A break usually falls into one of a few categories: a timing difference where one side booked a trade before the other, a quantity or rate mismatch, a corporate action that hit one book and not the other, or a settlement that never completed. Resolving a break is detective work. You pull evidence from trade records, settlement confirmations, and corporate action notices, figure out which side is wrong, and either fix your own book or chase the counterparty to fix theirs. Senior analysts learn to spot clusters: twenty breaks from one counterparty often trace back to a single bad data feed or a misconfigured setup, and fixing the root cause clears the whole batch at once. Midday is dominated by fails and settlement management A fail happens when a loaned security is supposed to settle but does not — the borrower cannot deliver the shares back, or the loan itself fails to start. You chase status with counterparties, check whether the failure is inventory, cash, or a blocked account, and escalate before the market’s deadlines expire."
+  },
+  {
+   "id": "blog-securities-lending-analyst-day-to-day-b-b",
+   "title": "What a securities-lending analyst actually does | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/securities-lending-analyst-day-to-day.html",
+   "text": "In some markets, persistent fails can lead to buy-ins. Your job is to make sure it never gets that far by keeping a credible settlement path and documented evidence that obligations can complete. Recalls and returns When the lender sells a security or needs it back — often to vote at a shareholder meeting — a recall notice goes out and the borrower must return the shares by a deadline. You track recall notices, allocate them across open loans, confirm returns, and make sure partially returned loans still balance. Collateral and margin keep the loans safe Every loan is backed by collateral worth more than the securities on loan, and the value is re-checked daily against market prices. When markets move, you issue margin calls to top up collateral or return excess. You also check eligibility: not every bond or equity is acceptable collateral, and the rules change by client mandate. Getting collateral wrong is one of the few mistakes that carries real financial risk, so this area gets maker-checker controls and careful signoff. Corporate actions are the trickiest part Dividends, stock splits, mergers, and tender offers keep happening on securities that are out on loan."
+  },
+  {
+   "id": "blog-securities-lending-analyst-day-to-day-b-b-b",
+   "title": "What a securities-lending analyst actually does | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/securities-lending-analyst-day-to-day.html",
+   "text": "The lender is still economically entitled to the dividend, so the borrower must pay a “manufactured dividend” equal to what the lender would have received. You make sure the right amount reaches the right client, that elections on voluntary offers are captured, and that voting rights — which pass to the borrower — are handled according to the lender’s policy. One missed dividend on a large loan can be expensive, which is why this area rewards paranoia. Finally, controls and signoff close the day Operations runs on evidence. You complete reconciliations, document open risk, and hand off anything unresolved with a named owner and next action. Entries over certain thresholds need a second pair of eyes. Auditors and regulators expect a clean trail: who did what, when, and on whose authority. Good analysts treat the handoff note as a product, not a chore, because the overnight team or the morning shift will act on it. Who thrives in this role? People who are comfortable with detail and deadlines, who write clearly enough that a stranger can act on their notes, and who stay calm when the queue is long. You do not need a finance degree to start — you need discipline, curiosity about how markets actually settle, and the willingness to ask “why doesn’t this match?” fifty times a day."
+  },
+  {
+   "id": "blog-securities-lending-analyst-day-to-day-b-b-b-b",
+   "title": "What a securities-lending analyst actually does | Finance Careers Blog",
+   "section": "Blog article",
+   "url": "blog/securities-lending-analyst-day-to-day.html",
+   "text": "If that sounds like you, the securities-lending desk is one of the best classrooms in finance. Everything downstream — trading, risk, compliance — depends on the plumbing working. Learning the plumbing first is a genuine career advantage."
+  },
+  {
+   "id": "page-jobs",
+   "title": "Jobs",
+   "section": "Jobs board",
+   "url": "jobs.html",
+   "text": "Curated entry points and what employers screen for. On this page: Jobs mapped to the role profiles."
+  },
+  {
+   "id": "page-resume-analyzer",
+   "title": "Resume Analyzer",
+   "section": "Resume analyzer",
+   "url": "resume-analyzer.html",
+   "text": "Free tool that scores a resume against the platform's 14 finance role profiles for keyword coverage, quantified impact, and ATS-readiness, entirely in the browser. Nothing is uploaded. On this page: Is your resume speaking finance?; 1 · Give it your resume; 2 · Your score; 3 · Role matches; 4 · What to fix first."
+  }
+ ]
+}

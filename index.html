@@ -560,6 +560,9 @@
       <a class="nav-btn" href="resume-analyzer.html">
         <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7"/></svg></span><span>Resume analyzer</span>
       </a>
+      <a class="nav-btn" href="coach.html">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M5 4h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 4V5a1 1 0 0 1 1-1z"/></svg></span><span>AI career coach</span>
+      </a>
     </nav>
     <div class="rail-meta">
       <strong>Securities lending</strong>
@@ -589,7 +592,7 @@
       <div class="status-strip">
         <div class="status-main"><strong>Your next desk lab is ready</strong><span>Securities lending · lifecycle, economics, BAU and exceptions</span></div>
         <div class="status-cell"><strong>4</strong><span>career tracks</span></div>
-        <div class="status-cell"><strong>32</strong><span>core modules</span></div>
+        <div class="status-cell"><strong>40</strong><span>core modules</span></div>
         <div class="status-cell"><strong>14</strong><span>role profiles</span></div>
       </div>
 
@@ -661,7 +664,7 @@
 
     <section class="view" id="curriculum" aria-labelledby="curriculum-title">
       <header class="page-head">
-        <div><p class="eyebrow">Four field guides · 32 modules</p><h1 id="curriculum-title">Understand the role before you chase the title.</h1><p>Each guide connects domain knowledge to the work: who owns what, how a day unfolds, where judgment matters, what good output looks like, and how to prove readiness in an interview.</p></div>
+        <div><p class="eyebrow">Four field guides · 40 modules</p><h1 id="curriculum-title">Understand the role before you chase the title.</h1><p>Each guide connects domain knowledge to the work: who owns what, how a day unfolds, where judgment matters, what good output looks like, and how to prove readiness in an interview.</p></div>
       </header>
       <div class="guide-switcher" role="tablist" aria-label="Career track guides">
         <button class="guide-tab active" data-guide="traditional"><span>TRACK 01</span><b>Traditional finance</b></button>
@@ -911,6 +914,7 @@
     <a class="mobile-btn" href="blog/index.html"><svg viewBox="0 0 24 24"><path d="M4 20l1-4L16 5l3 3L8 19zM14 7l3 3"/></svg>Blog</a>
     <a class="mobile-btn" href="podcast/index.html"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/></svg>Podcast</a>
     <a class="mobile-btn" href="resume-analyzer.html"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM15 3v4h4M9 12h7M9 16h7"/></svg>Resume</a>
+    <a class="mobile-btn" href="coach.html"><svg viewBox="0 0 24 24"><path d="M5 4h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 4V5a1 1 0 0 1 1-1z"/></svg>Coach</a>
   </nav>
   <footer style="border-top:1px solid var(--line);padding:26px 20px 96px;text-align:center;color:var(--muted);font-size:14px;line-height:1.6">
     <p style="margin:0 0 10px"><strong style="color:var(--ink)">Money Minutes</strong> — one money lesson in your inbox every Sunday. 60 seconds, zero fluff.</p>
@@ -984,8 +988,13 @@
   function showView(id) {
     document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === id));
     document.querySelectorAll('[data-view]').forEach(b => b.classList.toggle('active', b.dataset.view === id));
+    try { history.replaceState(null, '', '#' + id); } catch (e) {}
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+  (function () {
+    const h = (location.hash || '').replace('#', '');
+    if (['overview', 'curriculum', 'lab', 'roles', 'glossary'].indexOf(h) >= 0) showView(h);
+  })();
   document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => showView(b.dataset.view)));
   document.querySelectorAll('[data-view-jump]').forEach(b => b.addEventListener('click', () => showView(b.dataset.viewJump)));
   document.querySelectorAll('[data-open-lab]').forEach(b => b.addEventListener('click', () => { showView('lab'); showSection(1); }));
