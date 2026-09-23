@@ -223,6 +223,42 @@
     .lane-next { margin-top: 12px !important; font-size: 12px !important; }
     .lane-next strong { color: var(--ink); font-weight: 700; }
 
+    /* ---- Interactive learning roadmaps ---- */
+    .rm-progress { margin: 4px 0 6px; }
+    .rm-bar { height: 8px; background: var(--paper-2); border-radius: 99px; overflow: hidden; }
+    .rm-fill { height: 100%; background: var(--accent); border-radius: 99px; transition: width .45s ease; }
+    .rm-meta { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); margin-top: 7px; }
+    .rm-reset { background: none; border: 0; color: var(--muted); text-decoration: underline; cursor: pointer; font-size: 12px; padding: 2px 0; }
+    .rm-reset:hover { color: var(--ink); }
+    .rm-stage { position: relative; margin-top: 24px; padding-left: 28px; }
+    .rm-stage::before { content: ""; position: absolute; left: 9px; top: 8px; bottom: 8px; width: 2px; background: var(--line); border-radius: 2px; }
+    .rm-stage-name { position: relative; margin-bottom: 12px; }
+    .rm-stage-name span { font: 600 11px "IBM Plex Mono", monospace; color: var(--accent); text-transform: uppercase; letter-spacing: .1em; }
+    .rm-stage-name::before { content: ""; position: absolute; left: -19px; top: 50%; width: 13px; height: 13px; border-radius: 50%; background: var(--accent); transform: translate(-50%, -50%); box-shadow: 0 0 0 3px var(--paper); }
+    .rm-node { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; margin: 0 0 10px; overflow: hidden; transition: border-color .2s, box-shadow .2s; }
+    .rm-node.next { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+    .rm-head { width: 100%; display: flex; align-items: center; gap: 11px; background: none; border: 0; padding: 14px 16px; cursor: pointer; text-align: left; font: inherit; color: inherit; }
+    .rm-check { flex: 0 0 auto; width: 21px; height: 21px; border-radius: 50%; border: 2px solid var(--line-strong); position: relative; transition: background .2s, border-color .2s; }
+    .rm-check:hover { border-color: var(--accent); }
+    .rm-node.done .rm-check { background: var(--accent); border-color: var(--accent); }
+    .rm-node.done .rm-check::after { content: ""; position: absolute; left: 6px; top: 2px; width: 5px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(42deg); }
+    .rm-title { font-weight: 600; font-size: 15px; color: var(--ink); flex: 1; }
+    .rm-node.done .rm-title { text-decoration: line-through; color: var(--muted); }
+    .rm-time { font-size: 12px; color: var(--muted); white-space: nowrap; }
+    .rm-chev { flex: 0 0 auto; width: 9px; height: 9px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); transition: transform .2s; margin-right: 2px; }
+    .rm-node.open .rm-chev { transform: rotate(225deg); }
+    .rm-next-badge { flex: 0 0 auto; font-size: 10px; font-weight: 700; color: #fff; background: var(--accent-2); border-radius: 99px; padding: 3px 10px; text-transform: uppercase; letter-spacing: .05em; }
+    .rm-body { display: none; padding: 2px 16px 16px 48px; }
+    .rm-node.open .rm-body { display: block; }
+    .rm-desc { color: var(--muted); font-size: 14px; margin: 0 0 12px; line-height: 1.55; }
+    .rm-learn b, .rm-practice b { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--accent); }
+    .rm-learn ul { margin: 7px 0 14px 18px; padding: 0; font-size: 14px; line-height: 1.55; }
+    .rm-learn li { margin-bottom: 4px; }
+    .rm-practice p { margin: 7px 0 14px; font-size: 14px; line-height: 1.55; background: var(--paper-2); padding: 11px 13px; border-radius: 8px; }
+    .rm-done-btn { background: var(--accent); color: #fff; border: 0; border-radius: 8px; padding: 9px 18px; font-size: 13px; font-weight: 600; cursor: pointer; }
+    .rm-done-btn:hover { filter: brightness(1.08); }
+    .rm-node.done .rm-done-btn { background: transparent; color: var(--muted); border: 1px solid var(--line-strong); }
+
     /* Track guides */
     .guide-switcher { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 0 0 24px; }
     .guide-tab { border: 1px solid var(--line); background: var(--paper); padding: 14px 16px; text-align: left; cursor: pointer; }
@@ -636,6 +672,7 @@
 
       <article class="guide-panel active" data-guide-panel="traditional">
         <div class="guide-hero"><div class="guide-hero-copy"><p class="eyebrow">Track 01 · institutional operating model</p><h2>Traditional finance</h2><p>Learn how trades become positions, cash and assets move, records stay aligned, and regulated institutions prove control. This path is especially useful for operations, product, business-analysis, and risk pivots.</p></div><div class="guide-facts"><div class="guide-fact"><span>CORE QUESTION</span><b>Can the firm prove what it owns, owes, moved, and controlled?</b></div><div class="guide-fact"><span>COMMON ENTRY POINTS</span><b>Operations · client service · controls · business analysis</b></div><div class="guide-fact"><span>TRANSFERABLE EDGE</span><b>Exception management, stakeholder coordination, audit-ready evidence</b></div></div></div>
+        <section class="guide-section"><h3>Interactive learning roadmap</h3><p>Follow the path top to bottom. Click any step to see what to learn and how to practice it, then check steps off as you finish — your progress is saved on this device.</p><div class="roadmap" data-roadmap="traditional"></div></section>
         <section class="guide-section"><h3>Roles and the work they own</h3><p>Titles differ by firm. Compare the operating objective and outputs, not the label alone.</p><div class="role-snapshot-grid"><div class="role-snapshot"><span>CONTROL</span><h4>Trade operations analyst</h4><p>Confirms, settles, reconciles, and resolves lifecycle breaks before cutoffs.</p></div><div class="role-snapshot"><span>EXPOSURE</span><h4>Collateral analyst</h4><p>Values exposure, agrees calls, checks eligibility, and escalates disputes.</p></div><div class="role-snapshot"><span>CLIENT</span><h4>Asset-servicing specialist</h4><p>Processes income, elections, tax, and client reporting around held assets.</p></div><div class="role-snapshot"><span>CHANGE</span><h4>Operations product manager</h4><p>Turns manual controls and desk pain points into governed platform changes.</p></div></div></section>
         <section class="guide-section"><h3>A representative day</h3><figure class="day-video"><video controls preload="none" poster="videos/poster-traditional.jpg" aria-label="Day in the life: securities lending operations"><source src="videos/day-traditional.mp4" type="video/mp4" /></video><figcaption>Day in the life: securities lending operations &mdash; narrated, under a minute.</figcaption></figure><p>The rhythm follows market deadlines. Seniority changes the scope, but the control loop is similar.</p><div class="bau-grid"><div class="bau-cell bau-head">Window</div><div class="bau-cell bau-head">Focus</div><div class="bau-cell bau-head">Typical output</div><div class="bau-cell bau-head">Judgment</div><div class="bau-cell bau-time">OPEN</div><div class="bau-cell"><b>Overnight position</b><span>Review fails, recalls, cash, collateral, notices, and aged breaks.</span></div><div class="bau-cell"><b>Prioritized queue</b><span>Exposure, cutoff, owner, and next action.</span></div><div class="bau-cell"><b>Separate timing from risk</b><span>Not every difference is a true error.</span></div><div class="bau-cell bau-time">AM</div><div class="bau-cell"><b>Settlement and funding</b><span>Match instructions, chase status, resolve inventory or cash blockers.</span></div><div class="bau-cell"><b>Credible settlement path</b><span>Evidence that obligations can complete.</span></div><div class="bau-cell"><b>Escalate before options expire</b><span>Know market and custodian deadlines.</span></div><div class="bau-cell bau-time">MIDDAY</div><div class="bau-cell"><b>Live-book maintenance</b><span>Process trades, returns, rate changes, income, and margin.</span></div><div class="bau-cell"><b>Aligned records</b><span>Upstream events reach downstream books.</span></div><div class="bau-cell"><b>Find shared causes</b><span>Clusters often reveal one bad feed or setup.</span></div><div class="bau-cell bau-time">CLOSE</div><div class="bau-cell"><b>Control and handoff</b><span>Complete reconciliations and document open risk.</span></div><div class="bau-cell"><b>Evidence and ownership</b><span>Reviewer-ready signoff and named actions.</span></div><div class="bau-cell"><b>Accept or reduce residual risk</b><span>Explain what remains and why.</span></div></div></section>
         <section class="guide-section"><h3>Eight-module curriculum</h3><div class="curriculum-list"><div class="curriculum-item"><span class="curriculum-num">01</span><div><h4>Market structure</h4><p>Participants, venues, custodians, clearing, settlement, and the difference between execution and finality.</p></div></div><div class="curriculum-item"><span class="curriculum-num">02</span><div><h4>Securities lending</h4><p>Inventory, borrow demand, pricing, collateral, recalls, returns, and fee economics.</p></div></div><div class="curriculum-item"><span class="curriculum-num">03</span><div><h4>Trade lifecycle</h4><p>Capture, enrichment, confirmation, matching, settlement, maintenance, and close.</p></div></div><div class="curriculum-item"><span class="curriculum-num">04</span><div><h4>Collateral operations</h4><p>Exposure, marks, haircuts, eligibility, substitutions, margin calls, and disputes.</p></div></div><div class="curriculum-item"><span class="curriculum-num">05</span><div><h4>Asset servicing</h4><p>Dividends, interest, corporate actions, manufactured payments, and elections.</p></div></div><div class="curriculum-item"><span class="curriculum-num">06</span><div><h4>Reconciliations</h4><p>Completeness, matching keys, aging, root cause, tolerances, and evidence.</p></div></div><div class="curriculum-item"><span class="curriculum-num">07</span><div><h4>Risk and controls</h4><p>Preventive versus detective controls, escalation, maker-checker, and residual risk.</p></div></div><div class="curriculum-item"><span class="curriculum-num">08</span><div><h4>Client and management reporting</h4><p>Translate positions, revenue, service, and incidents into decision-useful reporting.</p></div></div></div></section>
@@ -645,6 +682,7 @@
 
       <article class="guide-panel" data-guide-panel="defi">
         <div class="guide-hero"><div class="guide-hero-copy"><p class="eyebrow">Track 02 · programmable financial systems</p><h2>DeFi</h2><p>Learn to read protocol state, trace transactions, understand economic incentives, and operate safely around immutable execution, volatile collateral, governance, and smart-contract dependencies.</p></div><div class="guide-facts"><div class="guide-fact"><span>CORE QUESTION</span><b>What state changed on-chain, why, and what risk did that create?</b></div><div class="guide-fact"><span>COMMON ENTRY POINTS</span><b>Protocol operations · risk · analytics · ecosystem support</b></div><div class="guide-fact"><span>TRANSFERABLE EDGE</span><b>Financial controls plus transaction-level technical curiosity</b></div></div></div>
+        <section class="guide-section"><h3>Interactive learning roadmap</h3><p>Follow the path top to bottom. Click any step to see what to learn and how to practice it, then check steps off as you finish — your progress is saved on this device.</p><div class="roadmap" data-roadmap="defi"></div></section>
         <section class="guide-section"><h3>Roles and the work they own</h3><div class="role-snapshot-grid"><div class="role-snapshot"><span>OPERATE</span><h4>Protocol operations analyst</h4><p>Monitors activity, treasury workflows, parameter changes, and incident queues.</p></div><div class="role-snapshot"><span>RISK</span><h4>Protocol risk analyst</h4><p>Studies collateral, liquidity, oracle, concentration, and liquidation behavior.</p></div><div class="role-snapshot"><span>DATA</span><h4>On-chain analyst</h4><p>Turns transactions and contract events into usable behavioral and risk signals.</p></div><div class="role-snapshot"><span>PRODUCT</span><h4>DeFi product manager</h4><p>Designs user flows and safeguards across wallets, contracts, and off-chain services.</p></div></div></section>
         <section class="guide-section"><h3>A representative day</h3><figure class="day-video"><video controls preload="none" poster="videos/poster-defi.jpg" aria-label="Day in the life: DeFi protocol operations"><source src="videos/day-defi.mp4" type="video/mp4" /></video><figcaption>Day in the life: DeFi protocol operations &mdash; narrated, under a minute.</figcaption></figure><div class="bau-grid"><div class="bau-cell bau-head">Window</div><div class="bau-cell bau-head">Focus</div><div class="bau-cell bau-head">Typical output</div><div class="bau-cell bau-head">Judgment</div><div class="bau-cell bau-time">START</div><div class="bau-cell"><b>State and incident scan</b><span>Review contract events, utilization, liquidations, oracle status, and governance.</span></div><div class="bau-cell"><b>Risk snapshot</b><span>What moved outside expected conditions.</span></div><div class="bau-cell"><b>Distinguish volatility from malfunction</b><span>Market stress is not automatically a protocol defect.</span></div><div class="bau-cell bau-time">MONITOR</div><div class="bau-cell"><b>Transaction tracing</b><span>Follow hashes, logs, wallet flows, and contract calls.</span></div><div class="bau-cell"><b>Reconstructed sequence</b><span>Evidence of who called what and how state changed.</span></div><div class="bau-cell"><b>Read execution before narrative</b><span>On-chain evidence can contradict first reports.</span></div><div class="bau-cell bau-time">BUILD</div><div class="bau-cell"><b>Parameters and releases</b><span>Review proposed changes, simulations, dependencies, and rollback limits.</span></div><div class="bau-cell"><b>Decision package</b><span>Expected effect, risks, monitoring, and approval trail.</span></div><div class="bau-cell"><b>Model second-order effects</b><span>One parameter can alter liquidity and user behavior.</span></div><div class="bau-cell bau-time">HANDOFF</div><div class="bau-cell"><b>Community and team update</b><span>Document incidents, proposals, unresolved risk, and next watchpoints.</span></div><div class="bau-cell"><b>Shared operating picture</b><span>Technical facts translated into user and treasury impact.</span></div><div class="bau-cell"><b>Separate fact, inference, and proposal</b><span>Make uncertainty explicit.</span></div></div></section>
         <section class="guide-section"><h3>Eight-module curriculum</h3><div class="curriculum-list"><div class="curriculum-item"><span class="curriculum-num">01</span><div><h4>Wallets and custody</h4><p>Keys, signatures, addresses, multisig, hardware custody, approvals, and recovery risk.</p></div></div><div class="curriculum-item"><span class="curriculum-num">02</span><div><h4>Blockchain settlement</h4><p>Transactions, gas, blocks, confirmations, finality, reorgs, explorers, and event logs.</p></div></div><div class="curriculum-item"><span class="curriculum-num">03</span><div><h4>DEX mechanics</h4><p>Automated market makers, pools, price impact, slippage, routing, and impermanent loss.</p></div></div><div class="curriculum-item"><span class="curriculum-num">04</span><div><h4>Lending protocols</h4><p>Supply, borrow, utilization, rates, collateral factors, health, and liquidation.</p></div></div><div class="curriculum-item"><span class="curriculum-num">05</span><div><h4>Stablecoins</h4><p>Backing models, redemption, peg mechanics, liquidity, reserves, and failure modes.</p></div></div><div class="curriculum-item"><span class="curriculum-num">06</span><div><h4>Token economics</h4><p>Supply, emissions, incentives, fee capture, governance rights, and reflexivity.</p></div></div><div class="curriculum-item"><span class="curriculum-num">07</span><div><h4>Oracles and governance</h4><p>Data sources, update logic, manipulation risk, proposals, voting, and execution delays.</p></div></div><div class="curriculum-item"><span class="curriculum-num">08</span><div><h4>Protocol risk</h4><p>Smart-contract, liquidity, bridge, governance, custody, operational, and regulatory risk.</p></div></div></div></section>
@@ -654,6 +692,7 @@
 
       <article class="guide-panel" data-guide-panel="fintech">
         <div class="guide-hero"><div class="guide-hero-copy"><p class="eyebrow">Track 03 · financial products at software speed</p><h2>Fintech</h2><p>Learn how customer actions become ledger entries and external money movement, with identity, fraud, partner, compliance, and reliability controls around every handoff.</p></div><div class="guide-facts"><div class="guide-fact"><span>CORE QUESTION</span><b>Did the customer action produce the correct financial and ledger outcome?</b></div><div class="guide-fact"><span>COMMON ENTRY POINTS</span><b>Payments operations · product operations · implementation · business analysis</b></div><div class="guide-fact"><span>TRANSFERABLE EDGE</span><b>Process mapping, client empathy, control thinking, and data fluency</b></div></div></div>
+        <section class="guide-section"><h3>Interactive learning roadmap</h3><p>Follow the path top to bottom. Click any step to see what to learn and how to practice it, then check steps off as you finish — your progress is saved on this device.</p><div class="roadmap" data-roadmap="fintech"></div></section>
         <section class="guide-section"><h3>Roles and the work they own</h3><div class="role-snapshot-grid"><div class="role-snapshot"><span>FLOW</span><h4>Payments operations</h4><p>Owns exceptions across authorization, clearing, settlement, returns, and disputes.</p></div><div class="role-snapshot"><span>PRODUCT</span><h4>Product operations</h4><p>Connects support signals, incidents, launch readiness, and operating procedures.</p></div><div class="role-snapshot"><span>DELIVERY</span><h4>Implementation manager</h4><p>Moves clients from requirements through integration, testing, launch, and stabilization.</p></div><div class="role-snapshot"><span>CONTROL</span><h4>Fraud strategy analyst</h4><p>Tunes detection and review while balancing loss, friction, and false positives.</p></div></div></section>
         <section class="guide-section"><h3>A representative day</h3><figure class="day-video"><video controls preload="none" poster="videos/poster-fintech.jpg" aria-label="Day in the life: fintech product operations"><source src="videos/day-fintech.mp4" type="video/mp4" /></video><figcaption>Day in the life: fintech product operations &mdash; narrated, under a minute.</figcaption></figure><div class="bau-grid"><div class="bau-cell bau-head">Window</div><div class="bau-cell bau-head">Focus</div><div class="bau-cell bau-head">Typical output</div><div class="bau-cell bau-head">Judgment</div><div class="bau-cell bau-time">START</div><div class="bau-cell"><b>Service and money scan</b><span>Review incidents, payment failures, ledger breaks, queues, and partner status.</span></div><div class="bau-cell"><b>Operating priorities</b><span>Customer impact, money at risk, volume, and SLA.</span></div><div class="bau-cell"><b>Do not confuse volume with severity</b><span>A small count can hold large exposure.</span></div><div class="bau-cell bau-time">TRIAGE</div><div class="bau-cell"><b>Trace failed journeys</b><span>Connect API request, decision, processor message, ledger entry, and customer state.</span></div><div class="bau-cell"><b>Failure classification</b><span>Partner, product, data, policy, or user action.</span></div><div class="bau-cell"><b>Find the system of record</b><span>UI status may lag financial truth.</span></div><div class="bau-cell bau-time">DELIVER</div><div class="bau-cell"><b>Launch and change work</b><span>Refine requirements, test edge cases, coordinate controls, and monitor rollout.</span></div><div class="bau-cell"><b>Launch evidence</b><span>Acceptance results, runbook, owners, and rollback criteria.</span></div><div class="bau-cell"><b>Design for unhappy paths</b><span>Timeouts, retries, duplicates, partial failure, and reversals.</span></div><div class="bau-cell bau-time">CLOSE</div><div class="bau-cell"><b>Reconcile and learn</b><span>Balance movement to ledger, age exceptions, and turn incidents into backlog.</span></div><div class="bau-cell"><b>Closed loop</b><span>Resolved money, customer communication, and prevention item.</span></div><div class="bau-cell"><b>Choose durable fixes</b><span>Not every manual workaround deserves automation.</span></div></div></section>
         <section class="guide-section"><h3>Eight-module curriculum</h3><div class="curriculum-list"><div class="curriculum-item"><span class="curriculum-num">01</span><div><h4>Payment orchestration</h4><p>Authorization, capture, clearing, settlement, reversals, retries, and routing.</p></div></div><div class="curriculum-item"><span class="curriculum-num">02</span><div><h4>Banking APIs</h4><p>Requests, responses, webhooks, idempotency, timeouts, authentication, and partners.</p></div></div><div class="curriculum-item"><span class="curriculum-num">03</span><div><h4>Ledger design</h4><p>Accounts, entries, balances, pending versus posted, double entry, and reconciliation.</p></div></div><div class="curriculum-item"><span class="curriculum-num">04</span><div><h4>KYC and onboarding</h4><p>Identity evidence, verification, sanctions screening, risk tiers, and manual review.</p></div></div><div class="curriculum-item"><span class="curriculum-num">05</span><div><h4>Fraud operations</h4><p>Signals, rules, models, queues, false positives, account action, and loss feedback.</p></div></div><div class="curriculum-item"><span class="curriculum-num">06</span><div><h4>Disputes and returns</h4><p>Reason codes, evidence, deadlines, provisional outcomes, customer communication.</p></div></div><div class="curriculum-item"><span class="curriculum-num">07</span><div><h4>Product delivery</h4><p>Discovery, requirements, acceptance criteria, release readiness, runbooks, and adoption.</p></div></div><div class="curriculum-item"><span class="curriculum-num">08</span><div><h4>Metrics and controls</h4><p>Approval rate, failure rate, loss, false positives, latency, SLA, and control evidence.</p></div></div></div></section>
@@ -663,6 +702,7 @@
 
       <article class="guide-panel" data-guide-panel="ai">
         <div class="guide-hero"><div class="guide-hero-copy"><p class="eyebrow">Track 04 · governed human-plus-model work</p><h2>AI in finance</h2><p>Learn how to select useful workflows, design evaluations, manage data and model risk, place human judgment, monitor production behavior, and earn adoption without overstating automation.</p></div><div class="guide-facts"><div class="guide-fact"><span>CORE QUESTION</span><b>Is the model-assisted decision useful, controlled, explainable, and monitored?</b></div><div class="guide-fact"><span>COMMON ENTRY POINTS</span><b>AI product · model operations · intelligent automation · governance</b></div><div class="guide-fact"><span>TRANSFERABLE EDGE</span><b>Deep workflow knowledge paired with structured experimentation</b></div></div></div>
+        <section class="guide-section"><h3>Interactive learning roadmap</h3><p>Follow the path top to bottom. Click any step to see what to learn and how to practice it, then check steps off as you finish — your progress is saved on this device.</p><div class="roadmap" data-roadmap="ai"></div></section>
         <section class="guide-section"><h3>Roles and the work they own</h3><div class="role-snapshot-grid"><div class="role-snapshot"><span>PRODUCT</span><h4>AI product manager</h4><p>Selects use cases, defines evaluation, aligns controls, and drives adoption.</p></div><div class="role-snapshot"><span>OPERATE</span><h4>Model operations analyst</h4><p>Monitors quality, drift, latency, incidents, versions, and review queues.</p></div><div class="role-snapshot"><span>BUILD</span><h4>Intelligent-automation lead</h4><p>Combines rules, models, workflow tools, and human review into reliable processes.</p></div><div class="role-snapshot"><span>GOVERN</span><h4>AI governance analyst</h4><p>Maintains inventory, assessments, approvals, controls, evidence, and issue remediation.</p></div></div></section>
         <section class="guide-section"><h3>A representative day</h3><figure class="day-video"><video controls preload="none" poster="videos/poster-ai.jpg" aria-label="Day in the life: AI product at a bank"><source src="videos/day-ai.mp4" type="video/mp4" /></video><figcaption>Day in the life: AI product at a bank &mdash; narrated, under a minute.</figcaption></figure><div class="bau-grid"><div class="bau-cell bau-head">Window</div><div class="bau-cell bau-head">Focus</div><div class="bau-cell bau-head">Typical output</div><div class="bau-cell bau-head">Judgment</div><div class="bau-cell bau-time">START</div><div class="bau-cell"><b>Production health</b><span>Review quality, latency, cost, failures, overrides, and user feedback.</span></div><div class="bau-cell"><b>Health assessment</b><span>Expected variance versus action-worthy change.</span></div><div class="bau-cell"><b>Metrics need context</b><span>Aggregate accuracy can hide high-risk failure classes.</span></div><div class="bau-cell bau-time">DISCOVER</div><div class="bau-cell"><b>Workflow observation</b><span>Shadow users, inspect exceptions, and identify decision points and evidence.</span></div><div class="bau-cell"><b>Use-case brief</b><span>Problem, baseline, user, data, risk, and success measure.</span></div><div class="bau-cell"><b>Automate the right unit</b><span>A narrow assist may outperform end-to-end replacement.</span></div><div class="bau-cell bau-time">EVALUATE</div><div class="bau-cell"><b>Test behavior</b><span>Run representative, edge, adversarial, and high-impact cases.</span></div><div class="bau-cell"><b>Evaluation report</b><span>Quality by class, failure examples, thresholds, and reviewer needs.</span></div><div class="bau-cell"><b>Define acceptable failure</b><span>Different tasks need different precision and abstention.</span></div><div class="bau-cell bau-time">DELIVER</div><div class="bau-cell"><b>Release and adoption</b><span>Align governance, UX, training, monitoring, support, and fallback.</span></div><div class="bau-cell"><b>Controlled rollout</b><span>Named owners, guardrails, feedback, and rollback criteria.</span></div><div class="bau-cell"><b>Trust is operational</b><span>Users need to know when to rely, review, or override.</span></div></div></section>
         <section class="guide-section"><h3>Eight-module curriculum</h3><div class="curriculum-list"><div class="curriculum-item"><span class="curriculum-num">01</span><div><h4>Model fundamentals</h4><p>Training versus inference, classification, ranking, generation, confidence, and limitations.</p></div></div><div class="curriculum-item"><span class="curriculum-num">02</span><div><h4>Data and evaluation</h4><p>Representative sets, labels, baselines, error classes, precision, recall, and human review.</p></div></div><div class="curriculum-item"><span class="curriculum-num">03</span><div><h4>Operations copilots</h4><p>Summarization, retrieval, drafting, triage, recommendation, action boundaries, and feedback.</p></div></div><div class="curriculum-item"><span class="curriculum-num">04</span><div><h4>Document intelligence</h4><p>Extraction, classification, confidence, source grounding, exceptions, and record linkage.</p></div></div><div class="curriculum-item"><span class="curriculum-num">05</span><div><h4>Model risk</h4><p>Validation, change control, bias, robustness, explainability, inventory, and issues.</p></div></div><div class="curriculum-item"><span class="curriculum-num">06</span><div><h4>Human oversight</h4><p>Approval points, abstention, overrides, escalation, sampling, and accountability.</p></div></div><div class="curriculum-item"><span class="curriculum-num">07</span><div><h4>AI product strategy</h4><p>Use-case value, feasibility, risk, data readiness, build-buy, cost, and sequencing.</p></div></div><div class="curriculum-item"><span class="curriculum-num">08</span><div><h4>Adoption and monitoring</h4><p>Workflow fit, training, quality, drift, latency, cost, incidents, and value realization.</p></div></div></div></section>
@@ -1108,6 +1148,362 @@
     if (last) { input.value = last; setLearner(last); }
     else { renderLearnerUI(); updateProgress(); }
   })();
+})();
+
+/* Interactive learning roadmaps — Finance Careers Learning Platform.
+   Node schema: { id, title, time, desc, learn[3], practice }.
+   Track keys: traditional, defi, fintech, ai. 10 nodes each, 4 stages. */
+
+const ROADMAPS = {
+  traditional: {
+    stages: [
+      { name: "Foundation", nodes: [
+        { id: "t1", title: "Market structure", time: "~4 hrs",
+          desc: "Learn how securities move through the market: who holds what, who settles what, and where an operations team sits in the chain. Without this map, every downstream process is just memorized steps.",
+          learn: ["The roles of custodians, agent lenders, borrowers, and CCPs", "Settlement systems: DTC, Fedwire, Euroclear, and T+1 timing", "How an order becomes a settled position, step by step"],
+          practice: "Sketch the full chain from beneficial owner to borrower on one page and label where settlement, collateral, and billing touch it." },
+        { id: "t2", title: "Trade lifecycle", time: "~4 hrs",
+          desc: "Follow a trade from execution through affirmation, confirmation, booking, and settlement. This is the backbone every ops analyst leans on when something breaks near a cutoff.",
+          learn: ["Execution, affirmation, confirmation, and settlement stages", "Booking conventions and how misbookings surface as breaks", "Cutoff times and why missing one creates real exposure"],
+          practice: "Take one hypothetical equity trade and write out each lifecycle stage, the system or party responsible, and the cutoff that applies." }
+      ]},
+      { name: "Core mechanics", nodes: [
+        { id: "t3", title: "Securities lending", time: "~5 hrs",
+          desc: "Understand borrow demand, inventory, pricing, collateral, recalls, and billing as one connected workflow. Securities lending is the desk where most ops careers in this track actually begin.",
+          learn: ["Locate, borrow, loan, recall, and return mechanics", "Collateralization, manufactured dividends, and fee accrual", "How billing is calculated and where disputes start"],
+          practice: "Walk a loan through its full life on paper: borrow request, collateral posted, a recall mid-loan, and the final billing line." },
+        { id: "t4", title: "Collateral operations", time: "~5 hrs",
+          desc: "Learn how exposure is valued, how haircuts and eligibility schedules work, and how margin calls move under documented legal terms. Collateral is where ops meets real money, daily.",
+          learn: ["Valuation, haircuts, and eligibility schedules", "Margin call issuance, agreement, and settlement flow", "How disputes are documented and escalated under CSA/ISDA terms"],
+          practice: "Given a sample portfolio and an eligibility schedule, calculate a margin call by hand and write the escalation note for a disputed figure." },
+        { id: "t5", title: "Reconciliations", time: "~4 hrs",
+          desc: "Reconciliation is the daily proof that records match reality. Learn break triage: what to check first, how to age exceptions, and when to escalate instead of digging.",
+          learn: ["Position, cash, and trade reconciliations and their break types", "Break triage order: instruction, inventory, timing, matching, system", "Exception aging, ownership, and escalation thresholds"],
+          practice: "Take a list of five sample breaks and write a triage note for each: likely cause, first check, and whether it needs escalation today." }
+      ]},
+      { name: "Applied skills", nodes: [
+        { id: "t6", title: "Asset servicing", time: "~4 hrs",
+          desc: "Corporate actions, income, elections, and tax events all land on operations to process correctly. Learn how servicing choices flow into client positions and reporting.",
+          learn: ["Corporate action types: dividends, splits, mergers, elections", "Income collection, tax treatment, and client reporting impacts", "Election deadlines and the cost of a missed instruction"],
+          practice: "For one dividend-with-election corporate action, write the timeline of ops tasks from announcement to payment with deadlines." },
+        { id: "t7", title: "Risk and controls", time: "~5 hrs",
+          desc: "Move from doing the work to proving it is controlled. Learn how controls are designed, tested, and evidenced — and how incidents become remediated issues rather than repeated ones.",
+          learn: ["Control design: preventive vs detective, and control evidence", "Incident write-ups: root cause, impact, and remediation actions", "How issues are tracked to closure with governance sign-off"],
+          practice: "Write a one-page incident note for a missed settlement: what happened, root cause, control gap, and the remediation you would propose." },
+        { id: "t8", title: "Client and management reporting", time: "~3 hrs",
+          desc: "Operations output only matters if decision-makers can read it. Learn which metrics a desk manager and a client each care about, and how to present exceptions honestly.",
+          learn: ["Desk KPIs: fail rates, break aging, SLA adherence, volumes", "Client reporting: what gets disclosed and how exceptions are framed", "Turning a recurring issue into a data-backed improvement proposal"],
+          practice: "Draft a weekly desk summary from sample data: three KPIs, one aging exception, and one recommended action." }
+      ]},
+      { name: "Job-ready", nodes: [
+        { id: "t9", title: "Portfolio artifact: process map", time: "~6 hrs",
+          desc: "Build one artifact that proves you can think like an operator: a complete process map of a securities lending loan or a reconciliation workflow, with controls and failure points marked.",
+          learn: ["Mapping a workflow end to end with owners and handoffs", "Marking controls, cutoffs, and failure points on the map", "Writing the one-page narrative that explains the map to a hiring manager"],
+          practice: "Produce your process map and a short walkthrough script, then explain it aloud in under five minutes." },
+        { id: "t10", title: "Interview readiness", time: "~4 hrs",
+          desc: "Practice the answers that separate operators from memorizers: explain a full lifecycle, triage a deadline scenario, and describe a control improvement you would actually make.",
+          learn: ["Explaining a trade or loan lifecycle without notes", "Triaging a scenario: fails piling up 30 minutes before cutoff", "Describing one control improvement with before-and-after evidence"],
+          practice: "Record yourself answering all three prompts, then re-do the weakest one until the explanation is under three minutes." }
+      ]}
+    ]
+  },
+
+  defi: {
+    stages: [
+      { name: "Foundation", nodes: [
+        { id: "d1", title: "Wallets and custody", time: "~3 hrs",
+          desc: "Learn how assets are actually held on-chain: keys, seed phrases, hot vs cold storage, multisigs, and institutional custody. Every protocol operation starts with who can move funds.",
+          learn: ["Private keys, seed phrases, and how signatures authorize movement", "Hot wallets vs cold storage vs multisig vs MPC custody", "How institutional custody and withdrawal policies work in practice"],
+          practice: "Set up a test wallet, receive testnet tokens, and document each step as if writing a custody procedure." },
+        { id: "d2", title: "Blockchain settlement", time: "~4 hrs",
+          desc: "Understand blocks, confirmations, finality, and gas — the settlement layer everything else depends on. Learn to read a block explorer like an ops analyst reads a settlement report.",
+          learn: ["Blocks, confirmations, finality, and reorgs", "Gas, fees, and transaction ordering", "Reading transactions, internal calls, and token transfers on an explorer"],
+          practice: "Pick any mainnet transaction and write out: sender, contract called, tokens moved, fee paid, and confirmations observed." }
+      ]},
+      { name: "Core mechanics", nodes: [
+        { id: "d3", title: "DEX mechanics", time: "~4 hrs",
+          desc: "Learn how decentralized exchanges price and settle trades: liquidity pools, automated market makers, slippage, and routing. This is the trading-support equivalent of DeFi.",
+          learn: ["AMM pools, constant-product pricing, and liquidity provision", "Slippage, price impact, and MEV-adjacent execution risk", "How aggregators route across venues"],
+          practice: "Simulate a swap on a testnet DEX and record the quoted price, executed price, slippage, and fee — then explain each line." },
+        { id: "d4", title: "Lending protocols", time: "~5 hrs",
+          desc: "Study overcollateralized lending: deposits, borrows, collateral factors, and liquidations. The liquidation is the DeFi margin call — learn its triggers and failure modes.",
+          learn: ["Collateral factors, loan-to-value, and borrow caps", "Liquidation triggers, incentives, and cascade risk", "Interest rate models and utilization"],
+          practice: "Using a lending protocol dashboard, calculate at what price a sample position gets liquidated and write the monitoring rule you would set." },
+        { id: "d5", title: "Stablecoins", time: "~4 hrs",
+          desc: "Learn the three peg designs — fiat-backed, crypto-backed, algorithmic — and how each one breaks. Stablecoin operations is largely peg monitoring and redemption readiness.",
+          learn: ["Fiat-backed, crypto-collateralized, and algorithmic peg mechanisms", "Reserve attestations and what they do and do not prove", "Depeg anatomy: redemptions, liquidity, and contagion"],
+          practice: "Write a one-page depeg playbook: which metrics you would watch, the thresholds, and the first three actions." }
+      ]},
+      { name: "Applied skills", nodes: [
+        { id: "d6", title: "Token economics", time: "~4 hrs",
+          desc: "Understand supply schedules, vesting, emissions, and governance tokens well enough to assess a protocol's incentives. Token design drives user and risk behavior.",
+          learn: ["Supply, emissions, vesting, and unlock schedules", "Governance tokens vs utility: what voting power actually controls", "How incentive programs shape liquidity and mercenary capital"],
+          practice: "Read one protocol's token docs and summarize its supply schedule, unlocks, and governance powers in half a page." },
+        { id: "d7", title: "Oracles and governance", time: "~5 hrs",
+          desc: "Oracles feed prices into contracts and governance changes the rules. Both are operational dependencies: stale feeds and hostile votes have caused real losses.",
+          learn: ["How price oracles work and what staleness or manipulation costs", "DAO governance: proposals, voting, timelocks, and privileged roles", "Parameter changes as an operational event with monitoring needs"],
+          practice: "Trace one governance proposal from forum post to execution and list the operational checks a protocol ops team should run before and after." },
+        { id: "d8", title: "Protocol risk", time: "~5 hrs",
+          desc: "Put it together: smart-contract risk, oracle risk, liquidity risk, and concentration risk as a monitoring discipline. Learn how incident reviews turn exploits into process.",
+          learn: ["Risk taxonomy: contract, oracle, liquidity, governance, concentration", "Monitoring design: metrics, thresholds, and alert routing", "Post-mortem structure: timeline, root cause, remediation, prevention"],
+          practice: "Read one published exploit post-mortem and rewrite it as an ops incident review with monitoring gaps and proposed controls." }
+      ]},
+      { name: "Job-ready", nodes: [
+        { id: "d9", title: "Portfolio artifact: annotated transaction trace", time: "~6 hrs",
+          desc: "Produce the artifact DeFi employers actually respect: a fully annotated trace of a real transaction — calls, events, assets, state changes, fees, and risks — with your own monitoring notes.",
+          learn: ["Selecting a transaction with real operational substance", "Annotating calls, events, token flows, and state changes", "Writing the business meaning and 'what I would monitor next'"],
+          practice: "Publish your annotated trace as a clean one-page document and rehearse a five-minute walkthrough of it." },
+        { id: "d10", title: "Interview readiness", time: "~4 hrs",
+          desc: "Practice explaining one transaction end to end, reasoning through a liquidation scenario, and describing how you would monitor a protocol's health on day one.",
+          learn: ["Walking through a transaction trace without notes", "Reasoning through a liquidation cascade under time pressure", "Describing a day-one monitoring setup for a protocol you have never seen"],
+          practice: "Record yourself answering all three prompts and re-do the weakest until each answer is crisp and under three minutes." }
+      ]}
+    ]
+  },
+
+  fintech: {
+    stages: [
+      { name: "Foundation", nodes: [
+        { id: "f1", title: "Payment orchestration", time: "~4 hrs",
+          desc: "Learn how money moves: authorization, clearing, and settlement across card networks, ACH, wires, and real-time rails. Exceptions in this flow are the daily work of payments operations.",
+          learn: ["Authorization, clearing, settlement: what happens at each stage", "Card networks, ACH, wires, and real-time rails compared", "Where failures, returns, and timing mismatches originate"],
+          practice: "Map one card payment and one ACH payment end to end, labeling the parties and the settlement timing at each hop." },
+        { id: "f2", title: "Banking APIs", time: "~4 hrs",
+          desc: "Modern fintech runs on APIs and webhooks. Learn how money-movement integrations work, what idempotency protects you from, and how ops teams detect a broken integration.",
+          learn: ["REST APIs, webhooks, and event-driven money movement", "Idempotency keys and duplicate-transaction prevention", "How ops monitors integration health and handles provider outages"],
+          practice: "Write a short incident note for a webhook outage: what breaks, how you would detect it, and the manual workaround." }
+      ]},
+      { name: "Core mechanics", nodes: [
+        { id: "f3", title: "Ledger design", time: "~5 hrs",
+          desc: "The ledger is the source of truth. Learn double-entry basics, balance integrity, and how reconciliation between the ledger and providers catches real discrepancies.",
+          learn: ["Double-entry concepts: debits, credits, and balanced postings", "Ledger vs provider balances: why they drift and how to reconcile", "Designing for auditability: immutable entries and correction patterns"],
+          practice: "Post a set of sample transactions to a simple ledger, then reconcile it against a 'provider statement' with two planted discrepancies." },
+        { id: "f4", title: "KYC and onboarding", time: "~4 hrs",
+          desc: "Before money moves, identity must be verified. Learn document checks, sanctions screening, KYB for businesses, and how onboarding exceptions queue for human review.",
+          learn: ["Identity verification: documents, biometrics, and data checks", "Sanctions and PEP screening and what a 'hit' triggers", "KYB, beneficial ownership, and ongoing monitoring obligations"],
+          practice: "Design the review queue for flagged onboardings: priority rules, evidence required, and the approve/reject/escalate criteria." }
+      ]},
+      { name: "Applied skills", nodes: [
+        { id: "f5", title: "Card disputes and chargebacks", time: "~4 hrs",
+          desc: "Disputes are deadline-driven casework. Learn reason codes, evidence standards, representment, and how win rates and loss rates are actually measured.",
+          learn: ["Chargeback reason codes and what evidence each one needs", "Representment workflow and network deadlines", "Measuring dispute outcomes: win rate, loss rate, and operational cost"],
+          practice: "Take one sample dispute and assemble the evidence packet you would submit, with a note on the deadline risk." },
+        { id: "f6", title: "Fraud strategy fundamentals", time: "~5 hrs",
+          desc: "Fraud work is a three-way tradeoff: losses, customer friction, and review capacity. Learn how signals become rules, and how false positives are measured and managed.",
+          learn: ["Fraud signals: device, behavioral, velocity, and network signals", "Rule tuning and the loss-vs-friction tradeoff", "False-positive measurement and review queue design"],
+          practice: "Given sample transaction data and a loss event, propose one rule change and write down the expected effect on approvals and reviews." },
+        { id: "f7", title: "Product operations and incident response", time: "~5 hrs",
+          desc: "When something breaks in production, product ops runs the response. Learn severity levels, runbooks, stakeholder communication, and blameless post-mortems.",
+          learn: ["Incident severity levels and who gets paged when", "Runbooks: the first 15 minutes of a payments incident", "Post-mortems that produce controls, not blame"],
+          practice: "Write a runbook for a stuck-settlement incident: detection, first actions, comms template, and escalation path." },
+        { id: "f8", title: "Metrics and stakeholder reporting", time: "~3 hrs",
+          desc: "Operations credibility comes from honest numbers. Learn the service levels and exception metrics fintech leaders watch, and how to report a bad week without hiding it.",
+          learn: ["Authorization rates, settlement timeliness, and exception aging", "SLA design and breach communication", "Dashboards for ops teams vs executives vs partners"],
+          practice: "Build a one-page weekly ops summary from sample data, including one metric that missed target and the planned fix." }
+      ]},
+      { name: "Job-ready", nodes: [
+        { id: "f9", title: "Portfolio artifact: exception-mapping piece", time: "~6 hrs",
+          desc: "Build an artifact that shows how you think under operational pressure: map a payment exception across every system and partner handoff, with ownership and resolution at each step.",
+          learn: ["Choosing an exception with real multi-party complexity", "Mapping systems, handoffs, owners, and resolution steps", "Writing the narrative: what broke, why, and how it was contained"],
+          practice: "Produce the exception map as a clean document and rehearse explaining it in under five minutes." },
+        { id: "f10", title: "Interview readiness", time: "~4 hrs",
+          desc: "Practice the scenarios fintech interviewers actually use: map a failed payment, reason through a fraud-rule change, and describe an incident you would run well.",
+          learn: ["Mapping a failed payment across system and partner handoffs", "Proposing a fraud-rule change with loss and friction tradeoffs", "Walking through an incident response from detection to post-mortem"],
+          practice: "Record yourself answering all three prompts and re-do the weakest until each is under three minutes and concrete." }
+      ]}
+    ]
+  },
+
+  ai: {
+    stages: [
+      { name: "Foundation", nodes: [
+        { id: "a1", title: "Model fundamentals", time: "~4 hrs",
+          desc: "Learn what large language models actually do — predict likely next tokens from training patterns — so you can reason about their strengths instead of treating them as magic or as databases.",
+          learn: ["Token prediction, context windows, and why outputs vary", "Training data, fine-tuning, and what the model does not know", "Probabilistic output: why the same prompt can give different answers"],
+          practice: "Run the same factual prompt five times on a public model and document the variations and what that implies for ops use." },
+        { id: "a2", title: "LLM capabilities and limits for finance", time: "~4 hrs",
+          desc: "Learn exactly where models help in finance workflows and where they fail: hallucinations, unreliable arithmetic, and stale knowledge. This judgment is the core skill of every AI-in-finance role.",
+          learn: ["Hallucination patterns and why confident-sounding errors are the danger", "Where models fail: math, citations, and recent facts", "The human-in-the-loop boundary: what must never be fully automated"],
+          practice: "Give a model a reconciliation-style arithmetic task, verify the output by hand, and write up where it went wrong." }
+      ]},
+      { name: "Core mechanics", nodes: [
+        { id: "a3", title: "Data and evaluation", time: "~5 hrs",
+          desc: "A model is only as trustworthy as its evaluation. Learn golden datasets, ground truth, and how to measure whether an AI output is good enough for a controlled finance process.",
+          learn: ["Building a golden dataset: representative, labeled examples", "Evaluation metrics: accuracy, precision, recall in plain terms", "When an eval result means 'ship', 'fix', or 'do not use'"],
+          practice: "Build a 20-example golden set for a document-classification task and score a model's outputs against it by hand." },
+        { id: "a4", title: "Prompt and retrieval design (RAG)", time: "~5 hrs",
+          desc: "Learn to ground model outputs in your own documents: chunking, retrieval, and citation. RAG is how finance teams get useful answers without trusting the model's memory.",
+          learn: ["Chunking and embeddings: how documents become searchable", "Retrieval design: what gets fetched and what gets missed", "Citation requirements and verifying answers against sources"],
+          practice: "Design a RAG setup on paper for a policy manual: chunking strategy, retrieval rules, and how every answer cites its source." }
+      ]},
+      { name: "Applied skills", nodes: [
+        { id: "a5", title: "Operations copilots", time: "~4 hrs",
+          desc: "Learn where AI assistants genuinely save ops time — drafting client comms, summarizing break reports, triaging queues — and the review discipline that keeps them safe.",
+          learn: ["High-value copilot tasks: drafting, summarizing, triaging", "Review discipline: what a human must check before sending", "Measuring time saved without hiding error rates"],
+          practice: "Use a copilot to draft three client emails from messy break notes, then mark up every line you had to correct." },
+        { id: "a6", title: "Document intelligence", time: "~5 hrs",
+          desc: "Extraction from statements, confirmations, and invoices is the most deployed AI use case in finance ops. Learn extraction, validation rules, and the exception queues that catch the rest.",
+          learn: ["Field extraction and confidence scores", "Validation rules: cross-checks that catch bad extractions", "Exception queue design for low-confidence documents"],
+          practice: "Design the validation rules and exception queue for extracting totals from invoices, including the reject-and-reroute criteria." },
+        { id: "a7", title: "Model risk and governance", time: "~5 hrs",
+          desc: "Regulated finance requires models to be inventoried, tiered, approved, and evidenced. Learn the governance lifecycle that every AI deployment in a bank must pass through.",
+          learn: ["Model inventory, risk tiering, and approval gates", "Documentation and evidence regulators expect", "Change control: what triggers re-approval"],
+          practice: "Write a one-page model risk summary for a hypothetical document-extraction tool: tier, risks, controls, and evidence." },
+        { id: "a8", title: "Model monitoring and incident response", time: "~4 hrs",
+          desc: "Models degrade: data drifts, latency spikes, overrides pile up. Learn the monitoring loop — thresholds, alerts, triage, rollback — that keeps production AI under control.",
+          learn: ["Drift, latency, and quality metrics worth monitoring", "Thresholds, alerting, and override tracking", "Incident triage and rollback decisions for model issues"],
+          practice: "Design a monitoring dashboard on paper for a classification model: five metrics, thresholds, and who gets alerted." }
+      ]},
+      { name: "Job-ready", nodes: [
+        { id: "a9", title: "Portfolio artifact: governed AI use-case proposal", time: "~6 hrs",
+          desc: "Produce the artifact AI-in-finance employers want to see: a complete, governed proposal for one AI use case — workflow, evaluation plan, risks, controls, and adoption measures.",
+          learn: ["Selecting a use case with real operational value", "Defining evaluation criteria and the human-in-the-loop design", "Writing the risk, control, and evidence sections"],
+          practice: "Finish the proposal as a clean document and rehearse defending the control design in five minutes." },
+        { id: "a10", title: "Interview readiness", time: "~4 hrs",
+          desc: "Practice the questions that test judgment, not trivia: where automation stops, how you would evaluate a model, and how you would respond to a quality drop in production.",
+          learn: ["Defining where automation stops and human judgment begins", "Designing an evaluation for a model you have never seen", "Diagnosing a quality drop without assuming the model is the only cause"],
+          practice: "Record yourself answering all three prompts and re-do the weakest until each answer is concrete and under three minutes." }
+      ]}
+    ]
+  }
+};
+
+/* ---- Interactive learning roadmaps (progress + expandable nodes) ---- */
+(function () {
+  if (typeof ROADMAPS === "undefined") return;
+  var LS_KEY = "fc-roadmap-progress-v1";
+  var progress = {};
+  try { progress = JSON.parse(localStorage.getItem(LS_KEY) || "{}"); } catch (e) { progress = {}; }
+  var openNodes = {}; // "track:id" -> true, preserved across re-renders
+
+  function save() { try { localStorage.setItem(LS_KEY, JSON.stringify(progress)); } catch (e) {} }
+  function doneList(track) { return progress[track] || (progress[track] = []); }
+  function isDone(track, id) { return doneList(track).indexOf(id) !== -1; }
+  function countNodes(data) { var n = 0; data.stages.forEach(function (s) { n += s.nodes.length; }); return n; }
+  function countDone(track, data) {
+    var n = 0;
+    data.stages.forEach(function (s) { s.nodes.forEach(function (nd) { if (isDone(track, nd.id)) n++; }); });
+    return n;
+  }
+  function firstIncomplete(track, data) {
+    for (var i = 0; i < data.stages.length; i++) {
+      var nodes = data.stages[i].nodes;
+      for (var j = 0; j < nodes.length; j++) { if (!isDone(track, nodes[j].id)) return nodes[j]; }
+    }
+    return null;
+  }
+
+  function el(tag, cls, text) {
+    var d = document.createElement(tag);
+    if (cls) d.className = cls;
+    if (text != null) d.textContent = text;
+    return d;
+  }
+
+  function buildNode(track, node, isNext) {
+    var done = isDone(track, node.id);
+    var key = track + ":" + node.id;
+    var wrap = el("div", "rm-node" + (done ? " done" : "") + (isNext ? " next" : ""));
+    if (openNodes[key]) wrap.classList.add("open");
+
+    var head = el("button", "rm-head");
+    head.type = "button";
+    head.setAttribute("aria-expanded", openNodes[key] ? "true" : "false");
+    var check = el("span", "rm-check");
+    check.setAttribute("aria-hidden", "true");
+    head.appendChild(check);
+    head.appendChild(el("span", "rm-title", node.title));
+    head.appendChild(el("span", "rm-time", node.time));
+    if (isNext && !done) head.appendChild(el("span", "rm-next-badge", "Next up"));
+    var chev = el("span", "rm-chev");
+    chev.setAttribute("aria-hidden", "true");
+    head.appendChild(chev);
+    wrap.appendChild(head);
+
+    var body = el("div", "rm-body");
+    body.appendChild(el("p", "rm-desc", node.desc));
+    var learn = el("div", "rm-learn");
+    learn.appendChild(el("b", null, "Learn"));
+    var ul = el("ul");
+    node.learn.forEach(function (t) { ul.appendChild(el("li", null, t)); });
+    learn.appendChild(ul);
+    body.appendChild(learn);
+    var practice = el("div", "rm-practice");
+    practice.appendChild(el("b", null, "Practice"));
+    practice.appendChild(el("p", null, node.practice));
+    body.appendChild(practice);
+    var doneBtn = el("button", "rm-done-btn");
+    doneBtn.type = "button";
+    doneBtn.textContent = done ? "\u2713 Completed \u2014 undo" : "Mark as complete";
+    doneBtn.addEventListener("click", function (e) { e.stopPropagation(); toggleDone(track, node.id); });
+    body.appendChild(doneBtn);
+    wrap.appendChild(body);
+
+    head.addEventListener("click", function (e) {
+      if (e.target.closest(".rm-check")) { toggleDone(track, node.id); return; }
+      var opening = !wrap.classList.contains("open");
+      if (opening) openNodes[key] = true; else delete openNodes[key];
+      wrap.classList.toggle("open", opening);
+      head.setAttribute("aria-expanded", opening ? "true" : "false");
+    });
+    return wrap;
+  }
+
+  function toggleDone(track, id) {
+    var arr = doneList(track);
+    var i = arr.indexOf(id);
+    if (i === -1) arr.push(id); else arr.splice(i, 1);
+    save();
+    renderTrack(track);
+  }
+
+  function renderTrack(track) {
+    var mount = document.querySelector('[data-roadmap="' + track + '"]');
+    var data = ROADMAPS[track];
+    if (!mount || !data) return;
+    mount.innerHTML = "";
+    var total = countNodes(data), done = countDone(track, data);
+    var pct = total ? Math.round(done / total * 100) : 0;
+
+    var pwrap = el("div", "rm-progress");
+    var bar = el("div", "rm-bar");
+    var fill = el("div", "rm-fill");
+    fill.style.width = pct + "%";
+    bar.appendChild(fill);
+    pwrap.appendChild(bar);
+    var meta = el("div", "rm-meta");
+    meta.appendChild(el("span", null, done === total && total > 0
+      ? "Roadmap complete \u2014 interview-ready."
+      : done + " of " + total + " steps complete"));
+    var reset = el("button", "rm-reset", "Reset progress");
+    reset.type = "button";
+    reset.addEventListener("click", function () {
+      progress[track] = [];
+      save();
+      renderTrack(track);
+    });
+    meta.appendChild(reset);
+    pwrap.appendChild(meta);
+    mount.appendChild(pwrap);
+
+    var next = firstIncomplete(track, data);
+    data.stages.forEach(function (stage) {
+      var sEl = el("div", "rm-stage");
+      var name = el("div", "rm-stage-name");
+      name.appendChild(el("span", null, stage.name));
+      sEl.appendChild(name);
+      stage.nodes.forEach(function (node) {
+        sEl.appendChild(buildNode(track, node, next && next.id === node.id));
+      });
+      mount.appendChild(sEl);
+    });
+  }
+
+  function init() {
+    Object.keys(ROADMAPS).forEach(renderTrack);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
 })();
 </script>
 </body>
