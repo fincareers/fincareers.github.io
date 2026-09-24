@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-22",
+ "generated_at": "2026-09-24",
  "chunks": [
   {
    "id": "module-t1",
@@ -373,6 +373,13 @@
    "text": "Treasury operations: Coordinates liquidity, cash positioning, funding, and settlement readiness. DAILY OUTPUT: Cash forecasts, funding actions, resolved balance breaks. CORE FLUENCY: Cash ladders, settlement, liquidity buffers, intraday timing. PROOF OF SKILL: Walk through how you would investigate an unexpected cash position. WHERE THIS LEADS: Treasury analyst → treasury manager → assistant treasurer or head of treasury operations. PIVOT PATHS: Corporate treasury, liquidity risk, payments operations, FP&A."
   },
   {
+   "id": "role-product-manager-(banking-&amp;-markets)",
+   "title": "Role profile: Product manager (banking &amp; markets) (Traditional Finance)",
+   "section": "Role profile",
+   "url": "index.html#roles",
+   "text": "Product manager (banking & markets): Owns the roadmap for the platforms that desks and operations run on — trading, lending, collateral, and client systems. DAILY OUTPUT: Prioritized backlogs, release decisions, stakeholder alignment. CORE FLUENCY: Desk workflows, regulatory change, platform architecture, build-vs-buy trade-offs. PROOF OF SKILL: Ship a regulatory or workflow change without breaking the desk. WHERE THIS LEADS: Senior PM → group product manager → head of product for a business line. PIVOT PATHS: Fintech product manager, product operations, program management, AI product manager."
+  },
+  {
    "id": "role-protocol-risk-analyst",
    "title": "Role profile: Protocol risk analyst (Defi)",
    "section": "Role profile",
@@ -399,6 +406,13 @@
    "section": "Role profile",
    "url": "index.html#roles",
    "text": "Fraud strategy analyst: Balances loss prevention with approval, customer friction, and review capacity. DAILY OUTPUT: Rule analysis, queue tuning, loss and false-positive reporting. CORE FLUENCY: Signals, decisioning, chargebacks, segmentation, experiments. PROOF OF SKILL: Explain how you would investigate an approval-rate change safely. WHERE THIS LEADS: Senior analyst → fraud strategy manager → head of fraud or financial-crime risk. PIVOT PATHS: Data science for risk modeling, product manager in trust and safety, AML and financial crime, payments operations."
+  },
+  {
+   "id": "role-product-manager-(fintech)",
+   "title": "Role profile: Product manager (fintech) (Fintech)",
+   "section": "Role profile",
+   "url": "index.html#roles",
+   "text": "Product manager (fintech): Owns a consumer or business financial product end to end — growth, onboarding, money movement, and trust. DAILY OUTPUT: Experiment readouts, funnel improvements, launch decisions. CORE FLUENCY: Acquisition, activation, payments rails, risk and compliance constraints. PROOF OF SKILL: Grow a metric without increasing fraud or support load. WHERE THIS LEADS: Senior PM → group product manager → VP product or founder. PIVOT PATHS: Product operations, growth, banking product manager, AI product manager."
   },
   {
    "id": "role-model-operations-analyst",
