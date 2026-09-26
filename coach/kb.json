@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-24",
+ "generated_at": "2026-09-26",
  "chunks": [
   {
    "id": "module-t1",
@@ -916,7 +916,133 @@
    "title": "Resume Analyzer",
    "section": "Resume analyzer",
    "url": "resume-analyzer.html",
-   "text": "Free tool that scores a resume against the platform's 14 finance role profiles for keyword coverage, quantified impact, and ATS-readiness, entirely in the browser. Nothing is uploaded. On this page: Is your resume speaking finance?; 1 · Give it your resume; 2 · Your score; 3 · Role matches; 4 · What to fix first."
+   "text": "Free tool that scores a resume against the platform's 16 finance role profiles for keyword coverage, quantified impact, and ATS-readiness, entirely in the browser. Nothing is uploaded. On this page: Is your resume speaking finance?; 1 · Give it your resume; 2 · Your score; 3 · Role matches; 4 · What to fix first."
+  },
+  {
+   "id": "pivot-why",
+   "title": "PM pivot guide: Why operations people make strong PMs",
+   "section": "Pivot guide",
+   "url": "pivot-product-management.html#why",
+   "text": "Why operations people make strong PMs. Product management is, at its core, operational judgment applied to what gets built. Years on a desk or in ops give you unfair advantages most career-switchers don't have. You already do this Exception triage → prioritization You rank breaks by exposure and deadline every morning. PMs rank opportunities by impact and effort the same way — the muscle is identical, only the input changes. You already do this Stakeholder wrangling → alignment Front office wants it now, risk wants it safe, ops wants it clean. You've negotiated those tensions for years; PMs call it stakeholder management and it's half the job. You already do this Reconciliations → data-informed decisions You don't trust a number until you've checked it two ways. PMs who can't interrogate a metric ship on vibes. Your skepticism is a feature. You already do this Regulatory change → constraint-driven roadmaps You've shipped T+1, new margin rules, and reporting mandates under hard deadlines. PMs in finance live inside constraints like these — you've already practiced. You already do this Incident response → launch ownership When settlement breaks at 4pm, you coordinate the fix and communicate outward. A product incident is the same drill with a different system."
+  },
+  {
+   "id": "pivot-why-b",
+   "title": "PM pivot guide: Why operations people make strong PMs",
+   "section": "Pivot guide",
+   "url": "pivot-product-management.html#why",
+   "text": "You already do this Desk & client empathy → user empathy You know exactly where the workflow hurts because you've felt it. The best PM insight is lived pain — you arrive with a backlog of it."
+  },
+  {
+   "id": "pivot-day",
+   "title": "PM pivot guide: A day in the life of a product manager",
+   "section": "Pivot guide",
+   "url": "pivot-product-management.html#day",
+   "text": "A day in the life of a product manager. No two days are identical, but the rhythm is real: part detective, part diplomat, part decision-maker. Pick the seat closest to the pivot you're planning. Banking & markets PM Fintech PM 8:30 Overnight exception scan You check what broke overnight in the collateral platform you own — two failed margin call deliveries. You note them for the engineering standup instead of firefighting; the on-call already paged the right people. 9:15 Engineering standup Fifteen minutes. You unblock one question — whether the new recall workflow should auto-escalate after 30 minutes — by deciding on the spot. Decisiveness is the job. 10:00 Desk discovery session You sit with two securities-lending traders to watch how they actually handle a corporate action. You take notes on workarounds — every workaround is a feature request in disguise. 11:30 Compliance review Legal flags a data-residency issue in your Q1 roadmap item. You re-scope the rollout to one region first and update the timeline before rumors do it for you. 13:00 PRD writing Quiet hour. You write the product requirements doc for automated fails-reporting: problem, users, success metrics, edge cases, what you're explicitly not building."
+  },
+  {
+   "id": "pivot-day-b",
+   "title": "PM pivot guide: A day in the life of a product manager",
+   "section": "Pivot guide",
+   "url": "pivot-product-management.html#day",
+   "text": "14:30 Prioritization with stakeholders Operations wants faster billing; the desk wants better inventory search. You walk both through the RICE scores and hold the line: search wins this quarter, billing next. 16:00 Vendor call Your market-data vendor is deprecating an API you depend on. You negotiat"
+  },
+  {
+   "id": "pivot-problems",
+   "title": "PM pivot guide: Problems you'll actually face",
+   "section": "Pivot guide",
+   "url": "pivot-product-management.html#problems",
+   "text": "Problems you'll actually face. These are the recurring situations that separate people who can do the job from people who just know the vocabulary. Each one doubles as interview material. Prioritization Two executives, one roadmap slot The situation: The head of trading and the head of ops both need their feature this quarter. Both escalate. What a strong PM does: Refuses to decide by volume. Scores both on impact, effort, and strategic fit, shows the math to both parties, and offers the loser a concrete next-quarter commitment — in writing. Constraints Compliance blocks launch week The situation: Legal finds a data issue three days before release. Engineering says the fix is six weeks. What a strong PM does: Doesn't argue the rule — scopes around it. Ships the compliant subset now, sequences the rest, and builds the compliance review into the process earlier next time. Data The metric moved the wrong way The situation: Your launch is live and activation dropped. Everyone looks at you. What a strong PM does: Segments before panicking — is it all users or one cohort, one platform, one step? Forms a hypothesis, checks it against the data, and either rolls back or iterates with a named owner and deadline."
+  },
+  {
+   "id": "pivot-problems-b",
+   "title": "PM pivot guide: Problems you'll actually face",
+   "section": "Pivot guide",
+   "url": "pivot-product-management.html#problems",
+   "text": "Delivery Engineering says 6 weeks; the business promised 2 The situation: Sales committed a date you never agreed to. The team is staring at you. What a strong PM does: Protects the team and tells the truth upward. Finds the smallest shippable slice that honors the spirit of the promise, resets the date with"
+  },
+  {
+   "id": "pivot-interview",
+   "title": "PM pivot guide: “Tell me about a time…” — the interview bank",
+   "section": "Pivot guide",
+   "url": "pivot-product-management.html#interview",
+   "text": "“Tell me about a time…” — the interview bank. PM interviews are behavioral interviews wearing a strategy costume. Every question below is one interviewers actually ask — with what they're really testing and how to structure your answer using STAR (Situation, Task, Action, Result). Your ops stories fit these better than you think. Tell me about a time you disagreed with engineering. + What they're really asking: Can you hold a technical position without pulling rank, and do engineers trust you? Good answers show you sought to understand the technical constraint first, brought data or user evidence to the discussion, and reached a joint decision — even when it wasn't your first choice. STAR tip: Name the technical tradeoff explicitly. “They wanted to rebuild the service; I needed the feature in three weeks” is a story every interviewer recognizes. Tell me about a launch that failed. + What they're really asking: Do you take ownership of outcomes, and do you learn in public? Pick a real miss — a metric that didn't move, a feature nobody used. Walk through what you misread (the customer, the data, the timing), what you changed in your process afterward, and what you'd do differently. Blame-free honesty scores highest."
+  },
+  {
+   "id": "pivot-interview-b",
+   "title": "PM pivot guide: “Tell me about a time…” — the interview bank",
+   "section": "Pivot guide",
+   "url": "pivot-product-management.html#interview",
+   "text": "STAR tip: Ops people have great material here: a process change that backfired, a control that missed. Frame it as a product decision with a measurable result. Tell me about a time you said no to a stakeholder. + What they're really asking: Can you protect the roadmap under pressure without burning relationship"
+  },
+  {
+   "id": "pivot-tools",
+   "title": "PM pivot guide: Tools of the trade",
+   "section": "Pivot guide",
+   "url": "pivot-product-management.html#tools",
+   "text": "Tools of the trade. You don't need to master these before you pivot — but you should be able to say what each one is for and open one without panic. Hiring managers screen for literacy, not expertise. Plan & track Jira · Linear · Asana Where the work lives. Backlogs, sprints, and tickets — the system of record for what the team is building and what's blocked. If you've used any ticketing system in ops, the concept transfers directly. Write & decide Confluence · Notion · Google Docs Where thinking happens. PRDs, decision logs, roadmaps, and postmortems live here. Product runs on written communication — clear docs are a core PM skill. Design Figma · Miro / FigJam Where ideas become screens. You won't design, but you'll review mockups, leave precise feedback, and whiteboard user flows with designers. Data Amplitude · Mixpanel · Looker · SQL Where truth lives. Funnel analysis, cohort behavior, and ad-hoc queries. Your reconciliation instincts — never trusting a number you can't trace — are exactly right here. Build & release GitHub · LaunchDarkly · Pendo Where software ships. Version control, feature flags (turning features on for 5% of users), and in-app guidance. Know what a flag is and why rollbacks beat hotfixes. Talk Slack · Zoom · Loom Where alignment happens."
+  },
+  {
+   "id": "pivot-tools-b",
+   "title": "PM pivot guide: Tools of the trade",
+   "section": "Pivot guide",
+   "url": "pivot-product-management.html#tools",
+   "text": "Async updates, recorded walkthroughs, and stakeholder demos. PMs live in these — brevity and clarity are the whole game."
+  },
+  {
+   "id": "pivot-frameworks",
+   "title": "PM pivot guide: Strategies &amp; frameworks to know",
+   "section": "Pivot guide",
+   "url": "pivot-product-management.html#frameworks",
+   "text": "Strategies & frameworks to know. Frameworks don't make decisions — they make your reasoning legible. Know these well enough to apply one live in an interview. Prioritization RICE What: Score features by Reach × Impact × Confidence ÷ Effort. When: Comparing unlike requests with one number so the debate is about inputs, not opinions. (Try the interactive version in the desk lab .) Prioritization MoSCoW What: Sort requirements into Must, Should, Could, Won't-have. When: Scoping a release with stakeholders — it forces the “won't” conversation early, which is where most launches are saved. Discovery Jobs-to-be-Done (JTBD) What: Customers “hire” products to make progress in a situation. Frame needs as jobs, not features. When: User interviews and requirement writing — it stops you building what users ask for instead of what they need. Discovery Opportunity Solution Trees What: Teresa Torres' method: start from a desired outcome, branch into opportunities, then solutions, then experiments. When: Avoiding solution-first thinking — the most common failure mode of new PMs from any background. Strategy OKRs & the North Star metric What: Objectives and Key Results set directional goals; the North Star is the single metric capturing core product value."
+  },
+  {
+   "id": "pivot-frameworks-b",
+   "title": "PM pivot guide: Strategies &amp; frameworks to know",
+   "section": "Pivot guide",
+   "url": "pivot-product-management.html#frameworks",
+   "text": "When: Quarterly planning and saying no — if it doesn't move the North Star or a key result, it waits. Measurement HEART What: Google's UX framework: Happiness, Engagement, Adoption, Retention, Task success. When: Defining success metrics for user-facing features beyond"
+  },
+  {
+   "id": "pivot-glossary",
+   "title": "PM pivot guide: Speak the language",
+   "section": "Pivot guide",
+   "url": "pivot-product-management.html#glossary",
+   "text": "Speak the language. Twenty terms you'll hear in your first month. Tap any card to flip it — interviewers notice when a pivoter already talks like an insider. PRD Product Requirements Document — the written spec of what you're building, for whom, why, and how you'll know it worked. The PM's core artifact. Tap to reveal Roadmap A time-ordered view of where the product is headed — themes and outcomes, not a feature calendar. Good roadmaps communicate strategy; bad ones are wish lists with dates. Tap to reveal Backlog The prioritized queue of everything the team could build next. Grooming it — reprioritizing as you learn — is continuous PM work. Tap to reveal Sprint A fixed work cycle, usually 1–2 weeks, in which the team commits to shipping a defined slice. PMs set the “what”; the team owns the “how.” Tap to reveal Epic / User story An epic is a large body of work; user stories are its slices, written as “As a [user], I want [goal] so that [benefit].” Stories are the unit of delivery. Tap to reveal MVP Minimum Viable Product — the smallest thing you can ship to test a hypothesis with real users. In finance, “viable” includes compliant."
+  },
+  {
+   "id": "pivot-glossary-b",
+   "title": "PM pivot guide: Speak the language",
+   "section": "Pivot guide",
+   "url": "pivot-product-management.html#glossary",
+   "text": "Tap to reveal North Star metric The single metric that best captures the core value your product delivers — e.g., weekly funded accounts for a brokerage app. Every roadmap should point at it. Tap to reveal OKR Objectives and Key Results — a goal-setting system pairing an ambitious qualitative objective with measurable key results. Set quarterly, reviewed honestly. Ta"
+  },
+  {
+   "id": "pivot-immerse",
+   "title": "PM pivot guide: Immerse yourself",
+   "section": "Pivot guide",
+   "url": "pivot-product-management.html#immerse",
+   "text": "Immerse yourself. Reading about product is not the same as feeling it. Watch real PMs talk about real days, put the best voices in your ears, then test your judgment. Watch 🎬 Day in the life of a Product Manager at a London fintech startup A genuine look at the fintech PM day — standups, stakeholder calls, and the unglamorous middle of the job. Watch for how much of the day is communication. 🎬 The APM reality check: you don't make decisions An honest take on entry-level product work — PRDs, bug triage, and supporting senior PMs. Useful calibration before you romanticize the title. Listen 🎙️ Lenny's Podcast Interviews with world-class product leaders — tactical, dense, and the single most-recommended PM podcast. Start with any episode on prioritization or growth. 🎙️ The Product Podcast by Product School PMs from top tech companies on career paths, craft, and breaking into the role — especially useful for pivoters. 🎙️ The Product Experience by Mind the Product Weekly conversations with PMs across industries on the realities of the craft. 🎙️ Product Thinking with Melissa Perri Deep dives on product strategy and org design from the author of Escaping the Build Trap ."
+  },
+  {
+   "id": "pivot-immerse-b",
+   "title": "PM pivot guide: Immerse yourself",
+   "section": "Pivot guide",
+   "url": "pivot-product-management.html#immerse",
+   "text": "🎙️ How I Built This (NPR) Founders on product origin stories and product-market-fit moments — read between the lines for PM lessons. 🎙️ Acquired · Masters of Scale Long-form strategy case studies and scaling decisions — builds the business judgment PM interviews probe. Do — you be the PM Three judgment calls. Pick what you'd do, then"
+  },
+  {
+   "id": "pivot-certs",
+   "title": "PM pivot guide: Certifications &amp; resources for the pivot",
+   "section": "Pivot guide",
+   "url": "pivot-product-management.html#certs",
+   "text": "Certifications & resources for the pivot. Credentials don't make you a PM, but they signal seriousness and fill vocabulary gaps fast. Pair one certification with real proof of work from the checklist above. Agile delivery PSPO I — Professional Scrum Product Owner From Scrum.org . The most respected product-owner certification; exam-based, no course required. Directly relevant to backlog and sprint work. Agile delivery CSPO — Certified Scrum Product Owner From the Scrum Alliance . Course-based alternative to PSPO; widely recognized in job postings, especially at larger institutions. Generalist PMP / CAPM From PMI . Heavier on delivery and governance — valued in banking, where product work sits close to program management. See the full mapping in Certifications by career path . Analysis CBAP / ECBA From IIBA . Business analysis certification that formalizes the requirements and stakeholder skills ops people already have. Read The core shelf Inspired (Marty Cagan) — how strong product teams work. Escaping the Build Trap (Melissa Perri) — from output to outcomes. Continuous Discovery Habits (Teresa Torres) — weekly discovery practice. The Lean Product Playbook (Dan Olsen) — the end-to-end process. Follow Practitioner voices Product Talk (Teresa Torres) on discovery."
+  },
+  {
+   "id": "pivot-certs-b",
+   "title": "PM pivot guide: Certifications &amp; resources for the pivot",
+   "section": "Pivot guide",
+   "url": "pivot-product-management.html#certs",
+   "text": "SVPG (Marty Cagan) on product orgs. Bring the Donuts (Ken Norton) on hiring and leading PMs. Pair this guide with the ops-to-product 90-day plan on the blog and the product manager role profiles on the career map ."
   }
  ]
 }

@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:," />
+  <title>The Product Management Pivot — Finance Careers Learning Platform</title>
+  <meta name="description" content="A field manual for moving from finance operations into product management: the day-to-day, real problems, interview questions, tools, frameworks, language, and the fastest credible path across." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0b1526" />
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #edf1f7;
+      --paper: #ffffff;
+      --paper-2: #e1e8f2;
+      --ink: #101d30;
+      --muted: #5a6b84;
+      --line: #c7d2e3;
+      --line-strong: #93a3bd;
+      --nav: #0b1526;
+      --nav-ink: #eef4fc;
+      --nav-muted: #9db0c9;
+      --accent: #1d5fd6;
+      --accent-2: #7c5aed;
+      --accent-soft: #dbe7fd;
+      --danger: #c93a3a;
+      --shadow: 0 12px 30px rgba(15,30,60,.10);
+      --radius: 12px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0a1120;
+        --paper: #101b30;
+        --paper-2: #17253f;
+        --ink: #e9eff9;
+        --muted: #93a5c2;
+        --line: #233450;
+        --line-strong: #3b5378;
+        --nav: #060c17;
+        --nav-ink: #e9eff9;
+        --nav-muted: #93a5c2;
+        --accent: #5b9bff;
+        --accent-2: #a78bfa;
+        --accent-soft: #14294d;
+        --danger: #f0716f;
+        --shadow: 0 14px 35px rgba(0,0,0,.30);
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.55;
+    }
+    a { color: var(--accent); }
+    .site-head { background: var(--nav); color: var(--nav-ink); }
+    .site-head-inner {
+      max-width: 1120px; margin: 0 auto; padding: 16px clamp(20px, 4vw, 48px);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .brand { font-weight: 700; font-size: 15px; }
+    .brand span { color: var(--nav-muted); font-weight: 400; }
+    .back-link {
+      color: var(--nav-ink); text-decoration: none;
+      font: 500 13px "IBM Plex Mono", ui-monospace, monospace;
+      border: 1px solid rgba(255,255,255,.25); border-radius: 8px; padding: 8px 14px;
+    }
+    .page { max-width: 1120px; margin: 0 auto; padding: 40px clamp(20px, 4vw, 48px) 80px; }
+    .eyebrow {
+      font: 600 12px "IBM Plex Mono", ui-monospace, monospace;
+      text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin: 0 0 10px;
+    }
+    h1 { font-size: clamp(30px, 4.5vw, 46px); line-height: 1.08; margin: 0 0 14px; letter-spacing: -.02em; }
+    .lede { font-size: 17px; color: var(--muted); max-width: 68ch; margin: 0 0 8px; }
+    .toc {
+      display: flex; flex-wrap: wrap; gap: 8px; margin: 26px 0 8px; padding: 0; list-style: none;
+    }
+    .toc a {
+      display: inline-block; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px;
+      background: var(--paper); color: var(--ink); text-decoration: none; font-size: 13px; font-weight: 500;
+    }
+    .toc a:hover { border-color: var(--accent); color: var(--accent); }
+    section.block { margin-top: 56px; }
+    section.block > h2 { font-size: 24px; margin: 0 0 6px; letter-spacing: -.01em; }
+    section.block > .sub { color: var(--muted); max-width: 72ch; margin: 0 0 22px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+    .card {
+      background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 20px; box-shadow: var(--shadow);
+    }
+    .card h3 { margin: 0 0 8px; font-size: 16px; }
+    .card p { margin: 0; font-size: 14px; color: var(--muted); }
+    .card p + p { margin-top: 8px; }
+    .card .k { color: var(--ink); font-weight: 600; }
+    .tag {
+      display: inline-block; font: 600 11px "IBM Plex Mono", ui-monospace, monospace;
+      text-transform: uppercase; letter-spacing: .06em; color: var(--accent);
+      background: var(--accent-soft); border-radius: 6px; padding: 3px 8px; margin-bottom: 10px;
+    }
+    /* day-in-life tabs */
+    .tabs { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+    .tab-btn {
+      border: 1px solid var(--line); background: var(--paper); color: var(--ink);
+      border-radius: 999px; padding: 9px 18px; font-size: 14px; font-weight: 600; cursor: pointer;
+    }
+    .tab-btn.active { background: var(--nav); color: var(--nav-ink); border-color: var(--nav); }
+    .timeline { display: none; }
+    .timeline.active { display: block; }
+    .t-row {
+      display: grid; grid-template-columns: 92px 1fr; gap: 16px; padding: 14px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+    .t-row:last-child { border-bottom: 0; }
+    .t-time { font: 600 13px "IBM Plex Mono", ui-monospace, monospace; color: var(--accent); padding-top: 2px; }
+    .t-row h4 { margin: 0 0 4px; font-size: 15px; }
+    .t-row p { margin: 0; font-size: 14px; color: var(--muted); }
+    /* accordion */
+    .acc { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); margin-bottom: 10px; overflow: hidden; }
+    .acc-btn {
+      width: 100%; text-align: left; background: none; border: 0; padding: 16px 18px;
+      font-size: 15px; font-weight: 600; color: var(--ink); cursor: pointer;
+      display: flex; justify-content: space-between; gap: 12px; align-items: center;
+    }
+    .acc-btn .chev { color: var(--accent); font-size: 18px; flex-shrink: 0; }
+    .acc-body { display: none; padding: 0 18px 18px; font-size: 14px; color: var(--muted); }
+    .acc.open .acc-body { display: block; }
+    .acc-body .probe { margin: 8px 0; }
+    .acc-body .tip { background: var(--accent-soft); border-radius: 8px; padding: 10px 12px; margin-top: 10px; color: var(--ink); }
+    /* flashcards */
+    .flash-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+    .flash {
+      background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 16px; cursor: pointer; min-height: 118px;
+    }
+    .flash:hover { border-color: var(--accent); }
+    .flash h4 { margin: 0; font-size: 15px; }
+    .flash .def { display: none; margin: 8px 0 0; font-size: 13.5px; color: var(--muted); }
+    .flash.open .def { display: block; }
+    .flash .hint { font-size: 11px; color: var(--accent); margin-top: 8px; font-weight: 600; }
+    .flash.open .hint { display: none; }
+    /* quiz */
+    .quiz-q { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; margin-bottom: 14px; }
+    .quiz-q h4 { margin: 0 0 4px; font-size: 16px; }
+    .quiz-q .sit { font-size: 14px; color: var(--muted); margin: 0 0 12px; }
+    .quiz-opt {
+      display: block; width: 100%; text-align: left; margin: 8px 0; padding: 10px 14px;
+      border: 1px solid var(--line); border-radius: 8px; background: var(--bg);
+      color: var(--ink); font-size: 14px; cursor: pointer;
+    }
+    .quiz-opt:hover:not(:disabled) { border-color: var(--accent); }
+    .quiz-opt:disabled { cursor: default; opacity: .85; }
+    .quiz-opt.right { border-color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+    .quiz-opt.wrong { border-color: var(--danger); opacity: .6; }
+    .quiz-why { display: none; margin-top: 10px; font-size: 14px; background: var(--paper-2); border-radius: 8px; padding: 12px 14px; }
+    .quiz-why.show { display: block; }
+    /* checklist */
+    .check-list { list-style: none; margin: 0; padding: 0; }
+    .check-list li {
+      display: flex; gap: 12px; align-items: flex-start; padding: 12px 0;
+      border-bottom: 1px dashed var(--line); font-size: 14.5px;
+    }
+    .check-list li:last-child { border-bottom: 0; }
+    .check-list input { margin-top: 4px; width: 17px; height: 17px; accent-color: var(--accent); flex-shrink: 0; }
+    .check-list li.done span { text-decoration: line-through; color: var(--muted); }
+    .media-list { display: grid; gap: 12px; }
+    .media-item {
+      display: flex; gap: 14px; align-items: flex-start; background: var(--paper);
+      border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px;
+    }
+    .media-item .mi { font-size: 22px; flex-shrink: 0; }
+    .media-item h4 { margin: 0 0 4px; font-size: 15px; }
+    .media-item p { margin: 0; font-size: 13.5px; color: var(--muted); }
+    .site-foot {
+      border-top: 1px solid var(--line); padding: 26px 20px 60px;
+      text-align: center; color: var(--muted); font-size: 13px;
+    }
+    @media (max-width: 640px) { .t-row { grid-template-columns: 74px 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <div class="brand">Finance Careers <span>learning platform</span></div>
+      <a class="back-link" href="index.html">← All learning paths</a>
+    </div>
+  </header>
+
+  <main class="page">
+    <p class="eyebrow">Featured pivot guide</p>
+    <h1>The Product Management Pivot</h1>
+    <p class="lede">A field manual for moving from finance operations into product management. What the job actually feels like day to day, the problems that will land on your desk, the interview questions they predict, the tools and frameworks you'll be expected to know, the language everyone speaks — and the fastest credible path from the back office to the roadmap.</p>
+
+    <ul class="toc">
+      <li><a href="#why">Why ops → PM works</a></li>
+      <li><a href="#day">A day in the life</a></li>
+      <li><a href="#problems">Problems you'll face</a></li>
+      <li><a href="#interview">“Tell me about a time…”</a></li>
+      <li><a href="#tools">Tools of the trade</a></li>
+      <li><a href="#frameworks">Strategies & frameworks</a></li>
+      <li><a href="#glossary">Speak the language</a></li>
+      <li><a href="#immerse">Immerse yourself</a></li>
+      <li><a href="#certs">Certifications & resources</a></li>
+    </ul>
+
+    <section class="block" id="why">
+      <h2>Why operations people make strong PMs</h2>
+      <p class="sub">Product management is, at its core, operational judgment applied to what gets built. Years on a desk or in ops give you unfair advantages most career-switchers don't have.</p>
+      <div class="grid">
+        <div class="card"><span class="tag">You already do this</span><h3>Exception triage → prioritization</h3><p>You rank breaks by exposure and deadline every morning. PMs rank opportunities by impact and effort the same way — the muscle is identical, only the input changes.</p></div>
+        <div class="card"><span class="tag">You already do this</span><h3>Stakeholder wrangling → alignment</h3><p>Front office wants it now, risk wants it safe, ops wants it clean. You've negotiated those tensions for years; PMs call it stakeholder management and it's half the job.</p></div>
+        <div class="card"><span class="tag">You already do this</span><h3>Reconciliations → data-informed decisions</h3><p>You don't trust a number until you've checked it two ways. PMs who can't interrogate a metric ship on vibes. Your skepticism is a feature.</p></div>
+        <div class="card"><span class="tag">You already do this</span><h3>Regulatory change → constraint-driven roadmaps</h3><p>You've shipped T+1, new margin rules, and reporting mandates under hard deadlines. PMs in finance live inside constraints like these — you've already practiced.</p></div>
+        <div class="card"><span class="tag">You already do this</span><h3>Incident response → launch ownership</h3><p>When settlement breaks at 4pm, you coordinate the fix and communicate outward. A product incident is the same drill with a different system.</p></div>
+        <div class="card"><span class="tag">You already do this</span><h3>Desk & client empathy → user empathy</h3><p>You know exactly where the workflow hurts because you've felt it. The best PM insight is lived pain — you arrive with a backlog of it.</p></div>
+      </div>
+    </section>
+
+    <section class="block" id="day">
+      <h2>A day in the life of a product manager</h2>
+      <p class="sub">No two days are identical, but the rhythm is real: part detective, part diplomat, part decision-maker. Pick the seat closest to the pivot you're planning.</p>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="banking">Banking &amp; markets PM</button>
+        <button class="tab-btn" data-tab="fintech">Fintech PM</button>
+      </div>
+
+      <div class="timeline active" id="tl-banking">
+        <div class="t-row"><div class="t-time">8:30</div><div><h4>Overnight exception scan</h4><p>You check what broke overnight in the collateral platform you own — two failed margin call deliveries. You note them for the engineering standup instead of firefighting; the on-call already paged the right people.</p></div></div>
+        <div class="t-row"><div class="t-time">9:15</div><div><h4>Engineering standup</h4><p>Fifteen minutes. You unblock one question — whether the new recall workflow should auto-escalate after 30 minutes — by deciding on the spot. Decisiveness is the job.</p></div></div>
+        <div class="t-row"><div class="t-time">10:00</div><div><h4>Desk discovery session</h4><p>You sit with two securities-lending traders to watch how they actually handle a corporate action. You take notes on workarounds — every workaround is a feature request in disguise.</p></div></div>
+        <div class="t-row"><div class="t-time">11:30</div><div><h4>Compliance review</h4><p>Legal flags a data-residency issue in your Q1 roadmap item. You re-scope the rollout to one region first and update the timeline before rumors do it for you.</p></div></div>
+        <div class="t-row"><div class="t-time">13:00</div><div><h4>PRD writing</h4><p>Quiet hour. You write the product requirements doc for automated fails-reporting: problem, users, success metrics, edge cases, what you're explicitly not building.</p></div></div>
+        <div class="t-row"><div class="t-time">14:30</div><div><h4>Prioritization with stakeholders</h4><p>Operations wants faster billing; the desk wants better inventory search. You walk both through the RICE scores and hold the line: search wins this quarter, billing next.</p></div></div>
+        <div class="t-row"><div class="t-time">16:00</div><div><h4>Vendor call</h4><p>Your market-data vendor is deprecating an API you depend on. You negotiate the migration window and turn it into a roadmap line item with an owner and a date.</p></div></div>
+        <div class="t-row"><div class="t-time">17:15</div><div><h4>End-of-day notes</h4><p>You update the roadmap doc, log three new insights from the desk visit, and write tomorrow's top three decisions. The job is mostly writing and deciding.</p></div></div>
+      </div>
+
+      <div class="timeline" id="tl-fintech">
+        <div class="t-row"><div class="t-time">9:00</div><div><h4>Metrics check</h4><p>Coffee and dashboards. Activation is down 2 points since Tuesday's release — you flag it in the team channel and pull the funnel breakdown before standup.</p></div></div>
+        <div class="t-row"><div class="t-time">9:30</div><div><h4>Squad standup</h4><p>You, two engineers, a designer, a data analyst. You kill one in-flight experiment that's clearly flat and reassign the capacity to the onboarding rewrite.</p></div></div>
+        <div class="t-row"><div class="t-time">10:30</div><div><h4>User interview</h4><p>A 30-minute call with a small-business owner who abandoned signup at the KYC step. You hear the actual words they use — gold for both the fix and the interview stories later.</p></div></div>
+        <div class="t-row"><div class="t-time">11:30</div><div><h4>Experiment review</h4><p>With your analyst: did the new card-design variant move approval rates without increasing fraud flags? It did — barely. You decide to roll it to 50% and watch for a week.</p></div></div>
+        <div class="t-row"><div class="t-time">13:00</div><div><h4>Risk &amp; compliance sync</h4><p>Fraud strategy wants a step-up authentication added to high-value transfers. You negotiate the threshold so legitimate users don't feel it — product sense meets loss prevention.</p></div></div>
+        <div class="t-row"><div class="t-time">14:30</div><div><h4>Roadmap storytelling</h4><p>You prep the monthly product review deck: what shipped, what moved the North Star, what you killed and why. Narrative matters as much as numbers.</p></div></div>
+        <div class="t-row"><div class="t-time">16:00</div><div><h4>Design critique</h4><p>You review new onboarding screens with the designer. You push back on three extra steps — every field costs conversion, and you have the data to prove it.</p></div></div>
+        <div class="t-row"><div class="t-time">17:00</div><div><h4>Write it down</h4><p>Decision log updated, experiment doc filed, tomorrow's user interviews confirmed. In product, undocumented decisions didn't happen.</p></div></div>
+      </div>
+    </section>
+
+    <section class="block" id="problems">
+      <h2>Problems you'll actually face</h2>
+      <p class="sub">These are the recurring situations that separate people who can do the job from people who just know the vocabulary. Each one doubles as interview material.</p>
+      <div class="grid">
+        <div class="card"><span class="tag">Prioritization</span><h3>Two executives, one roadmap slot</h3><p><span class="k">The situation:</span> The head of trading and the head of ops both need their feature this quarter. Both escalate.</p><p><span class="k">What a strong PM does:</span> Refuses to decide by volume. Scores both on impact, effort, and strategic fit, shows the math to both parties, and offers the loser a concrete next-quarter commitment — in writing.</p></div>
+        <div class="card"><span class="tag">Constraints</span><h3>Compliance blocks launch week</h3><p><span class="k">The situation:</span> Legal finds a data issue three days before release. Engineering says the fix is six weeks.</p><p><span class="k">What a strong PM does:</span> Doesn't argue the rule — scopes around it. Ships the compliant subset now, sequences the rest, and builds the compliance review into the process earlier next time.</p></div>
+        <div class="card"><span class="tag">Data</span><h3>The metric moved the wrong way</h3><p><span class="k">The situation:</span> Your launch is live and activation dropped. Everyone looks at you.</p><p><span class="k">What a strong PM does:</span> Segments before panicking — is it all users or one cohort, one platform, one step? Forms a hypothesis, checks it against the data, and either rolls back or iterates with a named owner and deadline.</p></div>
+        <div class="card"><span class="tag">Delivery</span><h3>Engineering says 6 weeks; the business promised 2</h3><p><span class="k">The situation:</span> Sales committed a date you never agreed to. The team is staring at you.</p><p><span class="k">What a strong PM does:</span> Protects the team and tells the truth upward. Finds the smallest shippable slice that honors the spirit of the promise, resets the date with evidence, and fixes the commitment process so it doesn't repeat.</p></div>
+        <div class="card"><span class="tag">Incidents</span><h3>A sev-1 at 4pm on Friday</h3><p><span class="k">The situation:</span> Payments are failing for a subset of users and support is drowning.</p><p><span class="k">What a strong PM does:</span> Runs the incident like an ops pro: one channel, one decision-maker, customer comms drafted early, rollback criteria agreed in advance. Then leads the blameless postmortem and turns it into backlog items.</p></div>
+        <div class="card"><span class="tag">Discovery</span><h3>The loudest customer isn't the right customer</h3><p><span class="k">The situation:</span> One big client demands a custom feature that helps nobody else.</p><p><span class="k">What a strong PM does:</span> Validates the underlying problem across five more customers. If it's truly unique, says no with a clear rationale and an alternative — and doesn't let one voice re-route the roadmap.</p></div>
+      </div>
+    </section>
+
+    <section class="block" id="interview">
+      <h2>“Tell me about a time…” — the interview bank</h2>
+      <p class="sub">PM interviews are behavioral interviews wearing a strategy costume. Every question below is one interviewers actually ask — with what they're really testing and how to structure your answer using STAR (Situation, Task, Action, Result). Your ops stories fit these better than you think.</p>
+
+      <div class="acc"><button class="acc-btn">Tell me about a time you disagreed with engineering. <span class="chev">+</span></button>
+        <div class="acc-body"><p class="probe"><span class="k">What they're really asking:</span> Can you hold a technical position without pulling rank, and do engineers trust you?</p><p>Good answers show you sought to understand the technical constraint first, brought data or user evidence to the discussion, and reached a joint decision — even when it wasn't your first choice.</p><p class="tip"><strong>STAR tip:</strong> Name the technical tradeoff explicitly. “They wanted to rebuild the service; I needed the feature in three weeks” is a story every interviewer recognizes.</p></div></div>
+
+      <div class="acc"><button class="acc-btn">Tell me about a launch that failed. <span class="chev">+</span></button>
+        <div class="acc-body"><p class="probe"><span class="k">What they're really asking:</span> Do you take ownership of outcomes, and do you learn in public?</p><p>Pick a real miss — a metric that didn't move, a feature nobody used. Walk through what you misread (the customer, the data, the timing), what you changed in your process afterward, and what you'd do differently. Blame-free honesty scores highest.</p><p class="tip"><strong>STAR tip:</strong> Ops people have great material here: a process change that backfired, a control that missed. Frame it as a product decision with a measurable result.</p></div></div>
+
+      <div class="acc"><button class="acc-btn">Tell me about a time you said no to a stakeholder. <span class="chev">+</span></button>
+        <div class="acc-body"><p class="probe"><span class="k">What they're really asking:</span> Can you protect the roadmap under pressure without burning relationships?</p><p>Show the framework you used (impact vs. effort, strategic fit), how you communicated the no, and what you offered instead. The best answers include the stakeholder later agreeing it was the right call.</p><p class="tip"><strong>STAR tip:</strong> “I said no to my own boss's request” is a power story — if you can show the data that backed you up.</p></div></div>
+
+      <div class="acc"><button class="acc-btn">Tell me about a time data changed your mind. <span class="chev">+</span></button>
+        <div class="acc-body"><p class="probe"><span class="k">What they're really asking:</span> Are your opinions loosely held? Do you actually look at the numbers?</p><p>Describe your original hypothesis, the analysis that contradicted it, and the decision you made differently. Name the metric and the size of the effect — specificity is credibility.</p><p class="tip"><strong>STAR tip:</strong> Reconciliation and exception work is full of these: a break pattern that revealed a process flaw, a report everyone trusted that was wrong.</p></div></div>
+
+      <div class="acc"><button class="acc-btn">Tell me about a time you dealt with compliance or legal friction. <span class="chev">+</span></button>
+        <div class="acc-body"><p class="probe"><span class="k">What they're really asking:</span> In regulated industries, can you ship without pretending constraints don't exist?</p><p>This is your home turf. Show you engaged compliance early, translated the requirement into product constraints, and found a shippable path instead of fighting the rule or surrendering the timeline.</p><p class="tip"><strong>STAR tip:</strong> Finance ops candidates win this question outright — most tech PMs have never done it. Make it concrete: the regulation, the constraint, the scope decision.</p></div></div>
+
+      <div class="acc"><button class="acc-btn">Tell me about a time you influenced without authority. <span class="chev">+</span></button>
+        <div class="acc-body"><p class="probe"><span class="k">What they're really asking:</span> PMs have no direct reports — can you move people who don't work for you?</p><p>Describe how you built the case: the evidence you gathered, the allies you recruited, the way you framed it in the other team's terms. Influence is storytelling plus proof.</p><p class="tip"><strong>STAR tip:</strong> Cross-desk projects, getting front office to adopt a new control, convincing tech to prioritize your fix — all count.</p></div></div>
+
+      <div class="acc"><button class="acc-btn">Tell me about a tough prioritization call. <span class="chev">+</span></button>
+        <div class="acc-body"><p class="probe"><span class="k">What they're really asking:</span> Do you have a repeatable method, or do you decide by gut and politics?</p><p>Walk through the options, the framework (RICE, effort/impact, strategic alignment), the call you made, and the result. Mention what you deliberately deprioritized — saying what you killed shows real judgment.</p><p class="tip"><strong>STAR tip:</strong> Morning exception triage is prioritization under time pressure. Translate it: exposure = impact, deadline = urgency, resources = effort.</p></div></div>
+
+      <div class="acc"><button class="acc-btn">Tell me about a process you improved. <span class="chev">+</span></button>
+        <div class="acc-body"><p class="probe"><span class="k">What they're really asking:</span> Do you leave things better than you found them, and can you measure it?</p><p>Baseline the before-state with a number (hours, error rate, cycle time), describe the change, and give the after-state number. Then connect it: “that's when I realized I wanted to build the tools, not just use them.”</p><p class="tip"><strong>STAR tip:</strong> End with the pivot narrative — this story is your bridge from ops to product. Interviewers remember arcs.</p></div></div>
+    </section>
+
+    <section class="block" id="tools">
+      <h2>Tools of the trade</h2>
+      <p class="sub">You don't need to master these before you pivot — but you should be able to say what each one is for and open one without panic. Hiring managers screen for literacy, not expertise.</p>
+      <div class="grid">
+        <div class="card"><span class="tag">Plan &amp; track</span><h3>Jira · Linear · Asana</h3><p>Where the work lives. Backlogs, sprints, and tickets — the system of record for what the team is building and what's blocked. If you've used any ticketing system in ops, the concept transfers directly.</p></div>
+        <div class="card"><span class="tag">Write &amp; decide</span><h3>Confluence · Notion · Google Docs</h3><p>Where thinking happens. PRDs, decision logs, roadmaps, and postmortems live here. Product runs on written communication — clear docs are a core PM skill.</p></div>
+        <div class="card"><span class="tag">Design</span><h3>Figma · Miro / FigJam</h3><p>Where ideas become screens. You won't design, but you'll review mockups, leave precise feedback, and whiteboard user flows with designers.</p></div>
+        <div class="card"><span class="tag">Data</span><h3>Amplitude · Mixpanel · Looker · SQL</h3><p>Where truth lives. Funnel analysis, cohort behavior, and ad-hoc queries. Your reconciliation instincts — never trusting a number you can't trace — are exactly right here.</p></div>
+        <div class="card"><span class="tag">Build &amp; release</span><h3>GitHub · LaunchDarkly · Pendo</h3><p>Where software ships. Version control, feature flags (turning features on for 5% of users), and in-app guidance. Know what a flag is and why rollbacks beat hotfixes.</p></div>
+        <div class="card"><span class="tag">Talk</span><h3>Slack · Zoom · Loom</h3><p>Where alignment happens. Async updates, recorded walkthroughs, and stakeholder demos. PMs live in these — brevity and clarity are the whole game.</p></div>
+      </div>
+    </section>
+
+    <section class="block" id="frameworks">
+      <h2>Strategies &amp; frameworks to know</h2>
+      <p class="sub">Frameworks don't make decisions — they make your reasoning legible. Know these well enough to apply one live in an interview.</p>
+      <div class="grid">
+        <div class="card"><span class="tag">Prioritization</span><h3>RICE</h3><p><span class="k">What:</span> Score features by Reach × Impact × Confidence ÷ Effort.</p><p><span class="k">When:</span> Comparing unlike requests with one number so the debate is about inputs, not opinions. (Try the interactive version in the <a href="index.html#lab">desk lab</a>.)</p></div>
+        <div class="card"><span class="tag">Prioritization</span><h3>MoSCoW</h3><p><span class="k">What:</span> Sort requirements into Must, Should, Could, Won't-have.</p><p><span class="k">When:</span> Scoping a release with stakeholders — it forces the “won't” conversation early, which is where most launches are saved.</p></div>
+        <div class="card"><span class="tag">Discovery</span><h3>Jobs-to-be-Done (JTBD)</h3><p><span class="k">What:</span> Customers “hire” products to make progress in a situation. Frame needs as jobs, not features.</p><p><span class="k">When:</span> User interviews and requirement writing — it stops you building what users ask for instead of what they need.</p></div>
+        <div class="card"><span class="tag">Discovery</span><h3>Opportunity Solution Trees</h3><p><span class="k">What:</span> Teresa Torres' method: start from a desired outcome, branch into opportunities, then solutions, then experiments.</p><p><span class="k">When:</span> Avoiding solution-first thinking — the most common failure mode of new PMs from any background.</p></div>
+        <div class="card"><span class="tag">Strategy</span><h3>OKRs &amp; the North Star metric</h3><p><span class="k">What:</span> Objectives and Key Results set directional goals; the North Star is the single metric capturing core product value.</p><p><span class="k">When:</span> Quarterly planning and saying no — if it doesn't move the North Star or a key result, it waits.</p></div>
+        <div class="card"><span class="tag">Measurement</span><h3>HEART</h3><p><span class="k">What:</span> Google's UX framework: Happiness, Engagement, Adoption, Retention, Task success.</p><p><span class="k">When:</span> Defining success metrics for user-facing features beyond raw revenue.</p></div>
+        <div class="card"><span class="tag">Process</span><h3>Dual-track agile</h3><p><span class="k">What:</span> Discovery track (is it worth building?) runs continuously alongside the delivery track (building it).</p><p><span class="k">When:</span> Always — it's how good teams avoid building the wrong thing efficiently.</p></div>
+        <div class="card"><span class="tag">Communication</span><h3>Working backwards (PR/FAQ)</h3><p><span class="k">What:</span> Amazon's method: write the launch press release and FAQ before building anything.</p><p><span class="k">When:</span> Testing whether an idea is clear enough to explain — if you can't write the press release, you're not ready to build.</p></div>
+      </div>
+    </section>
+
+    <section class="block" id="glossary">
+      <h2>Speak the language</h2>
+      <p class="sub">Twenty terms you'll hear in your first month. Tap any card to flip it — interviewers notice when a pivoter already talks like an insider.</p>
+      <div class="flash-grid">
+        <div class="flash"><h4>PRD</h4><p class="def">Product Requirements Document — the written spec of what you're building, for whom, why, and how you'll know it worked. The PM's core artifact.</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>Roadmap</h4><p class="def">A time-ordered view of where the product is headed — themes and outcomes, not a feature calendar. Good roadmaps communicate strategy; bad ones are wish lists with dates.</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>Backlog</h4><p class="def">The prioritized queue of everything the team could build next. Grooming it — reprioritizing as you learn — is continuous PM work.</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>Sprint</h4><p class="def">A fixed work cycle, usually 1–2 weeks, in which the team commits to shipping a defined slice. PMs set the “what”; the team owns the “how.”</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>Epic / User story</h4><p class="def">An epic is a large body of work; user stories are its slices, written as “As a [user], I want [goal] so that [benefit].” Stories are the unit of delivery.</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>MVP</h4><p class="def">Minimum Viable Product — the smallest thing you can ship to test a hypothesis with real users. In finance, “viable” includes compliant.</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>North Star metric</h4><p class="def">The single metric that best captures the core value your product delivers — e.g., weekly funded accounts for a brokerage app. Every roadmap should point at it.</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>OKR</h4><p class="def">Objectives and Key Results — a goal-setting system pairing an ambitious qualitative objective with measurable key results. Set quarterly, reviewed honestly.</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>A/B test</h4><p class="def">Showing two variants to randomized user groups to measure which performs better. The PM's truth serum — opinions lose, data wins.</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>Funnel</h4><p class="def">The step-by-step path users take toward a goal (signup → KYC → funding). Analyzing drop-off at each step tells you exactly where to fix things.</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>Activation</h4><p class="def">The moment a new user first gets real value — the “aha.” Improving activation is often the highest-leverage work a PM can do.</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>Churn</h4><p class="def">The rate at which users or revenue leave. High churn means you're filling a leaky bucket — retention work beats acquisition until it's fixed.</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>Stakeholder</h4><p class="def">Anyone with a stake in what you build — execs, compliance, engineering, support, customers. Managing them is not politics; it's the job.</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>Discovery</h4><p class="def">The continuous work of understanding users and validating problems before building — interviews, prototypes, experiments. Separate track from delivery.</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>Dogfooding</h4><p class="def">Using your own product internally before users do. The fastest way to find the rough edges — and in finance ops tools, you already are the user.</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>Technical debt</h4><p class="def">Shortcuts in the codebase that speed up today and slow down tomorrow. PMs decide when to pay it down — usually when velocity visibly suffers.</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>Scope creep</h4><p class="def">The slow expansion of a project's requirements after work starts. The PM's immune response: re-score, re-prioritize, or explicitly defer.</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>Go-to-market</h4><p class="def">The plan for launching: who it's for, how they'll hear about it, what success looks like. In banks, this includes training, comms, and control sign-off.</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>Wireframe</h4><p class="def">A low-fidelity sketch of a screen's layout — boxes and labels, not design. Used to align on structure before anyone invests in pixels.</p><p class="hint">Tap to reveal</p></div>
+        <div class="flash"><h4>KPI</h4><p class="def">Key Performance Indicator — the handful of metrics the team watches week to week. A good KPI is actionable: when it moves, you know what to do.</p><p class="hint">Tap to reveal</p></div>
+      </div>
+    </section>
+
+    <section class="block" id="immerse">
+      <h2>Immerse yourself</h2>
+      <p class="sub">Reading about product is not the same as feeling it. Watch real PMs talk about real days, put the best voices in your ears, then test your judgment.</p>
+
+      <h3 style="font-size:18px;margin:0 0 12px;">Watch</h3>
+      <div class="media-list" style="margin-bottom:26px;">
+        <div class="media-item"><div class="mi">🎬</div><div><h4><a href="https://www.youtube.com/watch?v=ppmWY9HsRr4" target="_blank" rel="noopener">Day in the life of a Product Manager at a London fintech startup</a></h4><p>A genuine look at the fintech PM day — standups, stakeholder calls, and the unglamorous middle of the job. Watch for how much of the day is communication.</p></div></div>
+        <div class="media-item"><div class="mi">🎬</div><div><h4><a href="https://www.youtube.com/watch?v=p-cosYj0i5w" target="_blank" rel="noopener">The APM reality check: you don't make decisions</a></h4><p>An honest take on entry-level product work — PRDs, bug triage, and supporting senior PMs. Useful calibration before you romanticize the title.</p></div></div>
+      </div>
+
+      <h3 style="font-size:18px;margin:0 0 12px;">Listen</h3>
+      <div class="media-list" style="margin-bottom:26px;">
+        <div class="media-item"><div class="mi">🎙️</div><div><h4><a href="https://www.lennyspodcast.com/" target="_blank" rel="noopener">Lenny's Podcast</a></h4><p>Interviews with world-class product leaders — tactical, dense, and the single most-recommended PM podcast. Start with any episode on prioritization or growth.</p></div></div>
+        <div class="media-item"><div class="mi">🎙️</div><div><h4><a href="https://productschool.com/resources/podcast" target="_blank" rel="noopener">The Product Podcast</a> <span style="color:var(--muted);font-weight:400;">by Product School</span></h4><p>PMs from top tech companies on career paths, craft, and breaking into the role — especially useful for pivoters.</p></div></div>
+        <div class="media-item"><div class="mi">🎙️</div><div><h4><a href="https://www.mindtheproduct.com/the-product-experience/" target="_blank" rel="noopener">The Product Experience</a> <span style="color:var(--muted);font-weight:400;">by Mind the Product</span></h4><p>Weekly conversations with PMs across industries on the realities of the craft.</p></div></div>
+        <div class="media-item"><div class="mi">🎙️</div><div><h4><a href="https://produxlabs.com/product-thinking" target="_blank" rel="noopener">Product Thinking</a> <span style="color:var(--muted);font-weight:400;">with Melissa Perri</span></h4><p>Deep dives on product strategy and org design from the author of <em>Escaping the Build Trap</em>.</p></div></div>
+        <div class="media-item"><div class="mi">🎙️</div><div><h4><a href="https://www.npr.org/series/how-i-built-this/" target="_blank" rel="noopener">How I Built This</a> <span style="color:var(--muted);font-weight:400;">(NPR)</span></h4><p>Founders on product origin stories and product-market-fit moments — read between the lines for PM lessons.</p></div></div>
+        <div class="media-item"><div class="mi">🎙️</div><div><h4><a href="https://www.acquired.fm/" target="_blank" rel="noopener">Acquired</a> · <a href="https://mastersofscale.com/" target="_blank" rel="noopener">Masters of Scale</a></h4><p>Long-form strategy case studies and scaling decisions — builds the business judgment PM interviews probe.</p></div></div>
+      </div>
+
+      <h3 style="font-size:18px;margin:0 0 12px;">Do — you be the PM</h3>
+      <p class="sub">Three judgment calls. Pick what you'd do, then see how a senior PM thinks about it.</p>
+
+      <div class="quiz-q" data-quiz>
+        <h4>Scenario 1 — The dashboard war</h4>
+        <p class="sit">Support is flooded with tickets about a confusing settlement-status screen. Engineering estimates a proper redesign at 5 weeks; a quick copy-and-layout patch takes 3 days. The quarter ends in 4 weeks. You…</p>
+        <button class="quiz-opt" data-ok="1">Ship the 3-day patch now, and put the redesign in next quarter's backlog with the ticket data attached.</button>
+        <button class="quiz-opt" data-ok="0">Commit to the 5-week redesign — the problem is real and deserves a real fix.</button>
+        <button class="quiz-opt" data-ok="0">Ask support to write better help articles and revisit next quarter.</button>
+        <div class="quiz-why"><strong>Why the patch wins:</strong> You relieve user pain in days while buying time to validate whether the redesign is even the right solution — ticket analysis might show 80% of confusion comes from one label. PMs sequence: relieve, learn, then invest. Committing 5 weeks on unvalidated scope is how quarters die.</div>
+      </div>
+
+      <div class="quiz-q" data-quiz>
+        <h4>Scenario 2 — The exec's pet feature</h4>
+        <p class="sit">A senior executive asks for a feature “as a favor.” Your data shows the underlying problem affects fewer than 2% of users, and the team is at capacity. You…</p>
+        <button class="quiz-opt" data-ok="0">Build it — you don't say no to executives.</button>
+        <button class="quiz-opt" data-ok="1">Show the data, explain the tradeoff against committed roadmap items, and offer a smaller experiment to validate the need first.</button>
+        <button class="quiz-opt" data-ok="0">Quietly deprioritize it and hope they forget.</button>
+        <div class="quiz-why"><strong>Why the data-backed no wins:</strong> “No” without evidence is politics; “no” with evidence and an alternative is product management. The experiment offer keeps the relationship intact and sometimes reveals the exec was sensing a real problem badly framed. Silent deprioritization destroys trust when discovered.</div>
+      </div>
+
+      <div class="quiz-q" data-quiz>
+        <h4>Scenario 3 — The metric dip</h4>
+        <p class="sit">Two days after your release, the activation metric drops 8%. Slack is anxious. You…</p>
+        <button class="quiz-opt" data-ok="0">Roll back immediately — protecting the metric is the priority.</button>
+        <button class="quiz-opt" data-ok="1">Segment the data by platform, cohort, and funnel step before deciding anything.</button>
+        <button class="quiz-opt" data-ok="0">Wait a week — metrics are noisy and it will probably recover.</button>
+        <div class="quiz-why"><strong>Why segmenting wins:</strong> An 8% aggregate dip could be one broken step on Android, a tracking bug, or a real regression — each demands a different response. Instant rollback discards learning; blind waiting discards responsibility. Diagnose first, then act with a named owner.</div>
+      </div>
+
+      <h3 style="font-size:18px;margin:26px 0 12px;">Your 90-day pivot checklist</h3>
+      <div class="card">
+        <ul class="check-list" id="pivotChecklist">
+          <li><input type="checkbox" /><span><strong>Weeks 1–2: Learn the language.</strong> Flip every flashcard above until the terms feel boring. Read one “day in the life” role profile on the <a href="index.html#roles">career map</a>.</span></li>
+          <li><input type="checkbox" /><span><strong>Weeks 3–4: Write like a PM.</strong> Pick a painful workflow from your current job and write a one-page PRD for fixing it — problem, users, success metric, scope.</span></li>
+          <li><input type="checkbox" /><span><strong>Weeks 5–6: Talk to PMs.</strong> Three informational interviews with product managers in finance. Ask each: “what surprised you most in year one?”</span></li>
+          <li><input type="checkbox" /><span><strong>Weeks 7–8: Build proof.</strong> Ship something small — a dashboard, an automation, a process redesign — and document the before/after numbers.</span></li>
+          <li><input type="checkbox" /><span><strong>Weeks 9–10: Interview prep.</strong> Write STAR stories for all eight questions in the bank above. Say them out loud, timed, under 3 minutes each.</span></li>
+          <li><input type="checkbox" /><span><strong>Weeks 11–12: Get credentialed.</strong> Start PSPO I or CSPO prep (below) and add “Product Management” positioning to your resume and LinkedIn.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="block" id="certs">
+      <h2>Certifications &amp; resources for the pivot</h2>
+      <p class="sub">Credentials don't make you a PM, but they signal seriousness and fill vocabulary gaps fast. Pair one certification with real proof of work from the checklist above.</p>
+      <div class="grid">
+        <div class="card"><span class="tag">Agile delivery</span><h3>PSPO I — Professional Scrum Product Owner</h3><p>From <a href="https://www.scrum.org" target="_blank" rel="noopener">Scrum.org</a>. The most respected product-owner certification; exam-based, no course required. Directly relevant to backlog and sprint work.</p></div>
+        <div class="card"><span class="tag">Agile delivery</span><h3>CSPO — Certified Scrum Product Owner</h3><p>From the <a href="https://www.scrumalliance.org" target="_blank" rel="noopener">Scrum Alliance</a>. Course-based alternative to PSPO; widely recognized in job postings, especially at larger institutions.</p></div>
+        <div class="card"><span class="tag">Generalist</span><h3>PMP / CAPM</h3><p>From <a href="https://www.pmi.org" target="_blank" rel="noopener">PMI</a>. Heavier on delivery and governance — valued in banking, where product work sits close to program management. See the full mapping in <a href="index.html#roles">Certifications by career path</a>.</p></div>
+        <div class="card"><span class="tag">Analysis</span><h3>CBAP / ECBA</h3><p>From <a href="https://www.iiba.org" target="_blank" rel="noopener">IIBA</a>. Business analysis certification that formalizes the requirements and stakeholder skills ops people already have.</p></div>
+        <div class="card"><span class="tag">Read</span><h3>The core shelf</h3><p><em>Inspired</em> (Marty Cagan) — how strong product teams work. <em>Escaping the Build Trap</em> (Melissa Perri) — from output to outcomes. <em>Continuous Discovery Habits</em> (Teresa Torres) — weekly discovery practice. <em>The Lean Product Playbook</em> (Dan Olsen) — the end-to-end process.</p></div>
+        <div class="card"><span class="tag">Follow</span><h3>Practitioner voices</h3><p><a href="https://www.producttalk.org/" target="_blank" rel="noopener">Product Talk</a> (Teresa Torres) on discovery. <a href="https://www.svpg.com/" target="_blank" rel="noopener">SVPG</a> (Marty Cagan) on product orgs. <a href="https://www.bringthedonuts.com/" target="_blank" rel="noopener">Bring the Donuts</a> (Ken Norton) on hiring and leading PMs.</p></div>
+      </div>
+      <p style="margin-top:18px;color:var(--muted);font-size:14px;">Pair this guide with the <a href="blog/ops-to-product-90-day-plan.html">ops-to-product 90-day plan</a> on the blog and the product manager role profiles on the <a href="index.html#roles">career map</a>.</p>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <p>Part of the Finance Careers learning platform. Content is educational and indicative — verify specifics against official sources.</p>
+  </footer>
+
+  <script>
+    (function () {
+      // tabs
+      var tabBtns = document.querySelectorAll('.tab-btn');
+      tabBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          tabBtns.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          document.querySelectorAll('.timeline').forEach(function (t) { t.classList.remove('active'); });
+          document.getElementById('tl-' + btn.getAttribute('data-tab')).classList.add('active');
+        });
+      });
+      // accordion
+      document.querySelectorAll('.acc-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var acc = btn.parentElement;
+          var wasOpen = acc.classList.contains('open');
+          document.querySelectorAll('.acc').forEach(function (a) {
+            a.classList.remove('open');
+            a.querySelector('.chev').textContent = '+';
+          });
+          if (!wasOpen) { acc.classList.add('open'); btn.querySelector('.chev').textContent = '–'; }
+        });
+      });
+      // flashcards
+      document.querySelectorAll('.flash').forEach(function (f) {
+        f.addEventListener('click', function () { f.classList.toggle('open'); });
+      });
+      // quiz
+      document.querySelectorAll('[data-quiz]').forEach(function (q) {
+        var opts = q.querySelectorAll('.quiz-opt');
+        var why = q.querySelector('.quiz-why');
+        opts.forEach(function (opt) {
+          opt.addEventListener('click', function () {
+            opts.forEach(function (o) {
+              o.disabled = true;
+              if (o.getAttribute('data-ok') === '1') o.classList.add('right');
+              else if (o === opt) o.classList.add('wrong');
+            });
+            why.classList.add('show');
+          });
+        });
+      });
+      // checklist
+      document.querySelectorAll('#pivotChecklist input').forEach(function (cb) {
+        cb.addEventListener('change', function () {
+          cb.closest('li').classList.toggle('done', cb.checked);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
