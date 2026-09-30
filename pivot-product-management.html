@@ -102,6 +102,16 @@
       text-transform: uppercase; letter-spacing: .06em; color: var(--accent);
       background: var(--accent-soft); border-radius: 6px; padding: 3px 8px; margin-bottom: 10px;
     }
+    .aff-slot:empty { display: none; }
+    .aff-slot { margin-top: 16px; }
+    .aff-card { background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 14px; padding: 18px; }
+    .aff-card h4 { margin: 8px 0 2px; font-size: 16px; }
+    .aff-card h4 a { color: var(--ink); }
+    .aff-card p { font-size: 14px; color: var(--muted); margin: 0 0 8px; }
+    .aff-badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 999px; padding: 2px 10px; }
+    .aff-card .aff-cta { margin: 4px 0 0; }
+    .aff-card .aff-cta a { font-weight: 700; color: var(--accent); }
+    .aff-disclosure { font-size: 13px; color: var(--muted); border-left: 3px solid var(--accent); background: var(--paper-2); border-radius: 0 8px 8px 0; padding: 8px 12px; margin: 0 0 18px; }
     /* day-in-life tabs */
     .tabs { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
     .tab-btn {
@@ -414,6 +424,7 @@
     <section class="block" id="certs">
       <h2>Certifications &amp; resources for the pivot</h2>
       <p class="sub">Credentials don't make you a PM, but they signal seriousness and fill vocabulary gaps fast. Pair one certification with real proof of work from the checklist above.</p>
+      <p class="aff-disclosure" hidden>Disclosure: some links in this section are affiliate links — if you buy through them, we may earn a commission at no extra cost to you.</p>
       <div class="grid">
         <div class="card"><span class="tag">Agile delivery</span><h3>PSPO I — Professional Scrum Product Owner</h3><p>From <a href="https://www.scrum.org" target="_blank" rel="noopener">Scrum.org</a>. The most respected product-owner certification; exam-based, no course required. Directly relevant to backlog and sprint work.</p></div>
         <div class="card"><span class="tag">Agile delivery</span><h3>CSPO — Certified Scrum Product Owner</h3><p>From the <a href="https://www.scrumalliance.org" target="_blank" rel="noopener">Scrum Alliance</a>. Course-based alternative to PSPO; widely recognized in job postings, especially at larger institutions.</p></div>
@@ -422,6 +433,7 @@
         <div class="card"><span class="tag">Read</span><h3>The core shelf</h3><p><em>Inspired</em> (Marty Cagan) — how strong product teams work. <em>Escaping the Build Trap</em> (Melissa Perri) — from output to outcomes. <em>Continuous Discovery Habits</em> (Teresa Torres) — weekly discovery practice. <em>The Lean Product Playbook</em> (Dan Olsen) — the end-to-end process.</p></div>
         <div class="card"><span class="tag">Follow</span><h3>Practitioner voices</h3><p><a href="https://www.producttalk.org/" target="_blank" rel="noopener">Product Talk</a> (Teresa Torres) on discovery. <a href="https://www.svpg.com/" target="_blank" rel="noopener">SVPG</a> (Marty Cagan) on product orgs. <a href="https://www.bringthedonuts.com/" target="_blank" rel="noopener">Bring the Donuts</a> (Ken Norton) on hiring and leading PMs.</p></div>
       </div>
+      <div class="aff-slot" data-aff="pspo-prep"></div>
       <p style="margin-top:18px;color:var(--muted);font-size:14px;">Pair this guide with the <a href="blog/ops-to-product-90-day-plan.html">ops-to-product 90-day plan</a> on the blog and the product manager role profiles on the <a href="index.html#roles">career map</a>.</p>
     </section>
   </main>
@@ -481,5 +493,6 @@
       });
     })();
   </script>
+  <script src="assets/affiliates.js"></script>
 </body>
 </html>

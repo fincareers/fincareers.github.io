@@ -204,6 +204,13 @@
     .btn:disabled { opacity: .5; cursor: wait; }
     .status { font-size: 13px; color: var(--muted); margin-top: 10px; min-height: 20px; }
     .status.err { color: var(--danger); }
+    .capture-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+    .capture-row input[type="email"] {
+      flex: 1 1 240px; border: 1px solid var(--line); border-radius: 8px;
+      padding: 11px 14px; background: var(--paper-2); color: var(--ink);
+    }
+    .capture-note { font-size: 13px; color: var(--muted); margin: 12px 0 0; }
+    .capture-done { font-size: 14px; background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 8px; padding: 12px 16px; margin-top: 4px; }
     #results { display: none; }
     .score-wrap { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; margin-bottom: 20px; }
     .score-ring { position: relative; width: 148px; height: 148px; flex: none; }
@@ -367,6 +374,18 @@
         <h2>4 · What to fix first</h2>
         <p class="sub">Prioritized by impact. Red items move the needle most.</p>
         <ul class="feedback" id="feedback"></ul>
+      </div>
+
+      <div class="card" id="reportCard">
+        <h2>5 · Get your full report by email</h2>
+        <p class="sub">Everything above stays right here — nothing is gated. If you'd like a written copy of your score, top gaps, and best role matches, plus occasional finance-career notes, drop your email.</p>
+        <div id="reportWrap">
+          <form id="reportForm" class="capture-row" novalidate>
+            <input type="email" id="reportEmail" name="email" placeholder="you@example.com" aria-label="Email address" autocomplete="email" />
+            <button class="btn btn-primary" type="submit" id="reportBtn">Send my report</button>
+          </form>
+          <p class="capture-note" id="reportNote">One report email now; occasional career notes after that. Unsubscribe anytime — your resume text never leaves this page.</p>
+        </div>
       </div>
     </section>
 
@@ -622,6 +641,7 @@ function buildFeedback(a, targetRole){
 
 /* ---------- UI wiring ---------- */
 const $ = id => document.getElementById(id);
+let lastReport = null;
 const dropzone = $("dropzone"), fileInput = $("fileInput"), dzFile = $("dzFile");
 const pasteArea = $("pasteArea"), roleSelect = $("roleSelect");
 const analyzeBtn = $("analyzeBtn"), sampleBtn = $("sampleBtn"), status = $("status");
@@ -681,6 +701,13 @@ function verdict(score){
 
 function render(a, targetRole){
   $("results").style.display = "block";
+  lastReport = {
+    score: a.overall,
+    verdict: verdict(a.overall),
+    bestRole: a.roleScores[0] ? a.roleScores[0].title + " (" + a.roleScores[0].score + "% match)" : "–",
+    words: a.wordCount.toLocaleString(),
+    quantified: Math.round(a.quantRatio * 100) + "%"
+  };
   /* Score ring */
   const arc = $("scoreArc"), C = 402.1;
   arc.style.strokeDashoffset = C;
@@ -757,6 +784,61 @@ analyzeBtn.addEventListener("click", async () => {
     status.className = "status err";
   }
 });
+
+/* Optional report-by-email capture (FormSubmit -> anasrazzaq@gmail.com). Results are never gated. */
+(function initReportCapture(){
+  const wrap = document.getElementById("reportWrap");
+  if (!wrap) return;
+  if (localStorage.getItem("fc_report_sent") === "1") {
+    wrap.innerHTML = '<p class="capture-done">✓ Report requested — check your inbox. You are on the finance-careers notes list; unsubscribe anytime.</p>';
+    return;
+  }
+  document.getElementById("reportForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const emailEl = document.getElementById("reportEmail");
+    const note = document.getElementById("reportNote");
+    const btn = document.getElementById("reportBtn");
+    const email = emailEl.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      note.textContent = "Please enter a valid email address.";
+      note.style.color = "var(--danger)";
+      emailEl.focus();
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+    const r = lastReport || {};
+    const msg = [
+      "Résumé analyzer report — Finance Careers Learning Platform",
+      "Overall score: " + (r.score != null ? r.score + "/100" : "–"),
+      "Verdict: " + (r.verdict || "–"),
+      "Best role match: " + (r.bestRole || "–"),
+      "Words: " + (r.words || "–") + " · Bullets with numbers: " + (r.quantified || "–")
+    ].join("\n");
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/anasrazzaq@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          name: "Résumé analyzer visitor",
+          email: email,
+          _subject: "Résumé report request — Finance Careers",
+          _template: "table",
+          _captcha: "false",
+          message: msg
+        })
+      });
+      if (!res.ok) throw new Error("send failed");
+      localStorage.setItem("fc_report_sent", "1");
+      wrap.innerHTML = '<p class="capture-done">✓ Report requested — check your inbox. You are on the finance-careers notes list; unsubscribe anytime.</p>';
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = "Send my report";
+      note.textContent = "Couldn't send just now — your results above are unaffected. Try again in a moment.";
+      note.style.color = "var(--danger)";
+    }
+  });
+})();
 </script>
 </body>
 </html>
